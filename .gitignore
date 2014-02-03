@@ -1,6 +1,10 @@
 # bin
 /bin/
+/assets/
 
 # eclipse setting
 /proguard-project.txt
 
+# generating
+/.classpath
+/gen/
