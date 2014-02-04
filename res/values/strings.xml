@@ -3,6 +3,6 @@
 
     <string name="app_name">长大在线</string>
     <string name="action_settings">设置</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="main_page_name">主页</string>
 
 </resources>
