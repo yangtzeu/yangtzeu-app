@@ -8,6 +8,13 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="18" />
 
+    <!-- 网络访问授权 -->
+    <permission android:name="android.permission.INTERNET" >
+    </permission>
+    <!-- 摄像头访问授权 -->
+    <permission android:name="android.permission.CAMERA" >
+    </permission>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -16,12 +23,11 @@
             android:name="com.rex.yuol.Welcome"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
-            
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            
         </activity>
         <activity
             android:name="com.rex.yuol.MainActivity"
@@ -32,7 +38,6 @@
             android:name="com.rex.yuol.Login"
             android:label="@string/title_activity_login"
             android:windowSoftInputMode="adjustResize|stateVisible" >
-            
         </activity>
     </application>
 
