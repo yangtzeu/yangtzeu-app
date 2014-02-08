@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -238,5 +239,6 @@ public class Login extends Activity {
 			mAuthTask = null;
 			showProgress(false);
 		}
+		
 	}
 }

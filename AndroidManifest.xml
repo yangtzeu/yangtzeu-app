@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.rex.yuol.MainActivity"
+            android:name="com.rex.yuol.Main"
             android:label="@string/main_page_name"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>

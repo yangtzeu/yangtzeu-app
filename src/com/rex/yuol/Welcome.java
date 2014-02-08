@@ -1,7 +1,12 @@
 package com.rex.yuol;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
+import android.view.KeyEvent;
 import android.view.Menu;
 
 public class Welcome extends Activity {
@@ -9,14 +14,25 @@ public class Welcome extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_welcome);
+		setContentView(R.layout.welcome);
+
+		TimerTask task = new TimerTask() {
+			public void run() {
+				Intent intent = new Intent();
+				intent.setClass(Welcome.this, Main.class);
+				startActivity(intent);
+				finish();
+			}
+		};
+		Timer timer = new Timer();
+		timer.schedule(task, 2000);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-//		getMenuInflater().inflate(R.menu.welcome, menu);
-		return true;
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 
 }

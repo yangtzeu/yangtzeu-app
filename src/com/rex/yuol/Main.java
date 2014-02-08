@@ -2,6 +2,7 @@ package com.rex.yuol;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.view.KeyEvent;
 import android.view.Menu;
 
 public class Main extends Activity {
@@ -9,7 +10,7 @@ public class Main extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main);
     }
 
 
@@ -20,4 +21,12 @@ public class Main extends Activity {
         return true;
     }
     
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			System.exit(0);
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+
 }
