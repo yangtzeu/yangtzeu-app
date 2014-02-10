@@ -3,8 +3,6 @@ package com.rex.yuol;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.rex.yuol.utils.HttpUtils;
-
 import android.os.Bundle;
 import android.os.Looper;
 import android.app.Activity;

@@ -1,6 +1,7 @@
 package com.rex.yuol;
 
-import com.rex.yuol.utils.HttpUtils;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -44,15 +45,13 @@ public class Main extends Activity implements android.view.View.OnClickListener{
 	@Override
 	public void onClick(View arg0) {
 		// TODO Auto-generated method stub
-		try{
-			String s=HttpUtils.get("http://wap.baidu.com",this);
-//			Log.i("http",s);
-//			Toast.makeText(getApplicationContext(), "hi", Toast.LENGTH_SHORT).show();
-		}catch(Exception e2){
-			Log.e("geterr",e2.getMessage());
-		}
+		AsyncHttpClient client = new AsyncHttpClient();
+		client.get("http://www.baidu.com", new AsyncHttpResponseHandler() {
+		    @Override
+		    public void onSuccess(String response) {
+		    	Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();;
+		    }
+		});
 	}
-
-
 
 }
