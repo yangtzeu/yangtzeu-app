@@ -2,18 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.rex.yuol"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0.0" >
 
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="18" />
 
     <!-- 网络访问授权 -->
-    <permission android:name="android.permission.INTERNET" >
-    </permission>
+    <uses-permission android:name="android.permission.INTERNET" />
     <!-- 摄像头访问授权 -->
-    <permission android:name="android.permission.CAMERA" >
-    </permission>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- 发短信授权 -->
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <!-- 自启动授权 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
