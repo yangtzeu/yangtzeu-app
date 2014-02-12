@@ -10,7 +10,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@drawable/head_bg"
+        android:background="@drawable/yuol_main_title"
         android:gravity="top"
         android:orientation="vertical" >
     </LinearLayout>
@@ -21,7 +21,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/main_title"
         android:layout_weight="9"
-        android:background="#FFFFFF"
+        android:background="#a7bfdd"
         android:gravity="top"
         android:orientation="vertical"
         android:padding="0dp" >
@@ -37,14 +37,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="#559999"
+                android:background="@drawable/yuol_main_tile_jwc"
                 android:padding="0dp" >
-
-                <Button
-                    android:id="@+id/button1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Button" />
 
             </LinearLayout>
 
@@ -52,7 +46,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="#995599"
+                android:background="@drawable/yuol_main_tile_library"
                 android:padding="0dp" >
             </LinearLayout>
         </LinearLayout>
@@ -67,7 +61,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="#559009"
+                android:background="@drawable/yuol_main_tile_notice"
                 android:padding="0dp" >
             </LinearLayout>
 
@@ -75,7 +69,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="#900599"
+                android:background="@drawable/yuol_main_tile_news"
                 android:padding="0dp" >
             </LinearLayout>
         </LinearLayout>
@@ -90,7 +84,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="#544994"
+                android:background="@drawable/yuol_main_tile_setting"
                 android:padding="0dp" >
             </LinearLayout>
 
@@ -98,7 +92,6 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="#495449"
                 android:padding="0dp" >
             </LinearLayout>
         </LinearLayout>
