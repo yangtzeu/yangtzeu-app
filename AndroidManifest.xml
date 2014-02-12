@@ -36,11 +36,6 @@
             android:label="@string/main_page_name"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
-        <activity
-            android:name="com.rex.yuol.Login"
-            android:label="@string/title_activity_login"
-            android:windowSoftInputMode="adjustResize|stateVisible" >
-        </activity>
     </application>
 
 </manifest>

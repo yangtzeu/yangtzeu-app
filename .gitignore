@@ -8,3 +8,4 @@
 # generating
 /.classpath
 /gen/
+lint.xml

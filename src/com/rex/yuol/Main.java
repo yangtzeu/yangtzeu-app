@@ -26,13 +26,10 @@ public class Main extends Activity implements android.view.View.OnClickListener{
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
     
+	/* 按后退键则关闭程序
+	 * @see android.app.Activity#onKeyDown(int, android.view.KeyEvent)
+	 */
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			System.exit(0);
@@ -46,7 +43,7 @@ public class Main extends Activity implements android.view.View.OnClickListener{
 	public void onClick(View arg0) {
 		// TODO Auto-generated method stub
 		AsyncHttpClient client = new AsyncHttpClient();
-		client.get("http://www.baidu.com", new AsyncHttpResponseHandler() {
+		client.get("http://wap.baidu.com", new AsyncHttpResponseHandler() {
 		    @Override
 		    public void onSuccess(String response) {
 		    	Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();;
