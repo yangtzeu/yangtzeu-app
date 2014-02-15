@@ -6,6 +6,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
 import android.graphics.ColorMatrixColorFilter;
 import android.util.Log;
@@ -97,7 +98,11 @@ public class Main extends Activity implements android.view.View.OnClickListener 
 	        }
 		}); 
 		
-		// btn1.setOnClickListener(this);
+		btn1.setOnClickListener(this);
+		btn2.setOnClickListener(this);
+		btn3.setOnClickListener(this);
+		btn4.setOnClickListener(this);
+		btn5.setOnClickListener(this);
 	}
 
 	/*
@@ -115,16 +120,42 @@ public class Main extends Activity implements android.view.View.OnClickListener 
 
 	@Override
 	public void onClick(View arg0) {
+		if(arg0==btn1){
+			
+			Toast.makeText(getApplicationContext(), "教务处",
+					Toast.LENGTH_SHORT).show();
+			Intent intent = new Intent(this, Jwc.class);
+			startActivity(intent);
+			overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+//			finish();
+			
+		}else if(arg0==btn2){
+			Toast.makeText(getApplicationContext(), "图书馆",
+					Toast.LENGTH_SHORT).show();
+		}else if(arg0==btn3){
+			Toast.makeText(getApplicationContext(), "通知通告",
+					Toast.LENGTH_SHORT).show();
+		}else if(arg0==btn4){
+			Toast.makeText(getApplicationContext(), "新闻",
+					Toast.LENGTH_SHORT).show();
+		}else if(arg0==btn5){
+			Toast.makeText(getApplicationContext(), "设置",
+					Toast.LENGTH_SHORT).show();
+			Intent intent = new Intent(this, Setting.class);
+			startActivity(intent);
+			overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+			
+		}
 		// TODO Auto-generated method stub
-		AsyncHttpClient client = new AsyncHttpClient();
-		client.get("http://wap.baidu.com", new AsyncHttpResponseHandler() {
-			@Override
-			public void onSuccess(String response) {
-				Toast.makeText(getApplicationContext(), response,
-						Toast.LENGTH_SHORT).show();
-				;
-			}
-		});
+//		AsyncHttpClient client = new AsyncHttpClient();
+//		client.get("http://wap.baidu.com", new AsyncHttpResponseHandler() {
+//			@Override
+//			public void onSuccess(String response) {
+//				Toast.makeText(getApplicationContext(), response,
+//						Toast.LENGTH_SHORT).show();
+//				;
+//			}
+//		});
 	}
 
 	/**
