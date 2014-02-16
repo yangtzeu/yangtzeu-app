@@ -11,7 +11,7 @@
         android:text="@string/hello_world" />
 
     <LinearLayout
-        android:id="@+id/main_title"
+        android:id="@+id/library_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -19,17 +19,19 @@
         android:gravity="top"
         android:orientation="vertical" >
 
+        <!-- 图书馆 -->
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="图书馆" />
+            android:text="@string/library" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/main_title"
+        android:layout_below="@+id/library_title"
         android:layout_weight="9"
         android:background="#a7bfdd"
         android:gravity="top"

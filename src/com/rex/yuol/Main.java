@@ -122,7 +122,7 @@ public class Main extends Activity implements android.view.View.OnClickListener 
 	public void onClick(View arg0) {
 		if(arg0==btn1){
 			
-			Toast.makeText(getApplicationContext(), "教务处",
+			Toast.makeText(getApplicationContext(), R.string.jwc,
 					Toast.LENGTH_SHORT).show();
 			Intent intent = new Intent(this, Jwc.class);
 			startActivity(intent);
@@ -130,16 +130,16 @@ public class Main extends Activity implements android.view.View.OnClickListener 
 //			finish();
 			
 		}else if(arg0==btn2){
-			Toast.makeText(getApplicationContext(), "图书馆",
+			Toast.makeText(getApplicationContext(), R.string.library,
 					Toast.LENGTH_SHORT).show();
 		}else if(arg0==btn3){
-			Toast.makeText(getApplicationContext(), "通知通告",
+			Toast.makeText(getApplicationContext(), R.string.notice,
 					Toast.LENGTH_SHORT).show();
 		}else if(arg0==btn4){
-			Toast.makeText(getApplicationContext(), "新闻",
+			Toast.makeText(getApplicationContext(), R.string.news,
 					Toast.LENGTH_SHORT).show();
 		}else if(arg0==btn5){
-			Toast.makeText(getApplicationContext(), "设置",
+			Toast.makeText(getApplicationContext(), R.string.setting,
 					Toast.LENGTH_SHORT).show();
 			Intent intent = new Intent(this, Setting.class);
 			startActivity(intent);

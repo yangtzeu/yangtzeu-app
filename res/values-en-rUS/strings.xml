@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- English Version -->
+    <string name="app_name">Yuol</string>
+    <string name="yuol">Yuol</string>
+    <string name="home">Home</string>
+    <string name="jwc">Dean\'s office</string>
+    <string name="library">Library</string>
+    <string name="notice">Notice</string>
+    <string name="news">News</string>
+    <string name="setting">Setting</string>
+    <string name="hello_world">Hello world!</string>
+    
+
+</resources>
