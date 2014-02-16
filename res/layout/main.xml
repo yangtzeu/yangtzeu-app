@@ -12,7 +12,22 @@
         android:layout_weight="1"
         android:background="@drawable/yuol_main_title"
         android:gravity="top"
-        android:orientation="vertical" >
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_launcher"
+            android:gravity="bottom" >
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="长大在线"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -42,7 +57,6 @@
                 android:gravity="bottom|center_horizontal"
                 android:paddingBottom="15dp"
                 android:text="教务处" >
-
             </Button>
 
             <Button
@@ -51,9 +65,9 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:background="@drawable/yuol_main_tile_library"
-                android:paddingBottom="15dp"
                 android:gravity="bottom|center_horizontal"
-                android:text="图书馆">
+                android:paddingBottom="15dp"
+                android:text="图书馆" >
             </Button>
         </LinearLayout>
 
@@ -69,9 +83,9 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:background="@drawable/yuol_main_tile_notice"
-                android:text="通知通告"
                 android:gravity="bottom|center_horizontal"
-                android:padding="15dp" >
+                android:padding="15dp"
+                android:text="通知通告" >
             </Button>
 
             <Button
@@ -80,9 +94,9 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:background="@drawable/yuol_main_tile_news"
-                android:text="新闻"
                 android:gravity="bottom|center_horizontal"
-                android:padding="15dp" >
+                android:padding="15dp"
+                android:text="新闻" >
             </Button>
         </LinearLayout>
 
@@ -98,9 +112,9 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:background="@drawable/yuol_main_tile_setting"
-                android:text="设置"
                 android:gravity="bottom|center_horizontal"
-                android:padding="15dp" >
+                android:padding="15dp"
+                android:text="设置" >
             </Button>
 
             <LinearLayout

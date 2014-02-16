@@ -38,12 +38,17 @@
         </activity>
         <activity
             android:name="com.rex.yuol.Jwc"
-            android:label="@string/title_activity_jwc" 
+            android:label="@string/title_activity_jwc"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
         <activity
             android:name="com.rex.yuol.Setting"
             android:label="@string/title_activity_setting" >
+        </activity>
+        <activity
+            android:name="com.rex.yuol.Library"
+            android:label="@string/title_activity_library" 
+            android:theme="@android:style/Theme.Black.NoTitleBar">
         </activity>
     </application>
 

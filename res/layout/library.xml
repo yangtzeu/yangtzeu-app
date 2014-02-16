@@ -3,7 +3,12 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    tools:context=".Jwc" >
+    tools:context=".Library" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_world" />
 
     <LinearLayout
         android:id="@+id/main_title"
@@ -12,22 +17,12 @@
         android:layout_weight="1"
         android:background="@drawable/yuol_main_title"
         android:gravity="top"
-        android:orientation="horizontal" >
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/icon_jwc"
-            android:gravity="bottom" >
-        </LinearLayout>
+        android:orientation="vertical" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="教务处"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:text="图书馆" />
     </LinearLayout>
 
     <LinearLayout

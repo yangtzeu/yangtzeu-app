@@ -7,5 +7,6 @@
     <string name="title_activity_jwc">教务处</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_setting">设置</string>
+    <string name="title_activity_library">图书馆</string>
 
 </resources>
