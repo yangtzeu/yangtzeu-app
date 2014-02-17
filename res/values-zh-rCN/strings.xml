@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- 中文 版本 -->
+    <!-- 默认 版本 -->
     <string name="app_name">长大在线</string>
     <string name="yuol">长大在线</string>
     <string name="home">主页</string>
@@ -10,7 +10,7 @@
     <string name="notice">通知通告</string>
     <string name="news">新闻</string>
     <string name="setting">设置</string>
-    <string name="tips_home">今天是世界，你好！\n第1周 星期一</string>
+    <string name="tips_home">今天是元宵节\n第1周 星期一</string>
     <string name="hello_world">世界，你好！</string>
 
 </resources>

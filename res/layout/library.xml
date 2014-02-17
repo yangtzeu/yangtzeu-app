@@ -5,11 +5,6 @@
     android:orientation="vertical"
     tools:context=".Library" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
-
     <LinearLayout
         android:id="@+id/library_title"
         android:layout_width="fill_parent"
@@ -17,21 +12,30 @@
         android:layout_weight="1"
         android:background="@drawable/yuol_main_title"
         android:gravity="top"
-        android:orientation="vertical" >
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/icon_library"
+            android:gravity="bottom"
+            android:padding="3dp" >
+        </LinearLayout>
 
         <!-- 图书馆 -->
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/library" />
+            android:layout_gravity="center_vertical"
+            android:text="@string/library"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/library_title"
         android:layout_weight="9"
         android:background="#a7bfdd"
         android:gravity="top"

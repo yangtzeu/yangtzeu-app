@@ -36,68 +36,68 @@ public class Main extends Activity implements android.view.View.OnClickListener 
 		btn3 = (Button) this.findViewById(R.id.notice_btn);
 		btn4 = (Button) this.findViewById(R.id.news_btn);
 		btn5 = (Button) this.findViewById(R.id.setting_btn);
-		
-		btn1.setOnTouchListener(new OnTouchListener(){     
-	        public boolean onTouch(View v, MotionEvent event) {
-	                if(event.getAction() == MotionEvent.ACTION_DOWN){     
-	                        //更改为按下时的背景图片     
-	                        v.setBackgroundResource(R.drawable.yuol_main_tile_jwc_p);     
-	                }else if(event.getAction() == MotionEvent.ACTION_UP){     
-	                        //改为抬起时的图片     
-	                        v.setBackgroundResource(R.drawable.yuol_main_tile_jwc);     
-	                }  
-	                return false;     
-	        }
-		}); 
-		btn2.setOnTouchListener(new OnTouchListener(){     
-	        public boolean onTouch(View v, MotionEvent event) {
-	                if(event.getAction() == MotionEvent.ACTION_DOWN){     
-	                        //更改为按下时的背景图片     
-	                        v.setBackgroundResource(R.drawable.yuol_main_tile_library_p);     
-	                }else if(event.getAction() == MotionEvent.ACTION_UP){     
-	                        //改为抬起时的图片     
-	                        v.setBackgroundResource(R.drawable.yuol_main_tile_library);     
-	                }  
-	                return false;     
-	        }
-		}); 
-		btn3.setOnTouchListener(new OnTouchListener(){     
-	        public boolean onTouch(View v, MotionEvent event) {
-	                if(event.getAction() == MotionEvent.ACTION_DOWN){     
-	                        //更改为按下时的背景图片     
-	                        v.setBackgroundResource(R.drawable.yuol_main_tile_notice_p);     
-	                }else if(event.getAction() == MotionEvent.ACTION_UP){     
-	                        //改为抬起时的图片     
-	                        v.setBackgroundResource(R.drawable.yuol_main_tile_notice);     
-	                }  
-	                return false;     
-	        }
-		}); 
-		btn4.setOnTouchListener(new OnTouchListener(){     
-	        public boolean onTouch(View v, MotionEvent event) {
-	                if(event.getAction() == MotionEvent.ACTION_DOWN){     
-	                        //更改为按下时的背景图片     
-	                        v.setBackgroundResource(R.drawable.yuol_main_tile_news_p);     
-	                }else if(event.getAction() == MotionEvent.ACTION_UP){     
-	                        //改为抬起时的图片     
-	                        v.setBackgroundResource(R.drawable.yuol_main_tile_news);     
-	                }  
-	                return false;     
-	        }
-		}); 
-		btn5.setOnTouchListener(new OnTouchListener(){     
-	        public boolean onTouch(View v, MotionEvent event) {
-	                if(event.getAction() == MotionEvent.ACTION_DOWN){     
-	                        //更改为按下时的背景图片     
-	                        v.setBackgroundResource(R.drawable.yuol_main_tile_setting_p);     
-	                }else if(event.getAction() == MotionEvent.ACTION_UP){     
-	                        //改为抬起时的图片     
-	                        v.setBackgroundResource(R.drawable.yuol_main_tile_setting);     
-	                }  
-	                return false;     
-	        }
-		}); 
-		
+
+		btn1.setOnTouchListener(new OnTouchListener() {
+			public boolean onTouch(View v, MotionEvent event) {
+				if (event.getAction() == MotionEvent.ACTION_DOWN) {
+					// 更改为按下时的背景图片
+					v.setBackgroundResource(R.drawable.yuol_main_tile_jwc_p);
+				} else if (event.getAction() == MotionEvent.ACTION_UP) {
+					// 改为抬起时的图片
+					v.setBackgroundResource(R.drawable.yuol_main_tile_jwc);
+				}
+				return false;
+			}
+		});
+		btn2.setOnTouchListener(new OnTouchListener() {
+			public boolean onTouch(View v, MotionEvent event) {
+				if (event.getAction() == MotionEvent.ACTION_DOWN) {
+					// 更改为按下时的背景图片
+					v.setBackgroundResource(R.drawable.yuol_main_tile_library_p);
+				} else if (event.getAction() == MotionEvent.ACTION_UP) {
+					// 改为抬起时的图片
+					v.setBackgroundResource(R.drawable.yuol_main_tile_library);
+				}
+				return false;
+			}
+		});
+		btn3.setOnTouchListener(new OnTouchListener() {
+			public boolean onTouch(View v, MotionEvent event) {
+				if (event.getAction() == MotionEvent.ACTION_DOWN) {
+					// 更改为按下时的背景图片
+					v.setBackgroundResource(R.drawable.yuol_main_tile_notice_p);
+				} else if (event.getAction() == MotionEvent.ACTION_UP) {
+					// 改为抬起时的图片
+					v.setBackgroundResource(R.drawable.yuol_main_tile_notice);
+				}
+				return false;
+			}
+		});
+		btn4.setOnTouchListener(new OnTouchListener() {
+			public boolean onTouch(View v, MotionEvent event) {
+				if (event.getAction() == MotionEvent.ACTION_DOWN) {
+					// 更改为按下时的背景图片
+					v.setBackgroundResource(R.drawable.yuol_main_tile_news_p);
+				} else if (event.getAction() == MotionEvent.ACTION_UP) {
+					// 改为抬起时的图片
+					v.setBackgroundResource(R.drawable.yuol_main_tile_news);
+				}
+				return false;
+			}
+		});
+		btn5.setOnTouchListener(new OnTouchListener() {
+			public boolean onTouch(View v, MotionEvent event) {
+				if (event.getAction() == MotionEvent.ACTION_DOWN) {
+					// 更改为按下时的背景图片
+					v.setBackgroundResource(R.drawable.yuol_main_tile_setting_p);
+				} else if (event.getAction() == MotionEvent.ACTION_UP) {
+					// 改为抬起时的图片
+					v.setBackgroundResource(R.drawable.yuol_main_tile_setting);
+				}
+				return false;
+			}
+		});
+
 		btn1.setOnClickListener(this);
 		btn2.setOnClickListener(this);
 		btn3.setOnClickListener(this);
@@ -120,46 +120,51 @@ public class Main extends Activity implements android.view.View.OnClickListener 
 
 	@Override
 	public void onClick(View arg0) {
-		if(arg0==btn1){
-			
-			Toast.makeText(getApplicationContext(), R.string.jwc,
-					Toast.LENGTH_SHORT).show();
+		if (arg0 == btn1) {
+			// jwc
 			Intent intent = new Intent(this, Jwc.class);
 			startActivity(intent);
 			overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
-//			finish();
-			
-		}else if(arg0==btn2){
-			Toast.makeText(getApplicationContext(), R.string.library,
-					Toast.LENGTH_SHORT).show();
-		}else if(arg0==btn3){
-			Toast.makeText(getApplicationContext(), R.string.notice,
-					Toast.LENGTH_SHORT).show();
-		}else if(arg0==btn4){
-			Toast.makeText(getApplicationContext(), R.string.news,
-					Toast.LENGTH_SHORT).show();
-		}else if(arg0==btn5){
-			Toast.makeText(getApplicationContext(), R.string.setting,
-					Toast.LENGTH_SHORT).show();
-			Intent intent = new Intent(this, Setting.class);
+
+		} else if (arg0 == btn2) {
+			// library
+			Intent intent = new Intent(this, Library.class);
+			startActivity(intent);
+			overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+
+		} else if (arg0 == btn3) {
+			// notice
+			Intent intent = new Intent(this, Notice.class);
+			startActivity(intent);
+			overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+
+		} else if (arg0 == btn4) {
+			// news
+			Intent intent = new Intent(this, News.class);
 			startActivity(intent);
 			overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
 			
+		} else if (arg0 == btn5) {
+			// setting
+			Intent intent = new Intent(this, Setting.class);
+			startActivity(intent);
+			overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+
 		}
 		// TODO Auto-generated method stub
-//		AsyncHttpClient client = new AsyncHttpClient();
-//		client.get("http://wap.baidu.com", new AsyncHttpResponseHandler() {
-//			@Override
-//			public void onSuccess(String response) {
-//				Toast.makeText(getApplicationContext(), response,
-//						Toast.LENGTH_SHORT).show();
-//				;
-//			}
-//		});
+		// AsyncHttpClient client = new AsyncHttpClient();
+		// client.get("http://wap.baidu.com", new AsyncHttpResponseHandler() {
+		// @Override
+		// public void onSuccess(String response) {
+		// Toast.makeText(getApplicationContext(), response,
+		// Toast.LENGTH_SHORT).show();
+		// ;
+		// }
+		// });
 	}
 
 	/**
 	 * 按钮触发样式
 	 */
-	
+
 }

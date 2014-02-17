@@ -3,10 +3,10 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    tools:context=".Setting" >
+    tools:context=".News" >
 
     <LinearLayout
-        android:id="@+id/setting_title"
+        android:id="@+id/notice_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -17,18 +17,18 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/icon_setting"
+            android:background="@drawable/icon_notice"
             android:gravity="bottom"
             android:padding="3dp" >
         </LinearLayout>
 
-        <!-- 设置 -->
+        <!-- 新闻 -->
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="@string/setting"
+            android:text="@string/news"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
     </LinearLayout>

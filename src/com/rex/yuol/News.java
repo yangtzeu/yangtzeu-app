@@ -5,18 +5,18 @@ import android.app.Activity;
 import android.view.KeyEvent;
 import android.view.Menu;
 
-public class Jwc extends Activity {
+public class News extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.jwc);
+		setContentView(R.layout.news);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.jwc, menu);
+		getMenuInflater().inflate(R.menu.news, menu);
 		return true;
 	}
 
@@ -34,5 +34,4 @@ public class Jwc extends Activity {
 		}
 		return super.onKeyDown(keyCode, event);
 	}
-
 }

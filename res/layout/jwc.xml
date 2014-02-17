@@ -6,7 +6,7 @@
     tools:context=".Jwc" >
 
     <LinearLayout
-        android:id="@+id/main_title"
+        android:id="@+id/jwc_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
