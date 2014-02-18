@@ -1,5 +1,10 @@
 package com.rex.yuol;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.rex.yuol.config.Path;
+import com.rex.yuol.regex.JwcReg;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -44,6 +49,21 @@ public class Welcome extends Activity {
 	 * 跳转到Main页面
 	 */
 	private void redirectTo() {
+
+		// 测试
+		AsyncHttpClient client = new AsyncHttpClient();
+		client.get("http://jwc.yangtzeu.edu.cn:8080/login.aspx",
+				new AsyncHttpResponseHandler() {
+					@Override
+					public void onSuccess(String response) {
+						JwcReg.get_keys(response);
+					}
+				});
+
+		// Log.i("welcome","loaded welcome page!");
+		// Log.i("UnitTest",Path.sdcard_path);
+		// Path.save_file(Path.testfile, "李俊的测试");
+
 		Intent intent = new Intent(this, Main.class);
 		startActivity(intent);
 		finish();
