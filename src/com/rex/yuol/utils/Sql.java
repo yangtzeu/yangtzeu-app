@@ -1,4 +1,4 @@
-package com.rex.yuol.store;
+package com.rex.yuol.utils;
 
 import java.io.File;
 
@@ -22,8 +22,6 @@ public class Sql {
 		db.close();
 		return db;
 
-		// É¾³ýtest.dbÊý¾Ý¿â
-		// deleteDatabase("test.db");
 	}
 
 }

@@ -13,4 +13,9 @@
     <string name="tips_home">今天是元宵节\n第1周 星期一</string>
     <string name="hello_world">世界，你好！</string>
 
+    <string name="fenshu">分数查询</string>
+    <string name="xuesheng">学生查询</string>
+    <string name="xuanke">选课</string>
+    <string name="kebiao">课表</string>
+    <string name="cet">四六级</string>
 </resources>
