@@ -4,6 +4,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.rex.yuol.config.Path;
 import com.rex.yuol.regex.JwcReg;
+import com.rex.yuol.store.Sql;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -60,10 +61,12 @@ public class Welcome extends Activity {
 					}
 				});
 
-		// Log.i("welcome","loaded welcome page!");
-		// Log.i("UnitTest",Path.sdcard_path);
-		// Path.save_file(Path.testfile, "李俊的测试");
+		Sql.db_open();
 
+		Log.i("welcome", "loaded welcome page!");
+		Path.save_file(Path.testfile, "李俊的测试");
+		// 测试结束
+		
 		Intent intent = new Intent(this, Main.class);
 		startActivity(intent);
 		finish();

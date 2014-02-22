@@ -10,8 +10,11 @@ public class Path {
 	// SD卡就绪状态
 	public static boolean sdcard_status = Environment.MEDIA_MOUNTED
 			.equals(Environment.getExternalStorageState());
+	// 主文件夹名
+		public static String data_home = "data.rex.yuol";
 	// 测试文件
-	public static File testfile = new File(Path.sdcard2_path(), "rextest.txt");
+	public static File testfile = new File(Path.check_dir()+"/rextest.txt");
+	
 
 	/**
 	 * SD卡路径
@@ -41,6 +44,18 @@ public class Path {
 		} else {
 			return Path.sdcard_path();
 		}
+	}
+	
+	/**
+	 * 检查目录是否存在，不存在则创建
+	 * @return 返回目录路径
+	 */
+	public static String check_dir() {
+		File destDir = new File(Path.sdcard2_path().toString()+"/"+Path.data_home+"/");
+		if (!destDir.exists()) {
+			destDir.mkdirs();
+		}
+		return destDir.toString();
 	}
 
 	// 文件写入测试

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.rex.yuol"
     android:versionCode="1"
-    android:versionName="1.0.0" >
+    android:versionName="0.0.1" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -30,7 +30,8 @@
         <activity
             android:name="com.rex.yuol.Welcome"
             android:label="@string/yuol"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,32 +41,38 @@
         <activity
             android:name="com.rex.yuol.Main"
             android:label="@string/home"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.rex.yuol.Jwc"
             android:label="@string/jwc"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.rex.yuol.Setting"
             android:label="@string/setting"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.rex.yuol.Library"
             android:label="@string/library"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.rex.yuol.Notice"
             android:label="@string/notice"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.rex.yuol.News"
             android:label="@string/news"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 
