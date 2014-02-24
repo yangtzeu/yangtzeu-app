@@ -42,6 +42,7 @@
             <!-- 保存按钮 -->
 
             <Button
+                android:id="@+id/save_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:background="@drawable/yuol_title_btn_bg"
@@ -78,7 +79,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/editText1"
+                android:id="@+id/student_no"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -95,7 +96,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/jwc_mima"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -111,7 +112,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/editText1"
+                android:id="@+id/jsz_no"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10" />
@@ -126,7 +127,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/jsz_mima"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"

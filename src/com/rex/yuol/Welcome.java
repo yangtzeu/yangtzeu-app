@@ -1,5 +1,7 @@
 package com.rex.yuol;
 
+import java.util.Map;
+
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.rex.yuol.config.Path;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
+import android.widget.Toast;
 
 public class Welcome extends Activity {
 
@@ -57,13 +60,22 @@ public class Welcome extends Activity {
 				new AsyncHttpResponseHandler() {
 					@Override
 					public void onSuccess(String response) {
-						JwcReg.get_keys(response);
+						Map<String,String> rst=JwcReg.get_keys(response);
+						if(Sql.kv_set("viewstate", rst.get("viewstate"))&&Sql.kv_set("eventvalidation", rst.get("eventvalidation"))){
+							Toast.makeText(getApplicationContext(), "网络请求成功并成功存储到数据库", Toast.LENGTH_SHORT).show();
+						}else{
+							Toast.makeText(getApplicationContext(), "网络请求成功但存储到数据库失败", Toast.LENGTH_SHORT).show();
+						};
+					}
+					@Override
+					public void onFailure(Throwable error, String content){
+						Toast.makeText(getApplicationContext(), "网络请求失败", Toast.LENGTH_SHORT).show();
+						Log.i("welcome", "Failed to load welcome page!"+Sql.kv_get("test"));
 					}
 				});
 
-		Sql.db_open();
 
-		Log.i("welcome", "loaded welcome page!");
+//		Log.i("welcome", "loaded welcome page!");
 		Path.save_file(Path.testfile, "李俊的测试");
 		// 测试结束
 		
