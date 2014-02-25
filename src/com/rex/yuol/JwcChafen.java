@@ -5,12 +5,12 @@ import android.app.Activity;
 import android.view.KeyEvent;
 import android.view.Menu;
 
-public class Library extends Activity {
+public class JwcChafen extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.library);
+		setContentView(R.layout.jwc_chafen);
 	}
 
 	/**
@@ -27,5 +27,4 @@ public class Library extends Activity {
 		}
 		return super.onKeyDown(keyCode, event);
 	}
-
 }

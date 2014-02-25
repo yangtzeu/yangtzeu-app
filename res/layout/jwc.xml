@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    tools:context=".JwcReg" >
+    tools:context=".JwcRegex" >
 
     <LinearLayout
         android:id="@+id/jwc_title"
@@ -52,7 +52,7 @@
             <!-- 分数查询 -->
 
             <Button
-                android:id="@+id/jwc_btn"
+                android:id="@+id/jwc_chafen"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
@@ -65,7 +65,7 @@
             <!-- 学生查询 -->
 
             <Button
-                android:id="@+id/library_btn"
+                android:id="@+id/find_stu"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
@@ -85,7 +85,7 @@
             <!-- 选课 -->
 
             <Button
-                android:id="@+id/notice_btn"
+                android:id="@+id/ch_cls"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
@@ -98,7 +98,7 @@
             <!-- 课表 -->
 
             <Button
-                android:id="@+id/news_btn"
+                android:id="@+id/kebiao_btn"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
@@ -118,7 +118,7 @@
             <!-- 四六级 -->
 
             <Button
-                android:id="@+id/setting_btn"
+                android:id="@+id/cet_btn"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"

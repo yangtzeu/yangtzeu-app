@@ -72,13 +72,6 @@ public class Setting extends Activity implements android.view.View.OnClickListen
 		}
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.setting, menu);
-		return true;
-	}
-
 	/**
 	 * °´¼üÊÂ¼ş
 	 */

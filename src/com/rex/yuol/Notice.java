@@ -13,13 +13,6 @@ public class Notice extends Activity {
 		setContentView(R.layout.notice);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.notice, menu);
-		return true;
-	}
-
 	/**
 	 * °´¼üÊÂ¼þ
 	 */

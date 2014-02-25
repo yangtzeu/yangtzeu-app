@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 import android.util.Log;
 
-public class JwcReg {
+public class JwcRegex {
 	/**
 	 * 获取登录页上的VIEWSTATE吗，供登录使用
 	 * 

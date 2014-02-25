@@ -5,8 +5,9 @@ import java.util.Map;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.rex.yuol.config.Path;
-import com.rex.yuol.regex.JwcReg;
+import com.rex.yuol.regex.JwcRegex;
 import com.rex.yuol.utils.Sql;
+import com.rex.yuol.utils.Timetable;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -55,21 +56,21 @@ public class Welcome extends Activity {
 	private void redirectTo() {
 
 		// 测试
+		Timetable.test();
 		AsyncHttpClient client = new AsyncHttpClient();
 		client.get("http://jwc.yangtzeu.edu.cn:8080/login.aspx",
 				new AsyncHttpResponseHandler() {
 					@Override
 					public void onSuccess(String response) {
-						Map<String,String> rst=JwcReg.get_keys(response);
+						Map<String,String> rst=JwcRegex.get_keys(response);
 						if(Sql.kv_set("viewstate", rst.get("viewstate"))&&Sql.kv_set("eventvalidation", rst.get("eventvalidation"))){
-							Toast.makeText(getApplicationContext(), "网络请求成功并成功存储到数据库", Toast.LENGTH_SHORT).show();
 						}else{
-							Toast.makeText(getApplicationContext(), "网络请求成功但存储到数据库失败", Toast.LENGTH_SHORT).show();
+							Toast.makeText(getApplicationContext(), "Database Storage Error!", Toast.LENGTH_SHORT).show();
 						};
 					}
 					@Override
 					public void onFailure(Throwable error, String content){
-						Toast.makeText(getApplicationContext(), "网络请求失败", Toast.LENGTH_SHORT).show();
+						Toast.makeText(getApplicationContext(), "网络连接失败", Toast.LENGTH_SHORT).show();
 						Log.i("welcome", "Failed to load welcome page!"+Sql.kv_get("test"));
 					}
 				});
