@@ -8,7 +8,7 @@
     <LinearLayout
         android:id="@+id/main_title"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="52sp"
         android:layout_weight="1"
         android:background="@drawable/yuol_main_title"
         android:gravity="top"
@@ -22,7 +22,7 @@
             android:padding="3dp" >
         </LinearLayout>
 
-        <!-- 长大在线 -->
+        <!-- 掌中长大 -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,7 +42,6 @@
                 android:layout_height="match_parent"
                 android:gravity="center|right"
                 android:text="@string/tips_home" />
-
         </LinearLayout>
     </LinearLayout>
 
@@ -64,30 +63,73 @@
 
             <!-- 教务处 -->
 
-            <Button
-                android:id="@+id/jwc_btn"
+            <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:background="@drawable/yuol_main_tile_jwc"
+                android:layout_weight="0.5"
                 android:gravity="bottom|center_horizontal"
-                android:paddingBottom="15dp"
-                android:text="@string/jwc" >
-                
-            </Button>
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:id="@+id/jwc_btn"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="3sp"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="4sp"
+                    android:layout_marginTop="9sp"
+                    android:background="#FFFFFF" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/main_jwc" >
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:gravity="center"
+                            android:text="@string/jwc"
+                            android:textColor="#000000" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
 
             <!-- 图书馆 -->
 
-            <Button
-                android:id="@+id/library_btn"
+            <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:background="@drawable/yuol_main_tile_library"
+                android:layout_weight="0.5"
                 android:gravity="bottom|center_horizontal"
-                android:paddingBottom="15dp"
-                android:text="@string/library" >
-            </Button>
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:id="@+id/library_btn"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="3sp"
+                    android:layout_marginLeft="4sp"
+                    android:layout_marginRight="8sp"
+                    android:layout_marginTop="9sp"
+                    android:background="#FFFFFF" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/main_library" >
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:gravity="center"
+                            android:text="@string/library"
+                            android:textColor="#000000" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -98,29 +140,73 @@
 
             <!-- 通知通告 -->
 
-            <Button
-                android:id="@+id/notice_btn"
+            <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="@drawable/yuol_main_tile_notice"
                 android:gravity="bottom|center_horizontal"
-                android:padding="15dp"
-                android:text="@string/notice" >
-            </Button>
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:id="@+id/notice_btn"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="6sp"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="4sp"
+                    android:layout_marginTop="6sp"
+                    android:background="#FFFFFF" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/main_notice" >
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:gravity="center"
+                            android:text="@string/notice"
+                            android:textColor="#000000" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
 
             <!-- 新闻 -->
 
-            <Button
-                android:id="@+id/news_btn"
+            <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="@drawable/yuol_main_tile_news"
                 android:gravity="bottom|center_horizontal"
-                android:padding="15dp"
-                android:text="@string/news" >
-            </Button>
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:id="@+id/news_btn"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="6sp"
+                    android:layout_marginLeft="4sp"
+                    android:layout_marginRight="8sp"
+                    android:layout_marginTop="6sp"
+                    android:background="#FFFFFF" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/main_news" >
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:gravity="center"
+                            android:text="@string/news"
+                            android:textColor="#000000" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -131,16 +217,38 @@
 
             <!-- 设置 -->
 
-            <Button
-                android:id="@+id/setting_btn"
+            <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="@drawable/yuol_main_tile_setting"
                 android:gravity="bottom|center_horizontal"
-                android:padding="15dp"
-                android:text="@string/setting" >
-            </Button>
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:id="@+id/setting_btn"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="9sp"
+                    android:layout_marginLeft="8sp"
+                    android:layout_marginRight="4sp"
+                    android:layout_marginTop="3sp"
+                    android:background="#FFFFFF" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:background="@drawable/main_setting" >
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:gravity="center"
+                            android:text="@string/setting"
+                            android:textColor="#000000" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="fill_parent"

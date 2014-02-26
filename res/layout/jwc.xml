@@ -8,16 +8,16 @@
     <LinearLayout
         android:id="@+id/jwc_title"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="52sp"
         android:layout_weight="1"
         android:background="@drawable/yuol_main_title"
         android:gravity="top"
         android:orientation="horizontal" >
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/icon_jwc"
+            android:layout_width="52sp"
+            android:layout_height="52sp"
+            android:background="@drawable/main_jwc"
             android:gravity="bottom" >
         </LinearLayout>
         <!-- 教务处 -->
@@ -56,7 +56,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="@drawable/yuol_main_tile_jwc"
+                android:background="@drawable/main_jwc"
                 android:gravity="bottom|center_horizontal"
                 android:paddingBottom="15dp"
                 android:text="@string/fenshu" >
@@ -69,7 +69,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="@drawable/yuol_main_tile_library"
+                android:background="@drawable/main_library"
                 android:gravity="bottom|center_horizontal"
                 android:paddingBottom="15dp"
                 android:text="@string/xuesheng" >
@@ -89,7 +89,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="@drawable/yuol_main_tile_notice"
+                android:background="@drawable/main_notice"
                 android:gravity="bottom|center_horizontal"
                 android:padding="15dp"
                 android:text="@string/xuanke" >
@@ -102,7 +102,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="@drawable/yuol_main_tile_news"
+                android:background="@drawable/main_news"
                 android:gravity="bottom|center_horizontal"
                 android:padding="15dp"
                 android:text="@string/kebiao" >
@@ -122,7 +122,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="@drawable/yuol_main_tile_setting"
+                android:background="@drawable/main_setting"
                 android:gravity="bottom|center_horizontal"
                 android:padding="15dp"
                 android:text="@string/cet" >

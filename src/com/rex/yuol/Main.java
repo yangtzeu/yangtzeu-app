@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
+import android.graphics.Color;
 import android.graphics.ColorMatrixColorFilter;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -17,34 +18,35 @@ import android.view.View;
 import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class Main extends Activity implements android.view.View.OnClickListener {
-	private Button btn1;
-	private Button btn2;
-	private Button btn3;
-	private Button btn4;
-	private Button btn5;
+	private LinearLayout btn1;
+	private LinearLayout btn2;
+	private LinearLayout btn3;
+	private LinearLayout btn4;
+	private LinearLayout btn5;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		btn1 = (Button) this.findViewById(R.id.jwc_btn);
-		btn2 = (Button) this.findViewById(R.id.library_btn);
-		btn3 = (Button) this.findViewById(R.id.notice_btn);
-		btn4 = (Button) this.findViewById(R.id.news_btn);
-		btn5 = (Button) this.findViewById(R.id.setting_btn);
+		btn1 = (LinearLayout) this.findViewById(R.id.jwc_btn);
+		btn2 = (LinearLayout) this.findViewById(R.id.library_btn);
+		btn3 = (LinearLayout) this.findViewById(R.id.notice_btn);
+		btn4 = (LinearLayout) this.findViewById(R.id.news_btn);
+		btn5 = (LinearLayout) this.findViewById(R.id.setting_btn);
 
 		btn1.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					// 更改为按下时的背景图片
-					v.setBackgroundResource(R.drawable.yuol_main_tile_jwc_p);
+					// 按下时的背景透明
+					v.setBackgroundColor(Color.parseColor("#00000000"));//setBackgroundResource(R.drawable.yuol_main_tile_notice_p);
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
-					// 改为抬起时的图片
-					v.setBackgroundResource(R.drawable.yuol_main_tile_jwc);
+					// 改为抬起时的白色
+					v.setBackgroundColor(Color.parseColor("#ffffff"));
 				}
 				return false;
 			}
@@ -52,11 +54,11 @@ public class Main extends Activity implements android.view.View.OnClickListener 
 		btn2.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					// 更改为按下时的背景图片
-					v.setBackgroundResource(R.drawable.yuol_main_tile_library_p);
+					// 按下时的背景透明
+					v.setBackgroundColor(Color.parseColor("#00000000"));
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
-					// 改为抬起时的图片
-					v.setBackgroundResource(R.drawable.yuol_main_tile_library);
+					// 改为抬起时的白色
+					v.setBackgroundColor(Color.parseColor("#ffffff"));
 				}
 				return false;
 			}
@@ -64,11 +66,11 @@ public class Main extends Activity implements android.view.View.OnClickListener 
 		btn3.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					// 更改为按下时的背景图片
-					v.setBackgroundResource(R.drawable.yuol_main_tile_notice_p);
+					// 按下时的背景透明
+					v.setBackgroundColor(Color.parseColor("#00000000"));
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
-					// 改为抬起时的图片
-					v.setBackgroundResource(R.drawable.yuol_main_tile_notice);
+					// 改为抬起时的白色
+					v.setBackgroundColor(Color.parseColor("#ffffff"));
 				}
 				return false;
 			}
@@ -76,11 +78,11 @@ public class Main extends Activity implements android.view.View.OnClickListener 
 		btn4.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					// 更改为按下时的背景图片
-					v.setBackgroundResource(R.drawable.yuol_main_tile_news_p);
+					// 按下时的背景透明
+					v.setBackgroundColor(Color.parseColor("#00000000"));
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
-					// 改为抬起时的图片
-					v.setBackgroundResource(R.drawable.yuol_main_tile_news);
+					// 改为抬起时的白色
+					v.setBackgroundColor(Color.parseColor("#ffffff"));
 				}
 				return false;
 			}
@@ -88,11 +90,11 @@ public class Main extends Activity implements android.view.View.OnClickListener 
 		btn5.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					// 更改为按下时的背景图片
-					v.setBackgroundResource(R.drawable.yuol_main_tile_setting_p);
+					// 按下时的背景透明
+					v.setBackgroundColor(Color.parseColor("#00000000"));
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
-					// 改为抬起时的图片
-					v.setBackgroundResource(R.drawable.yuol_main_tile_setting);
+					// 改为抬起时的白色
+					v.setBackgroundColor(Color.parseColor("#ffffff"));
 				}
 				return false;
 			}

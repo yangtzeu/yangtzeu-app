@@ -33,10 +33,10 @@ public class Jwc extends Activity implements android.view.View.OnClickListener {
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
 					// 更改为按下时的背景图片
-					v.setBackgroundResource(R.drawable.yuol_main_tile_jwc_p);
+					v.setBackgroundResource(R.drawable.main_jwc);
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
 					// 改为抬起时的图片
-					v.setBackgroundResource(R.drawable.yuol_main_tile_jwc);
+					v.setBackgroundResource(R.drawable.main_jwc);
 				}
 				return false;
 			}
@@ -45,10 +45,10 @@ public class Jwc extends Activity implements android.view.View.OnClickListener {
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
 					// 更改为按下时的背景图片
-					v.setBackgroundResource(R.drawable.yuol_main_tile_library_p);
+					v.setBackgroundResource(R.drawable.main_library);
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
 					// 改为抬起时的图片
-					v.setBackgroundResource(R.drawable.yuol_main_tile_library);
+					v.setBackgroundResource(R.drawable.main_library);
 				}
 				return false;
 			}
@@ -57,10 +57,10 @@ public class Jwc extends Activity implements android.view.View.OnClickListener {
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
 					// 更改为按下时的背景图片
-					v.setBackgroundResource(R.drawable.yuol_main_tile_notice_p);
+//					v.setBackgroundResource(R.drawable.yuol_main_tile_notice_p);
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
 					// 改为抬起时的图片
-					v.setBackgroundResource(R.drawable.yuol_main_tile_notice);
+//					v.setBackgroundResource(R.drawable.yuol_main_tile_notice);
 				}
 				return false;
 			}
@@ -69,10 +69,10 @@ public class Jwc extends Activity implements android.view.View.OnClickListener {
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
 					// 更改为按下时的背景图片
-					v.setBackgroundResource(R.drawable.yuol_main_tile_news_p);
+//					v.setBackgroundResource(R.drawable.yuol_main_tile_news_p);
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
 					// 改为抬起时的图片
-					v.setBackgroundResource(R.drawable.yuol_main_tile_news);
+//					v.setBackgroundResource(R.drawable.yuol_main_tile_news);
 				}
 				return false;
 			}
@@ -81,10 +81,10 @@ public class Jwc extends Activity implements android.view.View.OnClickListener {
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
 					// 更改为按下时的背景图片
-					v.setBackgroundResource(R.drawable.yuol_main_tile_setting_p);
+//					v.setBackgroundResource(R.drawable.yuol_main_tile_setting_p);
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
 					// 改为抬起时的图片
-					v.setBackgroundResource(R.drawable.yuol_main_tile_setting);
+//					v.setBackgroundResource(R.drawable.yuol_main_tile_setting);
 				}
 				return false;
 			}
