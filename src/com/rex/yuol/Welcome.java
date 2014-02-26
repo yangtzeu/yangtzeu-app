@@ -12,12 +12,14 @@ import com.rex.yuol.utils.Timetable;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.text.Html;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Welcome extends Activity {
@@ -26,7 +28,7 @@ public class Welcome extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.welcome);
-
+		
 		final View view = View.inflate(this, R.layout.welcome, null);
 		setContentView(view);
 		// 渐变展示启动屏

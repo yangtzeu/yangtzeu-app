@@ -1,16 +1,18 @@
-# Yuol-App 掌上长大 #
+![掌中长大](https://raw.github.com/duguying/yuol-app/master/logo.png) 
+
 ----------
 
-## Build ##
+
+# Build #
 
 The project built by eclipse.
 
-## Platform(For Developer) ##
+# Platform(For Developer) #
 - Min SDK Ver: Android 2.2
 - Min JDK Ver: JDK 1.6
 - Min NDK Ver: NDK 8
 
-## Funtion Units ##
+# Funtion Units #
 
 1. 教务处
 	1. 分数查询
@@ -40,7 +42,7 @@ The project built by eclipse.
 
 ----------
 
-## License ##
+# License #
 MIT License
 
 

@@ -2,8 +2,8 @@
 <resources>
 
     <!-- 默认 版本 -->
-    <string name="app_name">长大在线</string>
-    <string name="yuol">长大在线</string>
+    <string name="app_name">掌中长大</string>
+    <string name="yuol">掌中长大</string>
     <string name="home">主页</string>
     <string name="jwc">教务处</string>
     <string name="library">图书馆</string>
@@ -23,5 +23,8 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_dialog_drop_list">DialogDropList</string>
     <string name="title_activity_jwc_chafen">JwcChafen</string>
+    
+    <string name="welcome_about_project1">(OpenSource)掌中长大</string>
+	<string name="welcome_about_project2">github:duguying/yuol-app\nopensource project, code donation is welcome</string>
 
 </resources>
