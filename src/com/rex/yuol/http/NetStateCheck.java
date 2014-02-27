@@ -18,7 +18,7 @@ public class NetStateCheck {
 	}
 
 	public void check_jwc() {
-		// ����״̬
+		// 教务处状态
 		client.get("http://jwc.yangtzeu.edu.cn:8080/login.aspx",
 				new AsyncHttpResponseHandler() {
 					@Override
@@ -34,7 +34,7 @@ public class NetStateCheck {
 	}
 
 	public void check_library() {
-		// ��ȡͼ��ݵ�ǰ״̬
+		// 获取图书馆当前状态
 		client.get("http://10.203.1.110/enter.html",
 				new AsyncHttpResponseHandler() {
 					@Override

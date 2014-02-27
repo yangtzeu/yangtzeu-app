@@ -34,10 +34,10 @@ public class Jwc extends Activity implements android.view.View.OnClickListener {
 		btn1.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					// °´ÏÂÊ±±³¾°Í¸Ã÷
+					// æŒ‰ä¸‹æ—¶èƒŒæ™¯é€æ˜
 					v.setBackgroundColor(Color.parseColor("#00000000"));
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
-					// Ì§ÆğÊ±°×É«
+					// æŠ¬èµ·æ—¶ç™½è‰²
 					v.setBackgroundColor(Color.parseColor("#ffffff"));
 				}
 				return false;
@@ -46,10 +46,10 @@ public class Jwc extends Activity implements android.view.View.OnClickListener {
 		btn2.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					// °´ÏÂÊ±±³¾°Í¸Ã÷
+					// æŒ‰ä¸‹æ—¶èƒŒæ™¯é€æ˜
 					v.setBackgroundColor(Color.parseColor("#00000000"));
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
-					// Ì§ÆğÊ±°×É«
+					// æŠ¬èµ·æ—¶ç™½è‰²
 					v.setBackgroundColor(Color.parseColor("#ffffff"));
 				}
 				return false;
@@ -58,10 +58,10 @@ public class Jwc extends Activity implements android.view.View.OnClickListener {
 		btn3.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					// °´ÏÂÊ±±³¾°Í¸Ã÷
+					// æŒ‰ä¸‹æ—¶èƒŒæ™¯é€æ˜
 					v.setBackgroundColor(Color.parseColor("#00000000"));
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
-					// Ì§ÆğÊ±°×É«
+					// æŠ¬èµ·æ—¶ç™½è‰²
 					v.setBackgroundColor(Color.parseColor("#ffffff"));
 				}
 				return false;
@@ -70,10 +70,10 @@ public class Jwc extends Activity implements android.view.View.OnClickListener {
 		btn4.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					// °´ÏÂÊ±±³¾°Í¸Ã÷
+					// æŒ‰ä¸‹æ—¶èƒŒæ™¯é€æ˜
 					v.setBackgroundColor(Color.parseColor("#00000000"));
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
-					// Ì§ÆğÊ±°×É«
+					// æŠ¬èµ·æ—¶ç™½è‰²
 					v.setBackgroundColor(Color.parseColor("#ffffff"));
 				}
 				return false;
@@ -82,10 +82,10 @@ public class Jwc extends Activity implements android.view.View.OnClickListener {
 		btn5.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					// °´ÏÂÊ±±³¾°Í¸Ã÷
+					// æŒ‰ä¸‹æ—¶èƒŒæ™¯é€æ˜
 					v.setBackgroundColor(Color.parseColor("#00000000"));
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
-					// Ì§ÆğÊ±°×É«
+					// æŠ¬èµ·æ—¶ç™½è‰²
 					v.setBackgroundColor(Color.parseColor("#ffffff"));
 				}
 				return false;
@@ -101,10 +101,10 @@ public class Jwc extends Activity implements android.view.View.OnClickListener {
 
 
 	/**
-	 * °´¼üÊÂ¼ş
+	 * æŒ‰é”®äº‹ä»¶
 	 */
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// ºóÍË¶¯»­
+		// åé€€åŠ¨ç”»
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			finish();
 			overridePendingTransition(R.anim.back_left_in,
@@ -120,7 +120,7 @@ public class Jwc extends Activity implements android.view.View.OnClickListener {
 	public void onClick(View arg0) {
 		// TODO Auto-generated method stub
 		if (arg0 == btn1) {
-			// ²é·Ö
+			// æŸ¥åˆ†
 			Intent intent = new Intent(this, JwcChafen.class);
 			startActivity(intent);
 			overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);

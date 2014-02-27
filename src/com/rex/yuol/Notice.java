@@ -14,10 +14,10 @@ public class Notice extends Activity {
 	}
 
 	/**
-	 * 按键事件
+	 * 鎸夐敭浜嬩欢
 	 */
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// 后退动画
+		// 鍚庨��鍔ㄧ敾
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			finish();
 			overridePendingTransition(R.anim.back_left_in,

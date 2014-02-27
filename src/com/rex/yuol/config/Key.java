@@ -1,6 +1,6 @@
 package com.rex.yuol.config;
 
 public class Key {
-	// ¼ÓÃÜÓÃÃÜÔ¿
+	// åŠ å¯†ç”¨å¯†é’¥
 	static public String secret_key = "yuol";
 }

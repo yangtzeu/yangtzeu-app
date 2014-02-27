@@ -35,7 +35,7 @@ public class Welcome extends Activity {
 
 		final View view = View.inflate(this, R.layout.welcome, null);
 		setContentView(view);
-		// ½¥±äÕ¹Ê¾Æô¶¯ÆÁ
+		// æ¸å˜å±•ç¤ºå¯åŠ¨å±
 		AlphaAnimation aa = new AlphaAnimation(0.3f, 1.0f);
 		aa.setDuration(2000);
 		view.startAnimation(aa);
@@ -57,15 +57,15 @@ public class Welcome extends Activity {
 	}
 
 	/**
-	 * Ìø×ªµ½MainÒ³Ãæ
+	 * è·³è½¬åˆ°Mainé¡µé¢
 	 */
 	private void redirectTo() {
 
-		// ²âÊÔ
+		// æµ‹è¯•
 		NetStateCheck nsc = new NetStateCheck(this.getApplicationContext());
 		nsc.check_jwc();
 		nsc.check_library();
-		// ÅĞ¶ÏÓÃ»§µÇÂ¼×´Ì¬
+		// åˆ¤æ–­ç”¨æˆ·ç™»å½•çŠ¶æ€
 		Net.create_async_http(getApplicationContext()).get(Urls.jwc_cjcx_page,
 				new AsyncHttpResponseHandler() {
 					@Override
@@ -88,8 +88,8 @@ public class Welcome extends Activity {
 						// TODO Auto-generated catch block
 					}
 				});
-		Path.save_file(Path.testfile, "Àî¿¡µÄ²âÊÔ");
-		// ²âÊÔ½áÊø
+		Path.save_file(Path.testfile, "æä¿Šçš„æµ‹è¯•");
+		// æµ‹è¯•ç»“æŸ
 
 		Intent intent = new Intent(this, Main.class);
 		startActivity(intent);
@@ -97,7 +97,7 @@ public class Welcome extends Activity {
 	}
 
 	/**
-	 * °´¼üÊÂ¼ş
+	 * æŒ‰é”®äº‹ä»¶
 	 */
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {

@@ -11,11 +11,11 @@ import com.rex.yuol.config.Key;
 
 public class EncrypAES {
 	/**
-	 * ¼ÓÃÜ
+	 * åŠ å¯†
 	 * 
 	 * @param cleartext
-	 *            ´ı¼ÓÃÜÎÄ±¾
-	 * @return ¼ÓÃÜºóÎÄ±¾
+	 *            å¾…åŠ å¯†æ–‡æœ¬
+	 * @return åŠ å¯†åæ–‡æœ¬
 	 * @throws Exception
 	 */
 	public static String encrypt(String content) {
@@ -30,11 +30,11 @@ public class EncrypAES {
 	}
 	
 	/**
-	 * ½âÃÜ
+	 * è§£å¯†
 	 * 
 	 * @param encrypted
-	 *            ÃÜÎÄ
-	 * @return ·µ»ØÃ÷ÎÄ
+	 *            å¯†æ–‡
+	 * @return è¿”å›æ˜æ–‡
 	 * @throws Exception
 	 */
 	public static String decrypt(String content) {

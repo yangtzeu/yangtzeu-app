@@ -42,10 +42,10 @@ public class Main extends Activity implements android.view.View.OnClickListener 
 		btn1.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					// 按下时的背景透明
+					// 鎸変笅鏃剁殑鑳屾櫙閫忔槑
 					v.setBackgroundColor(Color.parseColor("#00000000"));//setBackgroundResource(R.drawable.yuol_main_tile_notice_p);
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
-					// 改为抬起时的白色
+					// 鏀逛负鎶捣鏃剁殑鐧借壊
 					v.setBackgroundColor(Color.parseColor("#ffffff"));
 				}
 				return false;
@@ -54,10 +54,10 @@ public class Main extends Activity implements android.view.View.OnClickListener 
 		btn2.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					// 按下时的背景透明
+					// 鎸変笅鏃剁殑鑳屾櫙閫忔槑
 					v.setBackgroundColor(Color.parseColor("#00000000"));
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
-					// 改为抬起时的白色
+					// 鏀逛负鎶捣鏃剁殑鐧借壊
 					v.setBackgroundColor(Color.parseColor("#ffffff"));
 				}
 				return false;
@@ -66,10 +66,10 @@ public class Main extends Activity implements android.view.View.OnClickListener 
 		btn3.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					// 按下时的背景透明
+					// 鎸変笅鏃剁殑鑳屾櫙閫忔槑
 					v.setBackgroundColor(Color.parseColor("#00000000"));
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
-					// 改为抬起时的白色
+					// 鏀逛负鎶捣鏃剁殑鐧借壊
 					v.setBackgroundColor(Color.parseColor("#ffffff"));
 				}
 				return false;
@@ -78,10 +78,10 @@ public class Main extends Activity implements android.view.View.OnClickListener 
 		btn4.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					// 按下时的背景透明
+					// 鎸変笅鏃剁殑鑳屾櫙閫忔槑
 					v.setBackgroundColor(Color.parseColor("#00000000"));
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
-					// 改为抬起时的白色
+					// 鏀逛负鎶捣鏃剁殑鐧借壊
 					v.setBackgroundColor(Color.parseColor("#ffffff"));
 				}
 				return false;
@@ -90,10 +90,10 @@ public class Main extends Activity implements android.view.View.OnClickListener 
 		btn5.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					// 按下时的背景透明
+					// 鎸変笅鏃剁殑鑳屾櫙閫忔槑
 					v.setBackgroundColor(Color.parseColor("#00000000"));
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
-					// 改为抬起时的白色
+					// 鏀逛负鎶捣鏃剁殑鐧借壊
 					v.setBackgroundColor(Color.parseColor("#ffffff"));
 				}
 				return false;
@@ -108,7 +108,7 @@ public class Main extends Activity implements android.view.View.OnClickListener 
 	}
 
 	/*
-	 * 按后退键则关闭程序
+	 * 鎸夊悗閫�閿垯鍏抽棴绋嬪簭
 	 * 
 	 * @see android.app.Activity#onKeyDown(int, android.view.KeyEvent)
 	 */
@@ -166,7 +166,7 @@ public class Main extends Activity implements android.view.View.OnClickListener 
 	}
 
 	/**
-	 * 按钮触发样式
+	 * 鎸夐挳瑙﹀彂鏍峰紡
 	 */
 
 }

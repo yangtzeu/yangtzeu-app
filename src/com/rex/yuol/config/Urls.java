@@ -2,7 +2,7 @@ package com.rex.yuol.config;
 
 public class Urls {
 
-	// ½ÌÎñ´¦
+	// æ•™åŠ¡å¤„
 	public static String jwc_home = "http://jwc.yangtzeu.edu.cn:8080/";
 	public static String jwc_login_page = jwc_home + "login.aspx";
 	public static String jwc_login_response = jwc_home + "login.aspx";
@@ -16,11 +16,11 @@ public class Urls {
 	public static String jwc_search_class_student_response = jwc_home
 			+ "student.aspx";
 
-	// ³¤´óÊ×Ò³
+	// é•¿å¤§é¦–é¡µ
 	public static String yz_home = "http://www.yangtzeu.edu.cn/";
 	public static String yz_news_home = "http://news.yangtzeu.edu.cn/";
 
-	// ³¤´óÔÚÏß
+	// é•¿å¤§åœ¨çº¿
 	public static String yuol_home = "http://online.yangtzeu.edu.cn/";
 
 	// api

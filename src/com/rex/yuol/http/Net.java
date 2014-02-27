@@ -7,7 +7,7 @@ import com.loopj.android.http.PersistentCookieStore;
 
 public class Net {
 	/**
-	 * ´´½¨AsyncHttpClient
+	 * åˆ›å»ºAsyncHttpClient
 	 * @param context
 	 * @return
 	 */

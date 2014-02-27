@@ -26,7 +26,7 @@ public class JwcChafen extends Activity implements
 	private LinearLayout btn4;
 
 	private PopupWindow pwMyPopWindow;// popupwindow
-	private ListView lvPopupList;// popupwindowÖĞµÄListView
+	private ListView lvPopupList;// popupwindowä¸­çš„ListView
 	List<Map<String, String>> moreList;
 
 	@Override
@@ -44,10 +44,10 @@ public class JwcChafen extends Activity implements
 		drop_list1.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					// ¸ü¸ÄÎª°´ÏÂÊ±µÄ±³¾°Í¼Æ¬
+					// æ›´æ”¹ä¸ºæŒ‰ä¸‹æ—¶çš„èƒŒæ™¯å›¾ç‰‡
 					v.setBackgroundResource(R.drawable.jwc_chafen_btn_b_p);
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
-					// ¸ÄÎªÌ§ÆğÊ±µÄÍ¼Æ¬
+					// æ”¹ä¸ºæŠ¬èµ·æ—¶çš„å›¾ç‰‡
 					v.setBackgroundResource(R.drawable.jwc_chafen_btn_b);
 				}
 				return false;
@@ -56,10 +56,10 @@ public class JwcChafen extends Activity implements
 		drop_list2.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					// ¸ü¸ÄÎª°´ÏÂÊ±µÄ±³¾°Í¼Æ¬
+					// æ›´æ”¹ä¸ºæŒ‰ä¸‹æ—¶çš„èƒŒæ™¯å›¾ç‰‡
 					v.setBackgroundResource(R.drawable.jwc_chafen_btn_b_p);
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
-					// ¸ÄÎªÌ§ÆğÊ±µÄÍ¼Æ¬
+					// æ”¹ä¸ºæŠ¬èµ·æ—¶çš„å›¾ç‰‡
 					v.setBackgroundResource(R.drawable.jwc_chafen_btn_b);
 				}
 				return false;
@@ -68,10 +68,10 @@ public class JwcChafen extends Activity implements
 		btn1.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					// ¸ü¸ÄÎª°´ÏÂÊ±µÄ±³¾°Í¼Æ¬
+					// æ›´æ”¹ä¸ºæŒ‰ä¸‹æ—¶çš„èƒŒæ™¯å›¾ç‰‡
 					v.setBackgroundResource(R.drawable.jwc_chafen_btn_y_p);
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
-					// ¸ÄÎªÌ§ÆğÊ±µÄÍ¼Æ¬
+					// æ”¹ä¸ºæŠ¬èµ·æ—¶çš„å›¾ç‰‡
 					v.setBackgroundResource(R.drawable.jwc_chafen_btn_y);
 				}
 				return false;
@@ -80,10 +80,10 @@ public class JwcChafen extends Activity implements
 		btn2.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					// ¸ü¸ÄÎª°´ÏÂÊ±µÄ±³¾°Í¼Æ¬
+					// æ›´æ”¹ä¸ºæŒ‰ä¸‹æ—¶çš„èƒŒæ™¯å›¾ç‰‡
 					v.setBackgroundResource(R.drawable.jwc_chafen_btn_y_p);
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
-					// ¸ÄÎªÌ§ÆğÊ±µÄÍ¼Æ¬
+					// æ”¹ä¸ºæŠ¬èµ·æ—¶çš„å›¾ç‰‡
 					v.setBackgroundResource(R.drawable.jwc_chafen_btn_y);
 				}
 				return false;
@@ -92,10 +92,10 @@ public class JwcChafen extends Activity implements
 		btn3.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					// ¸ü¸ÄÎª°´ÏÂÊ±µÄ±³¾°Í¼Æ¬
+					// æ›´æ”¹ä¸ºæŒ‰ä¸‹æ—¶çš„èƒŒæ™¯å›¾ç‰‡
 					v.setBackgroundResource(R.drawable.jwc_chafen_btn_y_p);
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
-					// ¸ÄÎªÌ§ÆğÊ±µÄÍ¼Æ¬
+					// æ”¹ä¸ºæŠ¬èµ·æ—¶çš„å›¾ç‰‡
 					v.setBackgroundResource(R.drawable.jwc_chafen_btn_y);
 				}
 				return false;
@@ -104,10 +104,10 @@ public class JwcChafen extends Activity implements
 		btn4.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					// ¸ü¸ÄÎª°´ÏÂÊ±µÄ±³¾°Í¼Æ¬
+					// æ›´æ”¹ä¸ºæŒ‰ä¸‹æ—¶çš„èƒŒæ™¯å›¾ç‰‡
 					v.setBackgroundResource(R.drawable.jwc_chafen_btn_y_p);
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
-					// ¸ÄÎªÌ§ÆğÊ±µÄÍ¼Æ¬
+					// æ”¹ä¸ºæŠ¬èµ·æ—¶çš„å›¾ç‰‡
 					v.setBackgroundResource(R.drawable.jwc_chafen_btn_y);
 				}
 				return false;
@@ -129,19 +129,19 @@ public class JwcChafen extends Activity implements
 		View layout = inflater.inflate(R.layout.dialog_drop_list, null);
 		lvPopupList = (ListView) layout.findViewById(R.id.drop_list);
 		pwMyPopWindow = new PopupWindow(layout);
-		pwMyPopWindow.setFocusable(true);// ¼ÓÉÏÕâ¸öpopupwindowÖĞµÄListView²Å¿ÉÒÔ½ÓÊÕµã»÷ÊÂ¼ş
+		pwMyPopWindow.setFocusable(true);// åŠ ä¸Šè¿™ä¸ªpopupwindowä¸­çš„ListViewæ‰å¯ä»¥æ¥æ”¶ç‚¹å‡»äº‹ä»¶
 
-		// ¿ØÖÆpopupwindowµÄ¿í¶ÈºÍ¸ß¶È×ÔÊÊÓ¦
+		// æ§åˆ¶popupwindowçš„å®½åº¦å’Œé«˜åº¦è‡ªé€‚åº”
 		lvPopupList.measure(View.MeasureSpec.UNSPECIFIED,
 				View.MeasureSpec.UNSPECIFIED);
 		pwMyPopWindow.setWidth(drop_list1.getMeasuredWidth());
 		pwMyPopWindow.setHeight((lvPopupList.getMeasuredHeight())
 				* 3);
 
-		// ¿ØÖÆpopupwindowµã»÷ÆÁÄ»ÆäËûµØ·½ÏûÊ§
+		// æ§åˆ¶popupwindowç‚¹å‡»å±å¹•å…¶ä»–åœ°æ–¹æ¶ˆå¤±
 		pwMyPopWindow.setBackgroundDrawable(this.getResources().getDrawable(
-				R.drawable.jwc_chafen_btn_b));// ÉèÖÃ±³¾°Í¼Æ¬£¬²»ÄÜÔÚ²¼¾ÖÖĞÉèÖÃ£¬ÒªÍ¨¹ı´úÂëÀ´ÉèÖÃ
-		pwMyPopWindow.setOutsideTouchable(true);// ´¥ÃşpopupwindowÍâ²¿£¬popupwindowÏûÊ§¡£Õâ¸öÒªÇóÄãµÄpopupwindowÒªÓĞ±³¾°Í¼Æ¬²Å¿ÉÒÔ³É¹¦£¬ÈçÉÏ
+				R.drawable.jwc_chafen_btn_b));// è®¾ç½®èƒŒæ™¯å›¾ç‰‡ï¼Œä¸èƒ½åœ¨å¸ƒå±€ä¸­è®¾ç½®ï¼Œè¦é€šè¿‡ä»£ç æ¥è®¾ç½®
+		pwMyPopWindow.setOutsideTouchable(true);// è§¦æ‘¸popupwindowå¤–éƒ¨ï¼Œpopupwindowæ¶ˆå¤±ã€‚è¿™ä¸ªè¦æ±‚ä½ çš„popupwindowè¦æœ‰èƒŒæ™¯å›¾ç‰‡æ‰å¯ä»¥æˆåŠŸï¼Œå¦‚ä¸Š
 	}
 	
 	@Override
@@ -156,10 +156,10 @@ public class JwcChafen extends Activity implements
 	}
 
 	/**
-	 * °´¼üÊÂ¼ş
+	 * æŒ‰é”®äº‹ä»¶
 	 */
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// ºóÍË¶¯»­
+		// åé€€åŠ¨ç”»
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			finish();
 			overridePendingTransition(R.anim.back_left_in,

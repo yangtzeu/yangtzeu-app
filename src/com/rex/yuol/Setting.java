@@ -35,10 +35,10 @@ public class Setting extends Activity implements
 		btn_save.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					// ¸ü¸ÄÎª°´ÏÂÊ±µÄ±³¾°Í¼Æ¬
+					// æ›´æ”¹ä¸ºæŒ‰ä¸‹æ—¶çš„èƒŒæ™¯å›¾ç‰‡
 					v.setBackgroundResource(R.drawable.yuol_main_title);
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
-					// ¸ÄÎªÌ§ÆğÊ±µÄÍ¼Æ¬
+					// æ”¹ä¸ºæŠ¬èµ·æ—¶çš„å›¾ç‰‡
 					v.setBackgroundResource(R.drawable.yuol_title_btn_bg);
 				}
 				return false;
@@ -47,7 +47,7 @@ public class Setting extends Activity implements
 
 		btn_save.setOnClickListener(this);
 
-		// Êı¾İÌî³äµ½±íµ¥
+		// æ•°æ®å¡«å……åˆ°è¡¨å•
 		stu_no = (EditText) findViewById(R.id.student_no);
 		stu_no.setText(Sql.kv_get("student_number"));
 
@@ -64,7 +64,7 @@ public class Setting extends Activity implements
 	@Override
 	public void onClick(View arg0) {
 		if (arg0 == btn_save) {
-			// ±£´æ±íµ¥ĞÅÏ¢
+			// ä¿å­˜è¡¨å•ä¿¡æ¯
 			String text_stu_no = stu_no.getText().toString();
 			String text_stu_mm = stu_mm.getText().toString();
 			String text_jsz_no = jsz_no.getText().toString();
@@ -78,16 +78,16 @@ public class Setting extends Activity implements
 				Sql.kv_set("library_number", text_jsz_no);
 				Sql.kv_set("library_password", EncrypAES.encrypt(text_jsz_mm));
 			}
-			Toast.makeText(getApplicationContext(), "ÒÑ±£´æ", Toast.LENGTH_SHORT)
+			Toast.makeText(getApplicationContext(), "å·²ä¿å­˜", Toast.LENGTH_SHORT)
 					.show();
 		}
 	}
 
 	/**
-	 * °´¼üÊÂ¼ş
+	 * æŒ‰é”®äº‹ä»¶
 	 */
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// ºóÍË¶¯»­
+		// åé€€åŠ¨ç”»
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			finish();
 			overridePendingTransition(R.anim.back_left_in,

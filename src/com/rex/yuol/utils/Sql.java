@@ -11,15 +11,15 @@ public class Sql {
 	private SQLiteDatabase db;
 
 	public Sql() {
-		// ´ò¿ª»ò´´½¨test.dbÊı¾İ¿â
+		// æ‰“å¼€æˆ–åˆ›å»ºtest.dbæ•°æ®åº“
 		db = SQLiteDatabase.openOrCreateDatabase(Path.check_dir() + "/yuol.db",
 				null);
 		this.db_open();
 	}
 
 	/**
-	 * ´ò¿ª²¢´´½¨Êı¾İ±í
-	 * @return Êı¾İ¿â
+	 * æ‰“å¼€å¹¶åˆ›å»ºæ•°æ®è¡¨
+	 * @return æ•°æ®åº“
 	 */
 	public SQLiteDatabase db_open() {
 		String check_exist_kv = "SELECT count(*) as c FROM sqlite_master WHERE type='table' AND name='kv'";
@@ -29,7 +29,7 @@ public class Sql {
             count1=cursor1.getInt(cursor1.getColumnIndex("c"));  
         }
 		if(count1==0){
-			// ´´½¨kv±í
+			// åˆ›å»ºkvè¡¨
 			db.execSQL("CREATE TABLE [kv] ([key] VARCHAR(20) UNIQUE NOT NULL PRIMARY KEY,[value] TEXT NOT NULL)");
 		}
 		
@@ -42,7 +42,7 @@ public class Sql {
             count2=cursor2.getInt(cursor2.getColumnIndex("c"));  
         }
 		if(count2==0){
-			// ´´½¨jwc_notice_list±í
+			// åˆ›å»ºjwc_notice_listè¡¨
 			db.execSQL("CREATE TABLE [jwc_notice_list] ([url] NVARCHAR(512) UNIQUE NOT NULL PRIMARY KEY,[time] DATE NOT NULL, [title] NVARCHAR(512) NOT NULL )");
 		}
 		
@@ -55,7 +55,7 @@ public class Sql {
             count3=cursor3.getInt(cursor3.getColumnIndex("c"));  
         }
 		if(count3==0){
-			// ´´½¨jwc_news_list±í
+			// åˆ›å»ºjwc_news_listè¡¨
 			db.execSQL("CREATE TABLE [jwc_news_list] ([url] NVARCHAR(512) UNIQUE NOT NULL PRIMARY KEY, [time] DATE NOT NULL,[title] NVARCHAR(512) NOT NULL)");
 		}
 
@@ -63,9 +63,9 @@ public class Sql {
 	}
 	
 	/**
-	 * »ñÈ¡¶ÔÓ¦keyµÄvalue
+	 * è·å–å¯¹åº”keyçš„value
 	 * @param key
-	 * @return ·µ»Øvalue
+	 * @return è¿”å›value
 	 */
 	static public String kv_get(String key){
 		Cursor cursor;
@@ -91,10 +91,10 @@ public class Sql {
 	}
 	
 	/**
-	 * ÉèÖÃ¶ÔÓ¦keyµÄvalue
+	 * è®¾ç½®å¯¹åº”keyçš„value
 	 * @param key
 	 * @param value
-	 * @return ×´Ì¬£ºfalseÊ§°Ü£»true³É¹¦
+	 * @return çŠ¶æ€ï¼šfalseå¤±è´¥ï¼›trueæˆåŠŸ
 	 */
 	static public Boolean kv_set(String key,String value){
 		SQLiteDatabase db=new Sql().db;

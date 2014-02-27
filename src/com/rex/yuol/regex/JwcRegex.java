@@ -9,12 +9,12 @@ import android.util.Log;
 
 public class JwcRegex {
 	/**
-	 * »ñÈ¡µÇÂ¼Ò³ÉÏµÄVIEWSTATEÂğ£¬¹©µÇÂ¼Ê¹ÓÃ
+	 * è·å–ç™»å½•é¡µä¸Šçš„VIEWSTATEå—ï¼Œä¾›ç™»å½•ä½¿ç”¨
 	 * 
 	 * @param content
-	 *            Ô­ÍøÒ³
-	 * @return map<s,s>½á¹¹µÄ²ÎÊı±í
-	 * @throws Exception ÕıÔòÆ¥ÅäÊ§°Ü
+	 *            åŸç½‘é¡µ
+	 * @return map<s,s>ç»“æ„çš„å‚æ•°è¡¨
+	 * @throws Exception æ­£åˆ™åŒ¹é…å¤±è´¥
 	 */
 	public static Map<String, String> get_keys(String content) throws Exception {
 		Map<String, String> map = new HashMap<String, String>();
@@ -25,9 +25,9 @@ public class JwcRegex {
 		Pattern pat1 = Pattern.compile(regEx1);
 		Matcher mat1 = pat1.matcher(content);
 		boolean rs1 = mat1.find();
-		// Èç¹ûÃ»ÓĞÆ¥Åäµ½
+		// å¦‚æœæ²¡æœ‰åŒ¹é…åˆ°
 		if (!rs1) {
-			throw new Exception("ÕıÔòÆ¥ÅäÊ§°Ü!Ã»ÕÒµ½__VIEWSTATE,__EVENTVALIDATION...");
+			throw new Exception("æ­£åˆ™åŒ¹é…å¤±è´¥!æ²¡æ‰¾åˆ°__VIEWSTATE,__EVENTVALIDATION...");
 		}
 		key1 = mat1.group(1);
 		map.put("viewstate", key1);
@@ -43,14 +43,14 @@ public class JwcRegex {
 	}
 	
 	/**
-	 * ÅĞ¶ÏÎ´µÇÂ¼
-	 * @param content ÄÚÈİ
-	 * @return trueÎ´µÇÂ¼
-	 * @throws Exception ¿ÕÄÚÈİ
+	 * åˆ¤æ–­æœªç™»å½•
+	 * @param content å†…å®¹
+	 * @return trueæœªç™»å½•
+	 * @throws Exception ç©ºå†…å®¹
 	 */
 	public static Boolean is_not_login(String content) throws Exception{
 		if(content.equals("")){
-			throw new Exception("ÄÚÈİÎª¿Õ£¡");
+			throw new Exception("å†…å®¹ä¸ºç©ºï¼");
 		}
 		String regEx1 = "^<script>alert";
 		Pattern pat1 = Pattern.compile(regEx1);

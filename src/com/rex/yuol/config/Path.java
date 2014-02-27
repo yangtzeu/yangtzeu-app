@@ -7,17 +7,17 @@ import java.io.FileOutputStream;
 import android.os.Environment;
 
 public class Path {
-	// SD¿¨¾ÍĞ÷×´Ì¬
+	// SDå¡å°±ç»ªçŠ¶æ€
 	public static boolean sdcard_status = Environment.MEDIA_MOUNTED
 			.equals(Environment.getExternalStorageState());
-	// Ö÷ÎÄ¼ş¼ĞÃû
+	// ä¸»æ–‡ä»¶å¤¹å
 		public static String data_home = "data.rex.yuol";
-	// ²âÊÔÎÄ¼ş
+	// æµ‹è¯•æ–‡ä»¶
 	public static File testfile = new File(Path.check_dir()+"/rextest.txt");
 	
 
 	/**
-	 * SD¿¨Â·¾¶
+	 * SDå¡è·¯å¾„
 	 * 
 	 * @return
 	 */
@@ -30,7 +30,7 @@ public class Path {
 	}
 
 	/**
-	 * ÍâÖÃSD¿¨Â·¾¶
+	 * å¤–ç½®SDå¡è·¯å¾„
 	 * 
 	 * @return
 	 */
@@ -47,8 +47,8 @@ public class Path {
 	}
 	
 	/**
-	 * ¼ì²éÄ¿Â¼ÊÇ·ñ´æÔÚ£¬²»´æÔÚÔò´´½¨
-	 * @return ·µ»ØÄ¿Â¼Â·¾¶
+	 * æ£€æŸ¥ç›®å½•æ˜¯å¦å­˜åœ¨ï¼Œä¸å­˜åœ¨åˆ™åˆ›å»º
+	 * @return è¿”å›ç›®å½•è·¯å¾„
 	 */
 	public static String check_dir() {
 		File destDir = new File(Path.sdcard2_path().toString()+"/"+Path.data_home+"/");
@@ -58,7 +58,7 @@ public class Path {
 		return destDir.toString();
 	}
 
-	// ÎÄ¼şĞ´Èë²âÊÔ
+	// æ–‡ä»¶å†™å…¥æµ‹è¯•
 	public static void save_file(File file, String content) {
 		FileOutputStream fops;
 		try {
