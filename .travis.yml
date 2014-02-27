@@ -11,7 +11,7 @@ script:
   - mkdir gen
   - mkdir bin
   - mkdir assets
-  - JAR_ANDROID=`find ./platforms/android-8/ -type d -name 'android.jar'`
-  - AAPT=`find ./build-tools/ -type d -name 'aapt'`
+  - JAR_ANDROID=`find ${ANDROID_HOME}/platforms/android-8/ -type d -name 'android.jar'`
+  - AAPT=`find ${ANDROID_HOME}/build-tools/ -type d -name 'aapt'`
   - $AAPT p -f -m -J gen -S res -I $JAR_ANDROID -M AndroidManifest.xml
   - ant
