@@ -1,5 +1,4 @@
 language: java
 before_install:
-  
-  - ./travis.sh
+  - "./travis.sh"
 install: ant
