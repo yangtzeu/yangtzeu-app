@@ -17,7 +17,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class Setting extends Activity implements android.view.View.OnClickListener{
+public class Setting extends Activity implements
+		android.view.View.OnClickListener {
 	private Button btn_save;
 	private EditText stu_no;
 	private EditText stu_mm;
@@ -28,9 +29,9 @@ public class Setting extends Activity implements android.view.View.OnClickListen
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.setting);
-		
+
 		btn_save = (Button) this.findViewById(R.id.save_btn);
-		
+
 		btn_save.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -43,32 +44,42 @@ public class Setting extends Activity implements android.view.View.OnClickListen
 				return false;
 			}
 		});
-		
+
 		btn_save.setOnClickListener(this);
-		
-		//数据填充到表单
-		stu_no=(EditText)findViewById(R.id.student_no);
+
+		// 数据填充到表单
+		stu_no = (EditText) findViewById(R.id.student_no);
 		stu_no.setText(Sql.kv_get("student_number"));
-		
-		stu_mm=(EditText)findViewById(R.id.jwc_mima);
+
+		stu_mm = (EditText) findViewById(R.id.jwc_mima);
 		stu_mm.setText(EncrypAES.decrypt(Sql.kv_get("student_password")));
-		
-		jsz_no=(EditText)findViewById(R.id.jsz_no);
+
+		jsz_no = (EditText) findViewById(R.id.jsz_no);
 		jsz_no.setText(Sql.kv_get("library_number"));
-		
-		jsz_mm=(EditText)findViewById(R.id.jsz_mima);
+
+		jsz_mm = (EditText) findViewById(R.id.jsz_mima);
 		jsz_mm.setText(EncrypAES.decrypt(Sql.kv_get("library_password")));
 	}
-	
+
 	@Override
 	public void onClick(View arg0) {
 		if (arg0 == btn_save) {
 			// 保存表单信息
-			Sql.kv_set("student_number", stu_no.getText().toString());
-			Sql.kv_set("student_password", EncrypAES.encrypt(stu_mm.getText().toString()));
-			Sql.kv_set("library_number", jsz_no.getText().toString());
-			Sql.kv_set("library_password", EncrypAES.encrypt(jsz_mm.getText().toString()));
-			Toast.makeText(getApplicationContext(), "已保存", Toast.LENGTH_SHORT).show();
+			String text_stu_no = stu_no.getText().toString();
+			String text_stu_mm = stu_mm.getText().toString();
+			String text_jsz_no = jsz_no.getText().toString();
+			String text_jsz_mm = jsz_mm.getText().toString();
+
+			if (!text_stu_no.equals("") && !text_stu_mm.equals("")) {
+				Sql.kv_set("student_number", text_stu_no);
+				Sql.kv_set("student_password", EncrypAES.encrypt(text_stu_mm));
+			}
+			if (!text_jsz_no.equals("") && !text_jsz_mm.equals("")) {
+				Sql.kv_set("library_number", text_jsz_no);
+				Sql.kv_set("library_password", EncrypAES.encrypt(text_jsz_mm));
+			}
+			Toast.makeText(getApplicationContext(), "已保存", Toast.LENGTH_SHORT)
+					.show();
 		}
 	}
 

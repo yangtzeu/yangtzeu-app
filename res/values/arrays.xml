@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string-array name="news">
         <item>长大新闻网</item>
         <item>教务处新闻</item>
@@ -23,4 +24,6 @@
         <item>教务处新闻</item>
         <item>计科院新闻</item>
     </string-array>
+    
+
 </resources>

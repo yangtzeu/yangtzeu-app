@@ -2,6 +2,8 @@ package com.rex.yuol;
 
 import java.util.Date;  
 
+import com.rex.yuol.utils.Timetable;
+
 import android.appwidget.AppWidgetManager;  
 import android.appwidget.AppWidgetProvider;  
 import android.content.Context;  
@@ -23,7 +25,7 @@ public class WidgetProvider extends AppWidgetProvider {
             int appWidgetId) {  
         CharSequence text;  
         java.text.DateFormat df = new java.text.SimpleDateFormat("hh:mm:ss");  
-        text = "https://github.com/duguying/yuol-app" + "    Time:" + df.format(new Date());  
+        text = Timetable.now_state() + "\nTime:" + df.format(new Date());  
           
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_normal);  
         views.setTextViewText(R.id.appwidget_text, text);  

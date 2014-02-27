@@ -1,7 +1,7 @@
 ![掌中长大](https://raw.github.com/duguying/yuol-app/master/logo.png) 
 
 ----------
-
+[![Stories in Ready](https://badge.waffle.io/duguying/yuol-app.png?label=ready)](https://waffle.io/duguying/yuol-app)
 
 # Build #
 

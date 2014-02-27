@@ -4,7 +4,11 @@ import java.util.Map;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.PersistentCookieStore;
 import com.rex.yuol.config.Path;
+import com.rex.yuol.config.Urls;
+import com.rex.yuol.http.Net;
+import com.rex.yuol.http.NetStateCheck;
 import com.rex.yuol.regex.JwcRegex;
 import com.rex.yuol.utils.Sql;
 import com.rex.yuol.utils.Timetable;
@@ -28,7 +32,7 @@ public class Welcome extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.welcome);
-		
+
 		final View view = View.inflate(this, R.layout.welcome, null);
 		setContentView(view);
 		// Ω•±‰’π æ∆Ù∂Ø∆¡
@@ -58,30 +62,35 @@ public class Welcome extends Activity {
 	private void redirectTo() {
 
 		// ≤‚ ‘
-		Timetable.test();
-		AsyncHttpClient client = new AsyncHttpClient();
-		client.get("http://jwc.yangtzeu.edu.cn:8080/login.aspx",
+		NetStateCheck nsc = new NetStateCheck(this.getApplicationContext());
+		nsc.check_jwc();
+		nsc.check_library();
+		// ≈–∂œ”√ªßµ«¬º◊¥Ã¨
+		Net.create_async_http(getApplicationContext()).get(Urls.jwc_cjcx_page,
 				new AsyncHttpResponseHandler() {
 					@Override
 					public void onSuccess(String response) {
-						Map<String,String> rst=JwcRegex.get_keys(response);
-						if(Sql.kv_set("viewstate", rst.get("viewstate"))&&Sql.kv_set("eventvalidation", rst.get("eventvalidation"))){
-						}else{
-							Toast.makeText(getApplicationContext(), "Database Storage Error!", Toast.LENGTH_SHORT).show();
-						};
+						try {
+							if (JwcRegex.is_not_login(response)) {
+								Sql.kv_set("login_state", "false");
+							} else {
+								Sql.kv_set("login_state", "true");
+							}
+							;
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
+
 					@Override
-					public void onFailure(Throwable error, String content){
-						Toast.makeText(getApplicationContext(), "Õ¯¬Á¡¨Ω” ß∞‹", Toast.LENGTH_SHORT).show();
-						Log.i("welcome", "Failed to load welcome page!"+Sql.kv_get("test"));
+					public void onFailure(Throwable error, String content) {
+						// TODO Auto-generated catch block
 					}
 				});
-
-
-//		Log.i("welcome", "loaded welcome page!");
 		Path.save_file(Path.testfile, "¿Óø°µƒ≤‚ ‘");
 		// ≤‚ ‘Ω· ¯
-		
+
 		Intent intent = new Intent(this, Main.class);
 		startActivity(intent);
 		finish();
