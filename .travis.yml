@@ -1,5 +1,5 @@
 language: java
-before_install:
+script:
   # download the latest android sdk and unzip
   - wget http://dl.google.com/android/android-sdk_r18-linux.tgz
   - tar -zxf android-sdk_r18-linux.tgz
@@ -14,4 +14,4 @@ before_install:
   - JAR_ANDROID=`find ./platforms/android-8/ -type d -name 'android.jar'`
   - AAPT=`find ./build-tools/ -type d -name 'aapt'`
   - $AAPT p -f -m -J gen -S res -I $JAR_ANDROID -M AndroidManifest.xml
-install: ant
+  - ant
