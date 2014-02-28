@@ -1,31 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+ * 掌上长大-长江大学校园安卓应用
+ *
+ * Copyright (C) 2014-2016 Rex Lee <duguying2008@gmail.com>
+ *
+ * This program is free and opensource software; 
+ * you can redistribute it and/or modify
+ * it under the terms of the MIT License
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="horizontal" >
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:layout_height="30sp"
+        android:gravity="center|left"
+        android:orientation="horizontal" >
 
         <TextView
             android:id="@+id/drop_list_item_title"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@+id/list_item_title"
-            android:textColor="#000000"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:text="你好"
+            android:textColor="#ffffff"
             android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/drop_list_item_title_notice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:text="@+id/list_item_title_notice"
-            android:textColor="#000000"
-            android:textSize="10sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:gravity="right" >
+
+            <ImageView
+                android:id="@+id/drop_list_item_check"
+                android:layout_width="30sp"
+                android:layout_height="fill_parent" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

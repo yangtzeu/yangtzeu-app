@@ -1,5 +1,15 @@
+/**
+ * 掌上长大-长江大学校园安卓应用
+ *
+ * Copyright (C) 2014-2016 Rex Lee <duguying2008@gmail.com>
+ *
+ * This program is free and opensource software; 
+ * you can redistribute it and/or modify
+ * it under the terms of the MIT License
+ */
 package com.rex.yuol;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -128,6 +138,13 @@ public class JwcChafen extends Activity implements
 				.getSystemService(LAYOUT_INFLATER_SERVICE);
 		View layout = inflater.inflate(R.layout.dialog_drop_list, null);
 		lvPopupList = (ListView) layout.findViewById(R.id.drop_list);
+		List<Map<String, Object>> list_items = new ArrayList<Map<String, Object>>();
+//		TODO 创建一个院系数组
+		SimpleAdapter adapter = new SimpleAdapter(this, list_items,
+				R.layout.drop_list_item, new String[] { "item_title", "tick" },
+				new int[] { R.id.drop_list_item_title,
+						R.id.drop_list_item_check });
+		lvPopupList.setAdapter(adapter);
 		pwMyPopWindow = new PopupWindow(layout);
 		pwMyPopWindow.setFocusable(true);// 加上这个popupwindow中的ListView才可以接收点击事件
 
@@ -135,23 +152,22 @@ public class JwcChafen extends Activity implements
 		lvPopupList.measure(View.MeasureSpec.UNSPECIFIED,
 				View.MeasureSpec.UNSPECIFIED);
 		pwMyPopWindow.setWidth(drop_list1.getMeasuredWidth());
-		pwMyPopWindow.setHeight((lvPopupList.getMeasuredHeight())
-				* 3);
+		pwMyPopWindow.setHeight((lvPopupList.getMeasuredHeight()) * 3);
 
 		// 控制popupwindow点击屏幕其他地方消失
 		pwMyPopWindow.setBackgroundDrawable(this.getResources().getDrawable(
 				R.drawable.jwc_chafen_btn_b));// 设置背景图片，不能在布局中设置，要通过代码来设置
 		pwMyPopWindow.setOutsideTouchable(true);// 触摸popupwindow外部，popupwindow消失。这个要求你的popupwindow要有背景图片才可以成功，如上
 	}
-	
+
 	@Override
 	public void onClick(View arg0) {
 		// TODO Auto-generated method stub
 		if (arg0 == drop_list1) {
 			iniPopupWindow();
 			pwMyPopWindow.showAsDropDown(drop_list1);
-			Toast.makeText(getApplicationContext(), "droplist", Toast.LENGTH_SHORT)
-					.show();
+			Toast.makeText(getApplicationContext(), "droplist",
+					Toast.LENGTH_SHORT).show();
 		}
 	}
 
@@ -168,6 +184,5 @@ public class JwcChafen extends Activity implements
 		}
 		return super.onKeyDown(keyCode, event);
 	}
-
 
 }

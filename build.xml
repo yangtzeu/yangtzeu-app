@@ -3,7 +3,7 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="yuol">
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="yuol-app">
     <property environment="env"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.6"/>
@@ -19,11 +19,11 @@
     <path id="Android Dependencies.libraryclasspath">
         <pathelement location="android-sdk-linux/tools/support/annotations.jar"/>
     </path>
-    <path id="yuol.classpath">
+    <path id="yuol-app.classpath">
         <path refid="Android 2.2.libraryclasspath"/>
         <path refid="Android Private Libraries.libraryclasspath"/>
-        <pathelement location="bin/classes"/>
         <path refid="Android Dependencies.libraryclasspath"/>
+        <pathelement location="bin/classes"/>
     </path>
     <target name="init">
         <mkdir dir="bin/classes"/>
@@ -49,7 +49,7 @@
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin/classes" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
             <src path="gen"/>
-            <classpath refid="yuol.classpath"/>
+            <classpath refid="yuol-app.classpath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>

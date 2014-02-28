@@ -1,4 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>  
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * 掌上长大-长江大学校园安卓应用
+ *
+ * Copyright (C) 2014-2016 Rex Lee <duguying2008@gmail.com>
+ *
+ * This program is free and opensource software; 
+ * you can redistribute it and/or modify
+ * it under the terms of the MIT License
+-->
   
 <set xmlns:android="http://schemas.android.com/apk/res/android">  
     <translate android:fromXDelta="-100%p" android:toXDelta="0"  
