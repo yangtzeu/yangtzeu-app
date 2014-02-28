@@ -5,6 +5,7 @@ script:
   - tar -zxf android-sdk_r18-linux.tgz
   - export ANDROID_HOME=`pwd`/android-sdk-linux
   - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
+  - sudo add-apt-repository ppa:gnome3-team/gnome3
   - sudo apt-get update
   - sudo apt-get install  ia32-libs
   # only update the sdk for the tools and platform-tools (1,2) and whatever api level
