@@ -9,7 +9,7 @@
     <property name="target" value="1.6"/>
     <property name="source" value="1.6"/>
     <path id="Android 2.2.libraryclasspath">
-        <pathelement location="F:/adt-bundle-windows-x86_64-20131030/sdk/platforms/android-8/android.jar"/>
+        <pathelement location="android-sdk-linux/platforms/android-8/android.jar"/>
     </path>
     <path id="Android Private Libraries.libraryclasspath">
         <pathelement location="libs/commons-httpclient-3.1.jar"/>
@@ -17,7 +17,7 @@
         <pathelement location="libs/android-support-v4.jar"/>
     </path>
     <path id="Android Dependencies.libraryclasspath">
-        <pathelement location="F:/adt-bundle-windows-x86_64-20131030/sdk/tools/support/annotations.jar"/>
+        <pathelement location="android-sdk-linux/tools/support/annotations.jar"/>
     </path>
     <path id="yuol.classpath">
         <path refid="Android 2.2.libraryclasspath"/>
