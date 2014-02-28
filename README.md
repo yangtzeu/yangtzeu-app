@@ -6,7 +6,8 @@
 
 # Build #
 
-The project built by eclipse.
+- The project built by eclipse.
+- Ant
 
 # Platform(For Developer) #
 - Min SDK Ver: Android 2.2
