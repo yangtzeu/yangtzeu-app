@@ -1,69 +1,382 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- WARNING: Eclipse auto-generated file.
-              Any modifications will be overwritten.
-              To include a user specific buildfile here, simply create one in the same
-              directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="yuol-app">
-    <property environment="env"/>
-    <property name="debuglevel" value="source,lines,vars"/>
-    <property name="target" value="1.6"/>
-    <property name="source" value="1.6"/>
-    <path id="Android 2.2.libraryclasspath">
-        <pathelement location="android-sdk-linux/platforms/android-8/android.jar"/>
-    </path>
-    <path id="Android Private Libraries.libraryclasspath">
-        <pathelement location="libs/commons-httpclient-3.1.jar"/>
-        <pathelement location="libs/android-async-http-1.4.4.jar"/>
-        <pathelement location="libs/android-support-v4.jar"/>
-    </path>
-    <path id="Android Dependencies.libraryclasspath">
-        <pathelement location="android-sdk-linux/tools/support/annotations.jar"/>
-    </path>
-    <path id="yuol-app.classpath">
-        <path refid="Android 2.2.libraryclasspath"/>
-        <path refid="Android Private Libraries.libraryclasspath"/>
-        <path refid="Android Dependencies.libraryclasspath"/>
-        <pathelement location="bin/classes"/>
-    </path>
-    <target name="init">
-        <mkdir dir="bin/classes"/>
-        <copy includeemptydirs="false" todir="bin/classes">
-            <fileset dir="src">
-                <exclude name="**/*.java"/>
-            </fileset>
-        </copy>
-        <copy includeemptydirs="false" todir="bin/classes">
-            <fileset dir="gen">
-                <exclude name="**/*.java"/>
-            </fileset>
-        </copy>
+<project
+    name="yuol-app"
+    default="develop" >
+
+    <!-- ANT环境变量 -->
+
+    <property environment="env" />
+    <!-- 应用名称 -->
+
+    <property
+        name="appName"
+        value="${ant.project.name}" />
+
+    <property
+        name="aapt"
+        value="${env.AAPT}" />
+
+    <property
+        name="aidl"
+        value="${env.AIDL}" />
+
+    <property
+        name="dx"
+        value="${env.DX}" />
+
+    <property
+        name="outdir-bin"
+        value="bin" />
+
+    <property
+        name="outdir-classes"
+        value="${outdir-bin}/classes" />
+
+    <property
+        name="outdir-classes-ospath"
+        value="${outdir-classes}" />
+
+    <property
+        name="outdir-dex"
+        value="${outdir-bin}/dexedLibs" />
+
+    <property
+        name="outdir-res"
+        value="${outdir-bin}/res" />
+
+    <property
+        name="outdir-gen"
+        value="gen" />
+
+    <!-- 经过aapt生成的资源包文件 -->
+
+    <property
+        name="resources-package"
+        value="${outdir-bin}/${appName}.apk" />
+
+    <property
+        name="out-signed-package-ospath"
+        value="${outdir-bin}/${appName}_signed.apk" />
+    
+    <property
+        name="apk-signed-align"
+        value="${outdir-bin}/${appName}_signed_aligned.apk" />
+
+    <property
+        name="resource-dir"
+        value="res" />
+
+    <property
+        name="asset-dir"
+        value="assets" />
+
+    <property
+        name="srcdir"
+        value="src" />
+
+    <property
+        name="manifest-xml"
+        value="AndroidManifest.xml" />
+
+    <property
+        name="android-jar"
+        value="${env.ANDROID_API_DIR}/android.jar" />
+
+    <property
+        name="framework-aidl"
+        value="${env.ANDROID_API_DIR}/framework.aidl" />
+
+    <property
+        name="external-lib"
+        value="libs" />
+
+    <property
+        name="external-lib-ospath"
+        value="${basedir}/${external-lib}" />
+
+    <property
+        name="dex-file"
+        value="classes.dex" />
+
+    <property
+        name="dex-path"
+        value="${outdir-bin}/${dex-file}" />
+
+    <property
+        name="dex-ospath"
+        value="${dex-path}" />
+
+    <property
+        name="jarsigner"
+        value="${env.JAVA_HOME}/bin/jarsigner" />
+    
+    <property
+        name="keystore-file"
+        value="script/dev.keystore" />
+    
+
+    <!-- 初始化工作 -->
+
+    <target name="init" >
+
+        <echo>
+            初始化工作
+			sdk home: ${env.ANDROID_SDK_HOME}			aapt: ${aapt}        </echo>
+
+        <delete dir="${outdir-bin}" />
+
+        <mkdir dir="${outdir-bin}" />
+
+        <mkdir dir="${outdir-gen}" />
+
+        <mkdir dir="${outdir-classes}" />
+
+        <mkdir dir="${asset-dir}" />
     </target>
-    <target name="clean">
-        <delete dir="bin/classes"/>
+
+    <!-- 根据工程中的资源文件生成R.java文件 -->
+
+    <target
+        name="gen-R"
+        depends="init" >
+
+        <echo>
+			根据工程中的资源文件生成R.java文件...			gen: ${outdir-gen}			jar: ${android-jar}        </echo>
+
+        <exec
+            executable="${aapt}"
+            failonerror="true" >
+
+            <arg value="package" />
+
+            <arg value="-f" />
+
+            <arg value="-m" />
+
+            <arg value="-J" />
+
+            <arg value="${outdir-gen}" />
+
+            <arg value="-S" />
+
+            <arg value="${resource-dir}" />
+
+            <arg value="-M" />
+
+            <arg value="${manifest-xml}" />
+
+            <arg value="-I" />
+
+            <arg value="${android-jar}" />
+        </exec>
     </target>
-    <target depends="clean" name="cleanall"/>
-    <target depends="build-subprojects,build-project" name="build"/>
-    <target name="build-subprojects"/>
-    <target depends="init" name="build-project">
-        <echo message="${ant.project.name}: ${ant.file}"/>
-        <javac debug="true" debuglevel="${debuglevel}" destdir="bin/classes" includeantruntime="false" source="${source}" target="${target}">
-            <src path="src"/>
-            <src path="gen"/>
-            <classpath refid="yuol-app.classpath"/>
+
+    <!-- 编译aidl文件 -->
+
+    <target
+        name="aidl"
+        depends="gen-R" >
+
+        <echo>
+			编译aidl文件...
+        </echo>
+
+        <apply
+            executable="${aidl}"
+            failonerror="true" >
+
+            <!-- 指定预处理文件 -->
+
+            <arg value="-p${framework-aidl}" />
+            <!-- aidl声明的目录 -->
+
+            <arg value="-I${srcdir}" />
+            <!-- 目标文件目录 -->
+
+            <arg value="-o${outdir-gen}" />
+            <!-- 指定哪些文件需要编译 -->
+
+            <fileset dir="${srcdir}" >
+
+                <include name="**/*.aidl" />
+            </fileset>
+        </apply>
+    </target>
+
+    <!-- 将工程中的java源文件编译成class文件 -->
+
+    <target
+        name="compile"
+        depends="aidl" >
+
+        <echo>
+			将工程中的java源文件编译成class文件...
+        </echo>
+
+        <javac
+            bootclasspath="${android-jar}"
+            destdir="${outdir-classes}"
+            encoding="utf-8"
+            srcdir="."
+            target="1.5" >
+
+            <classpath>
+
+                <fileset
+                    dir="${external-lib}"
+                    includes="*.jar" />
+
+                <filelist>
+
+                    <file name="${android-maps-jar}" />
+                </filelist>
+            </classpath>
         </javac>
     </target>
-    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
-    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
-        <copy todir="${ant.library.dir}">
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
-        </copy>
-        <unzip dest="${ant.library.dir}">
-            <patternset includes="jdtCompilerAdapter.jar"/>
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
-        </unzip>
+
+    <!-- 将.class文件转化成.dex文件 -->
+
+    <target
+        name="dex"
+        depends="compile" >
+
+        <echo>
+			将.class文件转化成.dex文件...
+        </echo>
+
+        <exec
+            executable="${dx}"
+            failonerror="true" >
+
+            <arg value="--dex" />
+            <!-- 输出文件 -->
+
+            <arg value="--output=${dex-ospath}" />
+            <!-- 要生成.dex文件的源classes和libraries -->
+
+            <arg value="${outdir-classes-ospath}" />
+
+            <arg value="${external-lib-ospath}" />
+        </exec>
     </target>
-    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
-        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
-        <antcall target="build"/>
+
+    <!-- 将资源文件放进输出apk -->
+
+    <target
+        name="package-res-and-assets"
+        depends="dex" >
+
+        <echo>
+			将资源文件放进输出apk...
+        </echo>
+
+        <exec
+            executable="${aapt}"
+            failonerror="true" >
+
+            <arg value="package" />
+
+            <arg value="-f" />
+
+            <arg value="-M" />
+
+            <arg value="${manifest-xml}" />
+
+            <arg value="-S" />
+
+            <arg value="${resource-dir}" />
+
+            <arg value="-A" />
+
+            <arg value="${asset-dir}" />
+
+            <arg value="-I" />
+
+            <arg value="${android-jar}" />
+
+            <arg value="-F" />
+
+            <arg value="${resources-package}" />
+        </exec>
     </target>
+
+    <!-- 加入dex文件，打包成未签证的apk -->
+
+    <target
+        name="add-dex"
+        depends="package-res-and-assets" >
+
+        <echo>
+			加入dex文件，打包成未签证的apk...        </echo>
+        <copy file="bin/classes.dex" todir="." />
+        <exec
+            executable="${aapt}"
+            failonerror="true" >
+
+            <arg value="a" />
+
+            <arg value="${resources-package}" />
+
+            <arg value="classes.dex" />
+        </exec>
+    </target>
+
+    <!-- 对apk进行签证 -->
+
+    <target
+        name="jarsigner"
+        depends="add-dex" >
+
+        <echo>
+			对apk进行签名...
+        </echo>
+
+        <exec
+            executable="${jarsigner}"
+            failonerror="true" >
+
+            <arg value="-keystore" />
+
+            <arg value="${keystore-file}" />
+
+            <arg value="-storepass" />
+
+            <arg value="rex123" />
+
+            <arg value="-keypass" />
+
+            <arg value="rex123" />
+            
+            <arg value="-digestalg " />
+            <arg value="SHA1" />
+            <arg value="-sigalg" />
+            <arg value="MD5withRSA" />
+
+            <arg value="-signedjar" />
+
+            <arg value="${out-signed-package-ospath}" />
+
+            <arg value="${resources-package}" />
+            <!-- 不要忘了证书的别名 -->
+
+            <arg value="develop" />
+        </exec>
+    </target>
+
+    <!-- 发布，对齐 -->
+
+    <target
+        name="develop"
+        depends="jarsigner" >
+		<exec
+            executable="${env.ZIPALIGN}"
+            failonerror="true" >
+            <arg value="-v" />
+            <arg value="4" />
+            <arg value="${out-signed-package-ospath}" />
+            <arg value="${apk-signed-align}" />
+		</exec>
+        <echo>
+			发布，对齐. path:${apk-signed-align}        </echo>
+    </target>
+
 </project>

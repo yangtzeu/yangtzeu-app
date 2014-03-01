@@ -1,6 +1,7 @@
 # bin
 /bin/
 /assets/
+*.dex
 
 # eclipse setting
 /proguard-project.txt
