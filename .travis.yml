@@ -3,8 +3,11 @@ jdk: oraclejdk7
 env:
     matrix:
     - ANDROID_SDKS=android-8            ANDROID_TARGET=android-8   ANDROID_ABI=armeabi
+    - ANDROID_SDKS=android-14
+    - ANDROID_SDKS=android-15
+    - ANDROID_SDKS=android-19
     - ANDROID_SDKS=android-10           ANDROID_TARGET=android-10  ANDROID_ABI=armeabi
-    - ANDROID_SDKS=android-17,sysimg-17 ANDROID_TARGET=android-17  ANDROID_ABI=armeabi-v7a
+    - ANDROID_SDKS=android-17           ANDROID_TARGET=android-17  ANDROID_ABI=armeabi-v7a
 script:
   - chmod 777 ./script/ci.sh
   - ./script/ci.sh
