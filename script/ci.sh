@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # download the latest android sdk and unzip
 wget http://dl.google.com/android/android-sdk_r21-linux.tgz
 tar -zxf android-sdk_r21-linux.tgz
