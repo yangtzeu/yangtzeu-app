@@ -219,7 +219,7 @@
 
         <javac debuglevel="${debuglevel}" destdir="bin/classes" includeantruntime="false" source="${source}" target="${target}"
             bootclasspath="${android-jar}"
-            encoding="utf-8" srcdir="." >
+            encoding="utf-8" srcdir="src;gen" >
 
             <classpath>
 
