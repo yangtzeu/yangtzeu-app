@@ -6,7 +6,7 @@
 	<property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.6"/>
     <property name="source" value="1.6"/>
-	
+
     <!-- ANT环境变量 -->
 
     <property environment="env" />
@@ -217,12 +217,9 @@
 			将工程中的java源文件编译成class文件...
         </echo>
 
-        <javac
+        <javac debuglevel="${debuglevel}" destdir="bin/classes" includeantruntime="false" source="${source}" target="${target}"
             bootclasspath="${android-jar}"
-            destdir="${outdir-classes}"
-            encoding="utf-8"
-            srcdir="."
-            target="1.5" >
+            encoding="utf-8" srcdir="." >
 
             <classpath>
 
