@@ -1,6 +1,10 @@
 package com.rex.yuol;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Map;
+
+import org.apache.commons.httpclient.util.EncodingUtil;
+import org.apache.http.util.EntityUtils;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -65,6 +69,27 @@ public class Welcome extends Activity {
 		NetStateCheck nsc = new NetStateCheck(this.getApplicationContext());
 		nsc.check_jwc();
 		nsc.check_library();
+
+		Net.create_async_http(getApplicationContext()).get(
+				"http://jwc.yangtzeu.edu.cn:8080/student.aspx",
+				new AsyncHttpResponseHandler() {
+					@Override
+					public void onStart(){
+						setCharset("GB2312");
+					}
+					@Override
+					public void onSuccess(String response) {
+						response=JwcRegex.parse_department_list(response);
+						
+						String[] str_array;
+						str_array=response.split("\n");
+						
+						Toast.makeText(getApplicationContext(), str_array[132],
+								Toast.LENGTH_LONG).show();
+						Log.i("rex",getCharset());
+					}
+				});
+
 		// 判断用户登录状态
 		Net.create_async_http(getApplicationContext()).get(Urls.jwc_cjcx_page,
 				new AsyncHttpResponseHandler() {
