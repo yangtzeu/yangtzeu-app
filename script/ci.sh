@@ -18,3 +18,4 @@ export AAPT=`find ${ANDROID_SDK_HOME}/platform-tools/ -name 'aapt'`
 export AIDL=`find ${ANDROID_SDK_HOME}/platform-tools/ -name 'aidl'`
 export DX=`find ${ANDROID_SDK_HOME}/platform-tools/ -name 'dx'`
 
+echo ANDROID_SDK_HOME\:${ANDROID_SDK_HOME}\nZIPALIGN\:${ZIPALIGN}\nAAPT\:${AAPT}\nAIDL\:${AIDL}\nDX\:${DX}\nANDROID_SDK_HOME\:${ANDROID_SDK_HOME}\n
