@@ -9,6 +9,8 @@
  */
 package com.rex.yuol.utils;
 
+import java.util.Map;
+
 import com.rex.yuol.config.Path;
 
 import android.content.ContentValues;
@@ -28,59 +30,65 @@ public class Sql {
 
 	/**
 	 * 打开并创建数据表
+	 * 
 	 * @return 数据库
 	 */
 	public SQLiteDatabase db_open() {
-		String check_exist_kv = "SELECT count(*) as c FROM sqlite_master WHERE type='table' AND name='kv'";
-		Cursor cursor1= db.rawQuery(check_exist_kv, null);
-		int count1=0;
-		if(cursor1.moveToFirst()){  
-            count1=cursor1.getInt(cursor1.getColumnIndex("c"));  
-        }
-		if(count1==0){
-			// 创建kv表
-			db.execSQL("CREATE TABLE [kv] ([key] VARCHAR(20) UNIQUE NOT NULL PRIMARY KEY,[value] TEXT NOT NULL)");
-		}
-		
-		/////////////////////
-		
-		String check_exist_jwc_notice = "SELECT count(*) as c FROM sqlite_master WHERE type='table' AND name='jwc_notice_list'";
-		Cursor cursor2= db.rawQuery(check_exist_jwc_notice, null);
-		int count2=0;
-		if(cursor2.moveToFirst()){  
-            count2=cursor2.getInt(cursor2.getColumnIndex("c"));  
-        }
-		if(count2==0){
-			// 创建jwc_notice_list表
-			db.execSQL("CREATE TABLE [jwc_notice_list] ([url] NVARCHAR(512) UNIQUE NOT NULL PRIMARY KEY,[time] DATE NOT NULL, [title] NVARCHAR(512) NOT NULL )");
-		}
-		
-		/////////////////////
-		
-		String check_exist_jwc_news = "SELECT count(*) as c FROM sqlite_master WHERE type='table' AND name='jwc_news_list'";
-		Cursor cursor3= db.rawQuery(check_exist_jwc_news, null);
-		int count3=0;
-		if(cursor3.moveToFirst()){  
-            count3=cursor3.getInt(cursor3.getColumnIndex("c"));  
-        }
-		if(count3==0){
-			// 创建jwc_news_list表
-			db.execSQL("CREATE TABLE [jwc_news_list] ([url] NVARCHAR(512) UNIQUE NOT NULL PRIMARY KEY, [time] DATE NOT NULL,[title] NVARCHAR(512) NOT NULL)");
-		}
+		// 创建kv表
+		create_table(
+				"kv",
+				"CREATE TABLE [kv] ([key] VARCHAR(20) UNIQUE NOT NULL PRIMARY KEY,[value] TEXT NOT NULL)");
+		// 创建jwc_notice_list表
+		create_table(
+				"jwc_notice_list",
+				"CREATE TABLE [jwc_notice_list] ([url] NVARCHAR(512) UNIQUE NOT NULL PRIMARY KEY,[time] DATE NOT NULL, [title] NVARCHAR(512) NOT NULL )");
+		// 创建jwc_news_list表
+		create_table(
+				"jwc_news_list",
+				"CREATE TABLE [jwc_news_list] ([url] NVARCHAR(512) UNIQUE NOT NULL PRIMARY KEY, [time] DATE NOT NULL,[title] NVARCHAR(512) NOT NULL)");
+		// 创建departments表
+		create_table(
+				"departments",
+				"CREATE TABLE [departments] ([dep_id] INTEGER  UNIQUE NOT NULL,[dep_name] VARCHAR(30)  NOT NULL,[dep_rate] INTEGER DEFAULT '0' NOT NULL,[dep_note] VARCHAR(30)  NULL)");
+		// 创建classes表
+		create_table(
+				"classes",
+				"CREATE TABLE [classes] ([cls_id] INTEGER  NOT NULL PRIMARY KEY,[cls_name] VARCHAR(30)  NOT NULL,[cls_dep] INTEGER  NOT NULL,[cls_rate] INTEGER DEFAULT '0' NOT NULL,[cls_note] VARCHAR(30)  NULL)");
 
 		return db;
 	}
-	
+
+	/**
+	 * 创建表
+	 * 
+	 * @param table_name
+	 * @param create_table_sql
+	 */
+	private void create_table(String table_name, String create_table_sql) {
+		String check_exist_table = "SELECT count(*) as c FROM sqlite_master WHERE type='table' AND name='"
+				+ table_name + "'";
+		Cursor cursor = db.rawQuery(check_exist_table, null);
+		int count = 0;
+		if (cursor.moveToFirst()) {
+			count = cursor.getInt(cursor.getColumnIndex("c"));
+		}
+		if (count == 0) {
+			// 创建表
+			db.execSQL(create_table_sql);
+		}
+	}
+
 	/**
 	 * 获取对应key的value
+	 * 
 	 * @param key
 	 * @return 返回value
 	 */
-	static public String kv_get(String key){
+	static public String kv_get(String key) {
 		Cursor cursor;
-		String value="";
+		String value = "";
 
-		SQLiteDatabase db=new Sql().db;
+		SQLiteDatabase db = new Sql().db;
 		String table = "kv";
 		String[] columns = new String[] { "key", "value" };
 		String selection = "key=?";
@@ -90,42 +98,70 @@ public class Sql {
 		String orderBy = null;
 		String limit = "1";
 
-		cursor = db.query(table,columns, selection, selectionArgs, groupBy, having, orderBy, limit);
-		
-		if(cursor.moveToFirst()){
-            value=cursor.getString(cursor.getColumnIndex("value"));  
-        }
+		cursor = db.query(table, columns, selection, selectionArgs, groupBy,
+				having, orderBy, limit);
+
+		if (cursor.moveToFirst()) {
+			value = cursor.getString(cursor.getColumnIndex("value"));
+		}
 		db.close();
 		return value;
 	}
-	
+
 	/**
-	 * 设置对应key的value
+	 * kv表操作，设置对应key的value
+	 * 
 	 * @param key
 	 * @param value
 	 * @return 状态：false失败；true成功
 	 */
-	static public Boolean kv_set(String key,String value){
-		SQLiteDatabase db=new Sql().db;
-		
+	static public Boolean kv_set(String key, String value) {
+		SQLiteDatabase db = new Sql().db;
+
 		ContentValues values = new ContentValues();
 		values.put("key", key);
 		values.put("value", value);
 		long rowid = db.insert("kv", null, values);
-		
-		if(rowid>0){
+
+		if (rowid > 0) {
 			return true;
-		}else{
+		} else {
 			ContentValues values_update = new ContentValues();
 			values_update.put("value", value);
-			int i = db.update("kv", values_update, "key=?",new String[]{key});
-			if(i>0){
+			int i = db.update("kv", values_update, "key=?",
+					new String[] { key });
+			if (i > 0) {
 				return true;
 			}
 		}
-		
+
 		db.close();
 		return false;
 	}
 
+	/**
+	 * 保存更新院系表到数据库
+	 * @param list
+	 * @return
+	 */
+	static public int dep_update(Map<String,String> list) {
+		if(list.equals(null)){
+			Log.i("rex","list为空，没有执行任何数据库操作");
+			return 0;
+		}
+		return 0;
+	}
+	
+	/**
+	 * 获取单条院系信息，按关键字key精确查询，匹配dep_id和dep_name
+	 * @param key 关键字
+	 * @return
+	 */
+	static public int dep_get(String key){
+		if(key.equals(null)){
+			return 0;
+		}
+		
+		return 0;
+	}
 }
