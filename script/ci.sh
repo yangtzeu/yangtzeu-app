@@ -21,6 +21,11 @@ export DX=`find ${ANDROID_SDK_HOME}/platform-tools/ -name 'dx'`
 echo ANDROID_SDK_HOME\:${ANDROID_SDK_HOME}\nZIPALIGN\:${ZIPALIGN}\nAAPT\:${AAPT}\nAIDL\:${AIDL}\nDX\:${DX}\nANDROID_SDK_HOME\:${ANDROID_SDK_HOME}\n
 echo ANDROID_API_DIR\:${ANDROID_API_DIR}
 
+case `uname -m` in
+	i?86)				BITS=32 ;;
+	amd64|x86_64)	BITS=64 ;;
+esac
+
 if [ "$ANDROID_SDKS"x = "android-8"x ]; then
 wget https://scan.coverity.com/download/linux-${BITS} -O cov-build-tools.tar.gz --post-data "project=duguying/yangtzeu-app&token=$COVERITY_SCAN_TOKEN"
 tar -zxf cov-build-tools.tar.gz
