@@ -8,7 +8,7 @@ env:
     - ANDROID_SDKS=android-10     
     - ANDROID_SDKS=android-17
     global:
-    - secure:"e/7NN2CqCMjv01ExIZMdkg6TCwrLz+2kN7Ff8r+M0s/1h7rmLLMp34iLzjzD+SUiOp+e5ON7vv0RUkv3Usa1nBbB9efh+ORfY/wnPVvoctLgBOcHyCFHii6H1eWPAFk4Ke5La8hY3xwH0rwj6X71bP5nMuxGdAevdF+hFNAbx4Q="
+    - secure: "e/7NN2CqCMjv01ExIZMdkg6TCwrLz+2kN7Ff8r+M0s/1h7rmLLMp34iLzjzD+SUiOp+e5ON7vv0RUkv3Usa1nBbB9efh+ORfY/wnPVvoctLgBOcHyCFHii6H1eWPAFk4Ke5La8hY3xwH0rwj6X71bP5nMuxGdAevdF+hFNAbx4Q="
 script:
     - chmod 777 ./script/ci.sh
     - ./script/ci.sh
