@@ -17,6 +17,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.*;
 import android.util.Log;
+import android.widget.Toast;
 
 public class Sql {
 	private SQLiteDatabase db;
@@ -25,7 +26,7 @@ public class Sql {
 		// 打开或创建test.db数据库
 		db = SQLiteDatabase.openOrCreateDatabase(Path.check_dir() + "/yuol.db",
 				null);
-		this.db_open();
+		this.db_init();
 	}
 
 	/**
@@ -33,7 +34,7 @@ public class Sql {
 	 * 
 	 * @return 数据库
 	 */
-	public SQLiteDatabase db_open() {
+	public SQLiteDatabase db_init() {
 		// 创建kv表
 		create_table(
 				"kv",
@@ -117,6 +118,9 @@ public class Sql {
 	 */
 	static public Boolean kv_set(String key, String value) {
 		SQLiteDatabase db = new Sql().db;
+		if(db.isDbLockedByCurrentThread()){
+			Log.i("rex","真的被锁了");
+		}
 
 		ContentValues values = new ContentValues();
 		values.put("key", key);
@@ -124,6 +128,7 @@ public class Sql {
 		long rowid = db.insert("kv", null, values);
 
 		if (rowid == -1) {
+			db.close();
 			return true;
 		} else {
 			ContentValues values_update = new ContentValues();
@@ -131,6 +136,7 @@ public class Sql {
 			int i = db.update("kv", values_update, "key=?",
 					new String[] { key });
 			if (i > 0) {
+				db.close();
 				return true;
 			}
 		}
@@ -161,6 +167,7 @@ public class Sql {
 					values.put("dep_rate", 0);
 					values.put("dep_note", "");
 				} catch (Exception e) {
+					db.close();
 					return false;
 				}
 				long rowid = db.insert("departments", null, values);
@@ -171,9 +178,11 @@ public class Sql {
 				}
 				values.clear();
 			}
+			db.close();
 			return true;
 		}
 		Log.i("rex", "list为空，没有执行任何数据库操作");
+		db.close();
 		return false;
 	}
 
@@ -189,6 +198,7 @@ public class Sql {
 			return 0;
 		}
 
+		
 		return 0;
 	}
 }
