@@ -22,7 +22,7 @@ echo ANDROID_SDK_HOME\:${ANDROID_SDK_HOME}\nZIPALIGN\:${ZIPALIGN}\nAAPT\:${AAPT}
 echo ANDROID_API_DIR\:${ANDROID_API_DIR}
 
 if [ "$ANDROID_SDKS"x = "android-8"x ]; then
-wget https://scan.coverity.com/download/linux-${BITS} -O cov-build-tools.tar.gz --post-data "project=duguying/Azalea&token=$COVERITY_SCAN_TOKEN"
+wget https://scan.coverity.com/download/linux-${BITS} -O cov-build-tools.tar.gz --post-data "project=duguying/yangtzeu-app&token=$COVERITY_SCAN_TOKEN"
 tar -zxf cov-build-tools.tar.gz
 COV_DIR=`find ./ -type d -name 'cov-analysis*'`
 export PATH=$PATH:$COV_DIR/bin
