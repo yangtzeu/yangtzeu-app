@@ -27,12 +27,14 @@ tar -zxf cov-build-tools.tar.gz
 COV_DIR=`find ./ -type d -name 'cov-analysis*'`
 export PATH=$PATH:$COV_DIR/bin
 cov-build --dir cov-int ant
-tar czvf azalea.tgz cov-int
-curl --form project=duguying/Azalea \
+tar czvf yangtzeu.tgz cov-int
+curl --form project=duguying/yangtzeu-app \
   --form token=$COVERITY_SCAN_TOKEN \
   --form email=duguying2008@gmail.com \
-  --form file=@azalea.tgz \
+  --form file=@yangtzeu.tgz \
   --form version=Version \
   --form description=Description \
   http://scan5.coverity.com/cgi-bin/upload.py
+else
+ant
 fi
