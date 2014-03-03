@@ -1,8 +1,9 @@
 ![掌中长大](https://raw.github.com/duguying/yuol-app/master/logo.png) 
 
 ----------
-[![Build Status](https://travis-ci.org/duguying/yuol-app.png?branch=master)](https://travis-ci.org/duguying/yuol-app)
-[![Stories in Ready](https://badge.waffle.io/duguying/yuol-app.png?label=ready)](https://waffle.io/duguying/yuol-app)
+[![Build Status](https://travis-ci.org/duguying/yangtzeu-app.png?branch=master)](https://travis-ci.org/duguying/yangtzeu-app)
+[![GitHub version](https://badge.fury.io/gh/duguying%2Fyangtzeu-app.png)](http://badge.fury.io/gh/duguying%2Fyangtzeu-app)
+[![Stories in Ready](https://badge.waffle.io/duguying/yangtzeu-app.png?label=ready)](https://waffle.io/duguying/yangtzeu-app)
 
 # Build #
 

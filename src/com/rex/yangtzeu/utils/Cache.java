@@ -7,14 +7,8 @@
  * you can redistribute it and/or modify
  * it under the terms of the MIT License
  */
-package com.rex.yuol.utils;
+package com.rex.yangtzeu.utils;
 
-/**
- * 获取院系班级
- * 
- * @author rex
- * 
- */
-public class Yxbj {
+public class Cache {
 
 }

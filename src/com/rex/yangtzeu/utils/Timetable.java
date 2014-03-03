@@ -7,18 +7,10 @@
  * you can redistribute it and/or modify
  * it under the terms of the MIT License
  */
-package com.rex.yuol.utils;
+package com.rex.yangtzeu.utils;
 
-import java.util.Calendar;
-import java.util.Date;
-
-import com.rex.yuol.R;
-
-import android.content.Context;
-import android.content.res.Resources;
 import android.text.format.Time;
 import android.util.Log;
-import android.widget.Toast;
 
 /**
  * 作息时间表计算

@@ -7,14 +7,14 @@
  * you can redistribute it and/or modify
  * it under the terms of the MIT License
  */
-package com.rex.yuol.http;
+package com.rex.yangtzeu.utils;
 
-public class Departments {
+/**
+ * 获取院系班级
+ * 
+ * @author rex
+ * 
+ */
+public class Yxbj {
 
-	public Departments(String content) {
-	}
-
-	public boolean update() {
-		return false;
-	}
 }

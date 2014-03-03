@@ -7,10 +7,11 @@
  * you can redistribute it and/or modify
  * it under the terms of the MIT License
  */
-package com.rex.yuol;
+package com.rex.yangtzeu;
 
-import com.rex.yuol.utils.EncrypAES;
-import com.rex.yuol.utils.Sql;
+import com.rex.yangtzeu.utils.EncrypAES;
+import com.rex.yangtzeu.utils.Sql;
+import com.rex.yangtzeu.R;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -45,10 +46,10 @@ public class Setting extends Activity implements
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
 					// 更改为按下时的背景图片
-					v.setBackgroundResource(R.drawable.yuol_main_title);
+					v.setBackgroundResource(R.drawable.yangtzeu_main_title);
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
 					// 改为抬起时的图片
-					v.setBackgroundResource(R.drawable.yuol_title_btn_bg);
+					v.setBackgroundResource(R.drawable.yangtzeu_title_btn_bg);
 				}
 				return false;
 			}

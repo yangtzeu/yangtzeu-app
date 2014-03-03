@@ -7,7 +7,7 @@
  * you can redistribute it and/or modify
  * it under the terms of the MIT License
  */
-package com.rex.yuol.utils;
+package com.rex.yangtzeu.utils;
 
 import java.security.SecureRandom;
 
@@ -16,7 +16,7 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-import com.rex.yuol.config.Key;
+import com.rex.yangtzeu.config.Key;
 
 public class EncrypAES {
 	/**

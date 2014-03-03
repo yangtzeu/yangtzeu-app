@@ -2,8 +2,8 @@
 <resources>
 
     <!-- English Version -->
-    <string name="app_name">Yuol</string>
-    <string name="yuol">Yuol</string>
+    <string name="app_name">Yangtzeu</string>
+    <string name="yangtzeu">Yangtzeu</string>
     <string name="home">Home</string>
     <string name="jwc">Dean\'s office</string>
     <string name="library">Library</string>

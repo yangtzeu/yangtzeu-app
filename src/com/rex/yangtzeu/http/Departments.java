@@ -7,9 +7,14 @@
  * you can redistribute it and/or modify
  * it under the terms of the MIT License
  */
-package com.rex.yuol.config;
+package com.rex.yangtzeu.http;
 
-public class Key {
-	// 加密用密钥
-	static public String secret_key = "yuol";
+public class Departments {
+
+	public Departments(String content) {
+	}
+
+	public boolean update() {
+		return false;
+	}
 }

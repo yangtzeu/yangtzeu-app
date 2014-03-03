@@ -7,7 +7,7 @@
  * you can redistribute it and/or modify
  * it under the terms of the MIT License
  */
-package com.rex.yuol.http;
+package com.rex.yangtzeu.http;
 
 import android.content.Context;
 

@@ -7,11 +7,13 @@
  * you can redistribute it and/or modify
  * it under the terms of the MIT License
  */
-package com.rex.yuol;
+package com.rex.yangtzeu;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import com.rex.yangtzeu.R;
 
 import android.os.Bundle;
 import android.app.Activity;

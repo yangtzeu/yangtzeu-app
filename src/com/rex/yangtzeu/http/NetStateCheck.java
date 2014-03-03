@@ -7,13 +7,13 @@
  * you can redistribute it and/or modify
  * it under the terms of the MIT License
  */
-package com.rex.yuol.http;
+package com.rex.yangtzeu.http;
 
 import android.content.Context;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.rex.yuol.utils.Sql;
+import com.rex.yangtzeu.utils.Sql;
 
 public class NetStateCheck {
 	private AsyncHttpClient client;

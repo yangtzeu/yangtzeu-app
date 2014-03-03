@@ -7,10 +7,11 @@
  * you can redistribute it and/or modify
  * it under the terms of the MIT License
  */
-package com.rex.yuol;
+package com.rex.yangtzeu;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.rex.yangtzeu.R;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -52,7 +53,7 @@ public class Main extends Activity implements android.view.View.OnClickListener 
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
 					// 按下时的背景透明
-					v.setBackgroundColor(Color.parseColor("#00000000"));//setBackgroundResource(R.drawable.yuol_main_tile_notice_p);
+					v.setBackgroundColor(Color.parseColor("#00000000"));//setBackgroundResource(R.drawable.yangtzeu_main_tile_notice_p);
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
 					// 改为抬起时的白色
 					v.setBackgroundColor(Color.parseColor("#ffffff"));

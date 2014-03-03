@@ -7,11 +7,11 @@
  * you can redistribute it and/or modify
  * it under the terms of the MIT License
  */
-package com.rex.yuol.utils;
+package com.rex.yangtzeu.utils;
 
 import java.util.Map;
 
-import com.rex.yuol.config.Path;
+import com.rex.yangtzeu.config.Path;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -123,7 +123,7 @@ public class Sql {
 		values.put("value", value);
 		long rowid = db.insert("kv", null, values);
 
-		if (rowid > 0) {
+		if (rowid == -1) {
 			return true;
 		} else {
 			ContentValues values_update = new ContentValues();
@@ -141,27 +141,54 @@ public class Sql {
 
 	/**
 	 * 保存更新院系表到数据库
+	 * 
 	 * @param list
 	 * @return
 	 */
-	static public int dep_update(Map<String,String> list) {
-		if(list.equals(null)){
-			Log.i("rex","list为空，没有执行任何数据库操作");
-			return 0;
+	static public boolean dep_update(String[] list) {
+		SQLiteDatabase db = new Sql().db;
+		ContentValues values = new ContentValues();
+
+		if (!list.equals(null)) {
+			for (int i = 0; i < list.length; i++) {
+				String[] item = list[i].split(",");
+
+				int dep_id = Integer.parseInt(item[0].trim());
+
+				try {
+					values.put("dep_id", dep_id);
+					values.put("dep_name", item[1].trim());
+					values.put("dep_rate", 0);
+					values.put("dep_note", "");
+				} catch (Exception e) {
+					return false;
+				}
+				long rowid = db.insert("departments", null, values);
+				values.remove("dep_id");
+				if (rowid == -1) {
+					db.update("departments", values, "dep_id=?",
+							new String[] { dep_id + "" });
+				}
+				values.clear();
+			}
+			return true;
 		}
-		return 0;
+		Log.i("rex", "list为空，没有执行任何数据库操作");
+		return false;
 	}
-	
+
 	/**
 	 * 获取单条院系信息，按关键字key精确查询，匹配dep_id和dep_name
-	 * @param key 关键字
+	 * 
+	 * @param key
+	 *            关键字
 	 * @return
 	 */
-	static public int dep_get(String key){
-		if(key.equals(null)){
+	static public int dep_get(String key) {
+		if (key.equals(null)) {
 			return 0;
 		}
-		
+
 		return 0;
 	}
 }

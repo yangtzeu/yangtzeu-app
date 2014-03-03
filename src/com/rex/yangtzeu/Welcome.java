@@ -1,34 +1,22 @@
-package com.rex.yuol;
+package com.rex.yangtzeu;
 
-import java.io.UnsupportedEncodingException;
-import java.util.Map;
-
-import org.apache.commons.httpclient.util.EncodingUtil;
-import org.apache.http.util.EntityUtils;
-
-import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.PersistentCookieStore;
-import com.rex.yuol.config.Path;
-import com.rex.yuol.config.Urls;
-import com.rex.yuol.http.Net;
-import com.rex.yuol.http.NetStateCheck;
-import com.rex.yuol.regex.JwcRegex;
-import com.rex.yuol.utils.Sql;
-import com.rex.yuol.utils.Timetable;
+import com.rex.yangtzeu.config.Path;
+import com.rex.yangtzeu.config.Urls;
+import com.rex.yangtzeu.http.Net;
+import com.rex.yangtzeu.http.NetStateCheck;
+import com.rex.yangtzeu.regex.JwcRegex;
+import com.rex.yangtzeu.utils.Sql;
+import com.rex.yangtzeu.R;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.text.Html;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class Welcome extends Activity {
 
@@ -36,6 +24,12 @@ public class Welcome extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.welcome);
+
+		new Thread(new Runnable() {
+			public void run() {
+				deal_sth();
+			}
+		}).start();
 
 		final View view = View.inflate(this, R.layout.welcome, null);
 		setContentView(view);
@@ -60,11 +54,7 @@ public class Welcome extends Activity {
 		});
 	}
 
-	/**
-	 * 跳转到Main页面
-	 */
-	private void redirectTo() {
-
+	private void deal_sth() {
 		// 测试
 		NetStateCheck nsc = new NetStateCheck(this.getApplicationContext());
 		nsc.check_jwc();
@@ -74,19 +64,15 @@ public class Welcome extends Activity {
 				"http://jwc.yangtzeu.edu.cn:8080/student.aspx",
 				new AsyncHttpResponseHandler() {
 					@Override
-					public void onStart(){
+					public void onStart() {
 						setCharset("GB2312");
 					}
+
 					@Override
 					public void onSuccess(String response) {
-						response=JwcRegex.parse_department_list(response);
-						
-						String[] str_array;
-						str_array=response.split("\n");
-						
-						Toast.makeText(getApplicationContext(), str_array[132],
-								Toast.LENGTH_LONG).show();
-						Log.i("rex",getCharset());
+						String[] split_array = JwcRegex
+								.parse_department_list(response);
+						Sql.dep_update(split_array);
 					}
 				});
 
@@ -115,7 +101,12 @@ public class Welcome extends Activity {
 				});
 		Path.save_file(Path.testfile, "李俊的测试");
 		// 测试结束
+	}
 
+	/**
+	 * 跳转到Main页面
+	 */
+	private void redirectTo() {
 		Intent intent = new Intent(this, Main.class);
 		startActivity(intent);
 		finish();

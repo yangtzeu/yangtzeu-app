@@ -7,7 +7,7 @@
  * you can redistribute it and/or modify
  * it under the terms of the MIT License
  */
-package com.rex.yuol.regex;
+package com.rex.yangtzeu.regex;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -29,7 +29,7 @@ public class JwcRegex {
 	 * @throws Exception
 	 *             正则匹配失败
 	 */
-	public static Map<String, String> get_keys(String content) throws Exception {
+	public static Map<String, String> get_keys(String content) {
 		Map<String, String> map = new HashMap<String, String>();
 		String key1 = "", key2 = "";
 		String regEx1 = "__VIEWSTATE\" value=\"([/d/D][^\"]+)\"";
@@ -40,14 +40,13 @@ public class JwcRegex {
 		boolean rs1 = mat1.find();
 		// 如果没有匹配到
 		if (!rs1) {
-			throw new Exception("正则匹配失败!没找到__VIEWSTATE,__EVENTVALIDATION...");
+			Log.i("rex","正则匹配失败!没找到__VIEWSTATE,__EVENTVALIDATION...");
 		}
 		key1 = mat1.group(1);
 		map.put("viewstate", key1);
 
 		Pattern pat2 = Pattern.compile(regEx2);
 		Matcher mat2 = pat2.matcher(content);
-		boolean rs2 = mat2.find();
 		key2 = mat2.group(1);
 		map.put("eventvalidation", key2);
 
@@ -80,22 +79,21 @@ public class JwcRegex {
 	 * 
 	 * @return
 	 */
-	public static String parse_department_list(String content) {
-		// content = gbToUtf8(content);
+	public static String[] parse_department_list(String content) {
 		String pdl_pregex = "<option selected=\\\"selected\\\"([\\d\\D][^:]+)</select>";
 		Pattern pat1 = Pattern.compile(pdl_pregex);
 		Matcher mat1 = pat1.matcher(content);
-		// Log.i("rex",content);
-
+		String[] str_array=null;
+		
 		if (mat1.find()) {
-			// Log.i("welcome",mat1.group(1));
 			String raw = mat1.group(1).replace("<option", "")
 					.replace("</option>", "").replace("value=", "")
 					.replace(">", ",").replace("\"", "").replace("\t", "")
 					.replace("\r", "");
 
-			Log.i("welcome", raw);
-			return raw;
+//			Log.i("welcome", raw);
+			
+			return raw.split("\n");
 		}
 		return null;
 	}
