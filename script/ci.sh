@@ -26,6 +26,8 @@ case `uname -m` in
 	amd64|x86_64)	BITS=64 ;;
 esac
 
+echo $COVERITY_SCAN_TOKEN
+
 if [ "$ANDROID_SDKS"x = "android-8"x ]; then
 wget https://scan.coverity.com/download/linux-${BITS} -O cov-build-tools.tar.gz --post-data "project=duguying/yangtzeu-app&token=$COVERITY_SCAN_TOKEN"
 tar -zxf cov-build-tools.tar.gz
