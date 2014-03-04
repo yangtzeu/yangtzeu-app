@@ -118,8 +118,8 @@ public class Sql {
 	 */
 	static public Boolean kv_set(String key, String value) {
 		SQLiteDatabase db = new Sql().db;
-		if(db.isDbLockedByCurrentThread()){
-			Log.i("rex","真的被锁了");
+		if (db.isDbLockedByCurrentThread()) {
+			Log.i("rex", "真的被锁了");
 		}
 
 		ContentValues values = new ContentValues();
@@ -187,18 +187,31 @@ public class Sql {
 	}
 
 	/**
-	 * 获取单条院系信息，按关键字key精确查询，匹配dep_id和dep_name
+	 * 获取院系列表
 	 * 
-	 * @param key
-	 *            关键字
 	 * @return
 	 */
-	static public int dep_get(String key) {
-		if (key.equals(null)) {
-			return 0;
-		}
+	static public int dep_list_get() {
+		Cursor cursor;
+		String value = "";
 
-		
+		SQLiteDatabase db = new Sql().db;
+		String table = "kv";
+		String[] columns = new String[] { "dep_id", "dep_name" };
+		String selection = null;
+		String[] selectionArgs = null;
+		String groupBy = null;
+		String having = null;
+		String orderBy = "dep_rate desc";
+		String limit = null;
+
+		cursor = db.query(table, columns, selection, selectionArgs, groupBy,
+				having, orderBy, limit);
+		// TODO get the departments list
+		if (cursor.moveToFirst()) {
+			value = cursor.getString(cursor.getColumnIndex("value"));
+		}
+		db.close();
 		return 0;
 	}
 }

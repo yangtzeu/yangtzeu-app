@@ -56,26 +56,9 @@ public class Welcome extends Activity {
 	}
 
 	private void deal_sth() {
-		// 测试
 		NetStateCheck nsc = new NetStateCheck(this.getApplicationContext());
 		nsc.check_jwc();
 		nsc.check_library();
-
-		Net.create_async_http(getApplicationContext()).get(
-				"http://jwc.yangtzeu.edu.cn:8080/student.aspx",
-				new AsyncHttpResponseHandler() {
-					@Override
-					public void onStart() {
-						setCharset("GB2312");
-					}
-
-					@Override
-					public void onSuccess(String response) {
-						String[] split_array = JwcRegex
-								.parse_department_list(response);
-						Sql.dep_update(split_array);
-					}
-				});
 
 		// 判断用户登录状态
 		Net.create_async_http(getApplicationContext()).get(Urls.jwc_cjcx_page,
@@ -100,8 +83,6 @@ public class Welcome extends Activity {
 						// TODO Auto-generated catch block
 					}
 				});
-		Path.save_file(Path.testfile, "李俊的测试");
-		// 测试结束
 	}
 
 	/**

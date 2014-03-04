@@ -10,10 +10,15 @@
 package com.rex.yangtzeu;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.rex.yangtzeu.R;
+import com.rex.yangtzeu.http.Net;
+import com.rex.yangtzeu.regex.JwcRegex;
+import com.rex.yangtzeu.utils.Sql;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -132,6 +137,35 @@ public class JwcChafen extends Activity implements
 		btn2.setOnClickListener(this);
 		btn3.setOnClickListener(this);
 		btn4.setOnClickListener(this);
+
+		new Thread(new Runnable() {
+			public void run() {
+				// 获取院系列表
+				get_departments();
+			}
+		}).start();
+
+	}
+
+	/**
+	 * 获取院系列表
+	 */
+	private void get_departments() {
+		Net.create_async_http(getApplicationContext()).get(
+				"http://jwc.yangtzeu.edu.cn:8080/student.aspx",
+				new AsyncHttpResponseHandler() {
+					@Override
+					public void onStart() {
+						setCharset("GB2312");
+					}
+
+					@Override
+					public void onSuccess(String response) {
+						String[] split_array = JwcRegex
+								.parse_department_list(response);
+						Sql.dep_update(split_array);
+					}
+				});
 	}
 
 	private void iniPopupWindow() {
@@ -140,23 +174,33 @@ public class JwcChafen extends Activity implements
 				.getSystemService(LAYOUT_INFLATER_SERVICE);
 		View layout = inflater.inflate(R.layout.dialog_drop_list, null);
 		lvPopupList = (ListView) layout.findViewById(R.id.drop_list);
+
+		// 创建一个院系数组
+		String[] dep_items = this.getResources().getStringArray(R.array.news);
 		List<Map<String, Object>> list_items = new ArrayList<Map<String, Object>>();
-//		TODO 创建一个院系数组
+		for (int i = 0; i < dep_items.length; i++) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("item_title", dep_items[i]);
+			map.put("tick", "");
+			list_items.add(map);
+		}
+		// 设置列表条目样式
 		SimpleAdapter adapter = new SimpleAdapter(this, list_items,
 				R.layout.drop_list_item, new String[] { "item_title", "tick" },
 				new int[] { R.id.drop_list_item_title,
 						R.id.drop_list_item_check });
+		// 绑定列表
 		lvPopupList.setAdapter(adapter);
 		pwMyPopWindow = new PopupWindow(layout);
 		pwMyPopWindow.setFocusable(true);// 加上这个popupwindow中的ListView才可以接收点击事件
 
-		// 控制popupwindow的宽度和高度自适应
+		// 控制下拉列表的宽度和高度自适应
 		lvPopupList.measure(View.MeasureSpec.UNSPECIFIED,
 				View.MeasureSpec.UNSPECIFIED);
 		pwMyPopWindow.setWidth(drop_list1.getMeasuredWidth());
-		pwMyPopWindow.setHeight((lvPopupList.getMeasuredHeight()) * 3);
+		pwMyPopWindow.setHeight((lvPopupList.getMeasuredHeight()) * 6);
 
-		// 控制popupwindow点击屏幕其他地方消失
+		// 控制点击下拉列表之外的地方消失
 		pwMyPopWindow.setBackgroundDrawable(this.getResources().getDrawable(
 				R.drawable.jwc_chafen_btn_b));// 设置背景图片，不能在布局中设置，要通过代码来设置
 		pwMyPopWindow.setOutsideTouchable(true);// 触摸popupwindow外部，popupwindow消失。这个要求你的popupwindow要有背景图片才可以成功，如上
