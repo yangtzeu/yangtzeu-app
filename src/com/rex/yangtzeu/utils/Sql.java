@@ -9,15 +9,11 @@
  */
 package com.rex.yangtzeu.utils;
 
-import java.util.Map;
-
 import com.rex.yangtzeu.config.Path;
-
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.*;
 import android.util.Log;
-import android.widget.Toast;
 
 public class Sql {
 	private SQLiteDatabase db;
@@ -77,6 +73,7 @@ public class Sql {
 			// 创建表
 			db.execSQL(create_table_sql);
 		}
+		cursor.close();
 	}
 
 	/**
@@ -105,6 +102,7 @@ public class Sql {
 		if (cursor.moveToFirst()) {
 			value = cursor.getString(cursor.getColumnIndex("value"));
 		}
+		cursor.close();
 		db.close();
 		return value;
 	}
@@ -167,6 +165,7 @@ public class Sql {
 					values.put("dep_rate", 0);
 					values.put("dep_note", "");
 				} catch (Exception e) {
+					values.clear();
 					db.close();
 					return false;
 				}
@@ -178,10 +177,12 @@ public class Sql {
 				}
 				values.clear();
 			}
+			values.clear();
 			db.close();
 			return true;
 		}
 		Log.i("rex", "list为空，没有执行任何数据库操作");
+		values.clear();
 		db.close();
 		return false;
 	}
@@ -211,6 +212,7 @@ public class Sql {
 		if (cursor.moveToFirst()) {
 			value = cursor.getString(cursor.getColumnIndex("value"));
 		}
+		cursor.close();
 		db.close();
 		return 0;
 	}
