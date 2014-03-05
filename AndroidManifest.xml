@@ -6,7 +6,7 @@
  *
  * This program is free and opensource software; 
  * you can redistribute it and/or modify
- * it under the terms of the MIT License
+ * it under the terms of the MIT License
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.rex.yangtzeu"
@@ -34,8 +34,6 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
-        <uses-library android:name="android.test.runner" />
-
         <activity
             android:name="com.rex.yangtzeu.Welcome"
             android:label="@string/yangtzeu"
@@ -94,13 +92,18 @@
             </intent-filter>
         </receiver>
 
+        <service android:name="com.rex.yangtzeu.YuService" >
+            <intent-filter>
+                <action android:name="com.rex.yangtzeu.YuService" />
+            </intent-filter>
+        </service>
+
         <activity
             android:name="com.rex.yangtzeu.JwcChafen"
             android:label="@string/title_activity_jwc_chafen"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
-        
     </application>
 
 </manifest>

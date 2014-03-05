@@ -5,6 +5,9 @@
 
 # eclipse setting
 /proguard-project.txt
+/.settings/
+*.project
+project.properties
 
 # generating
 /.classpath
@@ -14,5 +17,8 @@ lint.xml
 # windows
 *.lnk
 
-
+# IntelliJ
+/.idea/
+/out/
+*.iml
 

@@ -26,12 +26,14 @@ public class Welcome extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.welcome);
 
+		this.startService(new Intent(YuService.ACTION));
+		
 		new Thread(new Runnable() {
 			public void run() {
 				deal_sth();
 			}
 		}).start();
-
+		
 		final View view = View.inflate(this, R.layout.welcome, null);
 		setContentView(view);
 		// 渐变展示启动屏
@@ -71,11 +73,11 @@ public class Welcome extends Activity {
 							} else {
 								Sql.kv_set("login_state", "true");
 							}
-							;
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
+
 					}
 
 					@Override

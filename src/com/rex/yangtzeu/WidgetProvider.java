@@ -17,10 +17,13 @@ import com.rex.yangtzeu.R;
 import android.appwidget.AppWidgetManager;  
 import android.appwidget.AppWidgetProvider;  
 import android.content.Context;  
+import android.content.Intent;
 import android.widget.RemoteViews;
 
 public class WidgetProvider extends AppWidgetProvider {
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {  
+//		startService(new Intent("com.demo.SERVICE_DEMO")); 
+		
         final int N = appWidgetIds.length;  
         for (int i=0; i<N; i++) {  
             int appWidgetId = appWidgetIds[i];  

@@ -9,6 +9,11 @@
  */
 package com.rex.yangtzeu.utils;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import com.rex.yangtzeu.config.Path;
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -20,7 +25,7 @@ public class Sql {
 
 	public Sql() {
 		// 打开或创建test.db数据库
-		db = SQLiteDatabase.openOrCreateDatabase(Path.check_dir() + "/yuol.db",
+		db = SQLiteDatabase.openOrCreateDatabase(Path.check_dir() + "/yangtzeu.db",
 				null);
 		this.db_init();
 	}
@@ -192,28 +197,27 @@ public class Sql {
 	 * 
 	 * @return
 	 */
-	static public int dep_list_get() {
+	static public Map<String,List<String>> dep_list_get() {
 		Cursor cursor;
-		String value = "";
-
 		SQLiteDatabase db = new Sql().db;
-		String table = "kv";
-		String[] columns = new String[] { "dep_id", "dep_name" };
-		String selection = null;
-		String[] selectionArgs = null;
-		String groupBy = null;
-		String having = null;
-		String orderBy = "dep_rate desc";
-		String limit = null;
+		List<String> result_id=new ArrayList<String>();
+		List<String> result_name=new ArrayList<String>();;
+		int i=0;
 
-		cursor = db.query(table, columns, selection, selectionArgs, groupBy,
-				having, orderBy, limit);
-		// TODO get the departments list
-		if (cursor.moveToFirst()) {
-			value = cursor.getString(cursor.getColumnIndex("value"));
-		}
+		cursor = db.rawQuery("select * from departments order by dep_rate desc", null);
+        while (cursor.moveToNext()) {
+        	result_id.add(cursor.getInt(cursor.getColumnIndex("dep_id"))+"");
+        	result_name.add(cursor.getString(cursor.getColumnIndex("dep_name")));
+            i++;
+        }
+        
 		cursor.close();
 		db.close();
-		return 0;
+		
+		Map<String,List<String>> map = new HashMap<String,List<String>>();
+		map.put("id",result_id);
+		map.put("name",result_name);
+		
+		return map;
 	}
 }

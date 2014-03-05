@@ -20,7 +20,7 @@ public class Path {
 	public static boolean sdcard_status = Environment.MEDIA_MOUNTED
 			.equals(Environment.getExternalStorageState());
 	// 主文件夹名
-		public static String data_home = "data.rex.yuol";
+		public static String data_home = "data.rex.yangtzeu";
 	// 测试文件
 	public static File testfile = new File(Path.check_dir()+"/rextest.txt");
 	

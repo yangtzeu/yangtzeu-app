@@ -176,11 +176,14 @@ public class JwcChafen extends Activity implements
 		lvPopupList = (ListView) layout.findViewById(R.id.drop_list);
 
 		// 创建一个院系数组
-		String[] dep_items = this.getResources().getStringArray(R.array.news);
+		Map<String, List<String>> dep_list=Sql.dep_list_get();
+		List<String> dep_name_items = dep_list.get("name");
+		List<String> dep_id_items = dep_list.get("id");
+		
 		List<Map<String, Object>> list_items = new ArrayList<Map<String, Object>>();
-		for (int i = 0; i < dep_items.length; i++) {
+		for (int i = 0; i < dep_name_items.size(); i++) {
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("item_title", dep_items[i]);
+			map.put("item_title", dep_name_items.get(i));
 			map.put("tick", "");
 			list_items.add(map);
 		}
