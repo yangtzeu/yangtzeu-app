@@ -41,9 +41,11 @@
             android:text="成绩查询"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
+
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/chafen_main"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:layout_weight="9"

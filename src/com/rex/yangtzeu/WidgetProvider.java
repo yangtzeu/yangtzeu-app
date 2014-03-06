@@ -22,14 +22,12 @@ import android.widget.RemoteViews;
 
 public class WidgetProvider extends AppWidgetProvider {
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {  
-//		startService(new Intent("com.demo.SERVICE_DEMO")); 
-		
         final int N = appWidgetIds.length;  
         for (int i=0; i<N; i++) {  
             int appWidgetId = appWidgetIds[i];  
             updateAppWidget(context, appWidgetManager, appWidgetId);  
         }  
-    }  
+    }
         
     public void onDeleted(Context context, int[] appWidgetIds) {  
     }  

@@ -22,11 +22,14 @@ import com.rex.yangtzeu.utils.Sql;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -45,6 +48,8 @@ public class JwcChafen extends Activity implements
 	private PopupWindow pwMyPopWindow;// popupwindow
 	private ListView lvPopupList;// popupwindow中的ListView
 	List<Map<String, String>> moreList;
+
+	private PopupWindow pw_progress_window;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -138,12 +143,16 @@ public class JwcChafen extends Activity implements
 		btn3.setOnClickListener(this);
 		btn4.setOnClickListener(this);
 
-		new Thread(new Runnable() {
-			public void run() {
-				// 获取院系列表
-				get_departments();
-			}
-		}).start();
+//		if(!Sql.kv_get("dep_list_exp").equals("false")){
+			get_departments();
+//		}
+		
+		// new Thread(new Runnable() {
+		// public void run() {
+		// // 获取院系列表
+		// get_departments();
+		// }
+		// }).start();
 
 	}
 
@@ -154,18 +163,42 @@ public class JwcChafen extends Activity implements
 		Net.create_async_http(getApplicationContext()).get(
 				"http://jwc.yangtzeu.edu.cn:8080/student.aspx",
 				new AsyncHttpResponseHandler() {
+					
 					@Override
 					public void onStart() {
 						setCharset("GB2312");
+						progess_bar_PopupWindow();
 					}
 
+					public void onProgress(int bytesWritten, int totalSize) {
+				        Log.i("rex", String.format("Progress %d from %d (%d%%)", bytesWritten, totalSize, (totalSize > 0) ? (bytesWritten / totalSize) * 100 : -1));
+				    }
+					
 					@Override
 					public void onSuccess(String response) {
-						String[] split_array = JwcRegex
-								.parse_department_list(response);
-						Sql.dep_update(split_array);
+//						String[] split_array = JwcRegex
+//								.parse_department_list(response);
+						// 获取院系列表
+//						Sql.dep_update(split_array);
+//						Sql.kv_set("dep_list_exp", "false");
+						
+						if (pw_progress_window.isShowing()) {
+							pw_progress_window.dismiss();
+						}
 					}
 				});
+	}
+
+	private void progess_bar_PopupWindow() {
+		LayoutInflater inflater = (LayoutInflater) this
+				.getSystemService(LAYOUT_INFLATER_SERVICE);
+		View layout = inflater.inflate(R.layout.wait_popwin, null);
+
+		pw_progress_window = new PopupWindow(layout);
+		pw_progress_window.setWidth(50);
+		pw_progress_window.setHeight(50);
+		pw_progress_window.showAtLocation(findViewById(R.id.chafen_main),
+				Gravity.CENTER, 0, 0);
 	}
 
 	private void iniPopupWindow() {
@@ -176,10 +209,10 @@ public class JwcChafen extends Activity implements
 		lvPopupList = (ListView) layout.findViewById(R.id.drop_list);
 
 		// 创建一个院系数组
-		Map<String, List<String>> dep_list=Sql.dep_list_get();
+		Map<String, List<String>> dep_list = Sql.dep_list_get();
 		List<String> dep_name_items = dep_list.get("name");
 		List<String> dep_id_items = dep_list.get("id");
-		
+
 		List<Map<String, Object>> list_items = new ArrayList<Map<String, Object>>();
 		for (int i = 0; i < dep_name_items.size(); i++) {
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -235,3 +268,8 @@ public class JwcChafen extends Activity implements
 	}
 
 }
+
+
+
+
+

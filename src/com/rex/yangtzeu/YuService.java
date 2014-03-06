@@ -6,6 +6,7 @@ import java.util.TimerTask;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.os.Message;
 import android.util.Log;
 
 public class YuService extends Service {
@@ -36,18 +37,20 @@ public class YuService extends Service {
 			@Override
 			public void run() {
 				// 定时更新
-//				String jsonString = getWeather();
+				// String jsonString = getWeather();
 				// 发送广播
-				Intent intent = new Intent();
-				intent.setAction(ACTION);
-//				intent.putExtra("jsonstr", jsonString);
-				sendBroadcast(intent);
+//				Intent intent = new Intent();
+//				intent.setAction(ACTION);
+				// intent.putExtra("jsonstr", jsonString);
+//				sendBroadcast(intent);
 				// Message msg = handler.obtainMessage();
 				// msg.what = UPDATAWEATHER;
 				// handler.sendMessage( msg );
-				Log.v("srv", "service update. rex");
+				// Log.v("srv", "service update. rex");
+
+
 			}
-		}, 0, 20 * 1000);//20s
+		}, 0, 20 * 1000);// 20s
 
 		return super.onStartCommand(intent, flags, startId);
 	}
