@@ -1,5 +1,5 @@
 /**
- * 掌上长大-长江大学校园安卓应用
+ * 长大校园通-长江大学校园安卓应用
  *
  * Copyright (C) 2014-2016 Rex Lee <duguying2008@gmail.com>
  *
@@ -7,11 +7,12 @@
  * you can redistribute it and/or modify
  * it under the terms of the MIT License
  */
-package com.rex.yangtzeu;
+package com.rex.yangtzeu.ui;
 
 import com.rex.yangtzeu.utils.EncrypAES;
 import com.rex.yangtzeu.utils.Sql;
 import com.rex.yangtzeu.R;
+import com.rex.yangtzeu.Yangtzeu;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -59,16 +60,16 @@ public class Setting extends Activity implements
 
 		// 数据填充到表单
 		stu_no = (EditText) findViewById(R.id.student_no);
-		stu_no.setText(Sql.kv_get("student_number"));
+		stu_no.setText(Yangtzeu.getDB().kv_get("student_number"));
 
 		stu_mm = (EditText) findViewById(R.id.jwc_mima);
-		stu_mm.setText(EncrypAES.decrypt(Sql.kv_get("student_password")));
+		stu_mm.setText(EncrypAES.decrypt(Yangtzeu.getDB().kv_get("student_password")));
 
 		jsz_no = (EditText) findViewById(R.id.jsz_no);
-		jsz_no.setText(Sql.kv_get("library_number"));
+		jsz_no.setText(Yangtzeu.getDB().kv_get("library_number"));
 
 		jsz_mm = (EditText) findViewById(R.id.jsz_mima);
-		jsz_mm.setText(EncrypAES.decrypt(Sql.kv_get("library_password")));
+		jsz_mm.setText(EncrypAES.decrypt(Yangtzeu.getDB().kv_get("library_password")));
 	}
 
 	@Override
@@ -81,12 +82,12 @@ public class Setting extends Activity implements
 			String text_jsz_mm = jsz_mm.getText().toString();
 
 			if (!text_stu_no.equals("") && !text_stu_mm.equals("")) {
-				Sql.kv_set("student_number", text_stu_no);
-				Sql.kv_set("student_password", EncrypAES.encrypt(text_stu_mm));
+				Yangtzeu.getDB().kv_set("student_number", text_stu_no);
+				Yangtzeu.getDB().kv_set("student_password", EncrypAES.encrypt(text_stu_mm));
 			}
 			if (!text_jsz_no.equals("") && !text_jsz_mm.equals("")) {
-				Sql.kv_set("library_number", text_jsz_no);
-				Sql.kv_set("library_password", EncrypAES.encrypt(text_jsz_mm));
+				Yangtzeu.getDB().kv_set("library_number", text_jsz_no);
+				Yangtzeu.getDB().kv_set("library_password", EncrypAES.encrypt(text_jsz_mm));
 			}
 			Toast.makeText(getApplicationContext(), "已保存", Toast.LENGTH_SHORT)
 					.show();

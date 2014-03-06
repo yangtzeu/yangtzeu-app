@@ -1,4 +1,13 @@
-package com.rex.yangtzeu;
+/**
+ * 长大校园通-长江大学校园安卓应用
+ *
+ * Copyright (C) 2014-2016 Rex Lee <duguying2008@gmail.com>
+ *
+ * This program is free and opensource software; 
+ * you can redistribute it and/or modify
+ * it under the terms of the MIT License
+ */
+package com.rex.yangtzeu.ui;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.rex.yangtzeu.config.Path;
@@ -8,6 +17,8 @@ import com.rex.yangtzeu.http.NetStateCheck;
 import com.rex.yangtzeu.regex.JwcRegex;
 import com.rex.yangtzeu.utils.Sql;
 import com.rex.yangtzeu.R;
+import com.rex.yangtzeu.Yangtzeu;
+import com.rex.yangtzeu.YuService;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -69,9 +80,9 @@ public class Welcome extends Activity {
 					public void onSuccess(String response) {
 						try {
 							if (JwcRegex.is_not_login(response)) {
-								Sql.kv_set("login_state", "false");
+								Yangtzeu.getDB().kv_set("login_state", "false");
 							} else {
-								Sql.kv_set("login_state", "true");
+								Yangtzeu.getDB().kv_set("login_state", "true");
 							}
 						} catch (Exception e) {
 							// TODO Auto-generated catch block

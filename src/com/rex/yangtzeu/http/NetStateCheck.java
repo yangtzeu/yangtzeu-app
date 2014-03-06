@@ -1,5 +1,5 @@
 /**
- * 掌上长大-长江大学校园安卓应用
+ * 长大校园通-长江大学校园安卓应用
  *
  * Copyright (C) 2014-2016 Rex Lee <duguying2008@gmail.com>
  *
@@ -13,6 +13,7 @@ import android.content.Context;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.rex.yangtzeu.Yangtzeu;
 import com.rex.yangtzeu.utils.Sql;
 
 public class NetStateCheck {
@@ -32,12 +33,12 @@ public class NetStateCheck {
 				new AsyncHttpResponseHandler() {
 					@Override
 					public void onSuccess(String response) {
-						Sql.kv_set("jwc_state", "true");
+						Yangtzeu.getDB().kv_set("jwc_state", "true");
 					}
 
 					@Override
 					public void onFailure(Throwable error, String content) {
-						Sql.kv_set("jwc_state", "false");
+						Yangtzeu.getDB().kv_set("jwc_state", "false");
 					}
 				});
 	}
@@ -48,14 +49,14 @@ public class NetStateCheck {
 				new AsyncHttpResponseHandler() {
 					@Override
 					public void onSuccess(String response) {
-						Sql.kv_set("inner_net", "true");
-						Sql.kv_set("library_state", "true");
+						Yangtzeu.getDB().kv_set("inner_net", "true");
+						Yangtzeu.getDB().kv_set("library_state", "true");
 					}
 
 					@Override
 					public void onFailure(Throwable error, String content) {
-						Sql.kv_set("inner_net", "false");
-						Sql.kv_set("library_state", "false");
+						Yangtzeu.getDB().kv_set("inner_net", "false");
+						Yangtzeu.getDB().kv_set("library_state", "false");
 					}
 				});
 	}

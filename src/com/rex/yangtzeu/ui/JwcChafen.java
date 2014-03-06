@@ -1,5 +1,5 @@
 /**
- * 掌上长大-长江大学校园安卓应用
+ * 长大校园通-长江大学校园安卓应用
  *
  * Copyright (C) 2014-2016 Rex Lee <duguying2008@gmail.com>
  *
@@ -7,7 +7,7 @@
  * you can redistribute it and/or modify
  * it under the terms of the MIT License
  */
-package com.rex.yangtzeu;
+package com.rex.yangtzeu.ui;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,6 +16,7 @@ import java.util.Map;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.rex.yangtzeu.R;
+import com.rex.yangtzeu.Yangtzeu;
 import com.rex.yangtzeu.http.Net;
 import com.rex.yangtzeu.regex.JwcRegex;
 import com.rex.yangtzeu.utils.Sql;
@@ -209,7 +210,7 @@ public class JwcChafen extends Activity implements
 		lvPopupList = (ListView) layout.findViewById(R.id.drop_list);
 
 		// 创建一个院系数组
-		Map<String, List<String>> dep_list = Sql.dep_list_get();
+		Map<String, List<String>> dep_list = Yangtzeu.getDB().dep_list_get();
 		List<String> dep_name_items = dep_list.get("name");
 		List<String> dep_id_items = dep_list.get("id");
 

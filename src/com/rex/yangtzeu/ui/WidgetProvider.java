@@ -1,5 +1,5 @@
 /**
- * 掌上长大-长江大学校园安卓应用
+ * 长大校园通-长江大学校园安卓应用
  *
  * Copyright (C) 2014-2016 Rex Lee <duguying2008@gmail.com>
  *
@@ -7,7 +7,7 @@
  * you can redistribute it and/or modify
  * it under the terms of the MIT License
  */
-package com.rex.yangtzeu;
+package com.rex.yangtzeu.ui;
 
 import java.util.Date;  
 
