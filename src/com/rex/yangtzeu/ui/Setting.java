@@ -9,20 +9,14 @@
  */
 package com.rex.yangtzeu.ui;
 
+import com.rex.yangtzeu.sqlite.ComDB;
 import com.rex.yangtzeu.utils.EncrypAES;
-import com.rex.yangtzeu.utils.Sql;
 import com.rex.yangtzeu.R;
-import com.rex.yangtzeu.Yangtzeu;
-
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Intent;
-import android.util.Log;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.EditText;
@@ -60,16 +54,16 @@ public class Setting extends Activity implements
 
 		// 数据填充到表单
 		stu_no = (EditText) findViewById(R.id.student_no);
-		stu_no.setText(Yangtzeu.getDB().kv_get("student_number"));
+		stu_no.setText(ComDB.kv_get("student_number"));
 
 		stu_mm = (EditText) findViewById(R.id.jwc_mima);
-		stu_mm.setText(EncrypAES.decrypt(Yangtzeu.getDB().kv_get("student_password")));
+		stu_mm.setText(EncrypAES.decrypt(ComDB.kv_get("student_password")));
 
 		jsz_no = (EditText) findViewById(R.id.jsz_no);
-		jsz_no.setText(Yangtzeu.getDB().kv_get("library_number"));
+		jsz_no.setText(ComDB.kv_get("library_number"));
 
 		jsz_mm = (EditText) findViewById(R.id.jsz_mima);
-		jsz_mm.setText(EncrypAES.decrypt(Yangtzeu.getDB().kv_get("library_password")));
+		jsz_mm.setText(EncrypAES.decrypt(ComDB.kv_get("library_password")));
 	}
 
 	@Override
@@ -82,12 +76,12 @@ public class Setting extends Activity implements
 			String text_jsz_mm = jsz_mm.getText().toString();
 
 			if (!text_stu_no.equals("") && !text_stu_mm.equals("")) {
-				Yangtzeu.getDB().kv_set("student_number", text_stu_no);
-				Yangtzeu.getDB().kv_set("student_password", EncrypAES.encrypt(text_stu_mm));
+				ComDB.kv_set("student_number", text_stu_no);
+				ComDB.kv_set("student_password", EncrypAES.encrypt(text_stu_mm));
 			}
 			if (!text_jsz_no.equals("") && !text_jsz_mm.equals("")) {
-				Yangtzeu.getDB().kv_set("library_number", text_jsz_no);
-				Yangtzeu.getDB().kv_set("library_password", EncrypAES.encrypt(text_jsz_mm));
+				ComDB.kv_set("library_number", text_jsz_no);
+				ComDB.kv_set("library_password", EncrypAES.encrypt(text_jsz_mm));
 			}
 			Toast.makeText(getApplicationContext(), "已保存", Toast.LENGTH_SHORT)
 					.show();

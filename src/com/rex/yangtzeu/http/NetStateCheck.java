@@ -14,13 +14,13 @@ import android.content.Context;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.rex.yangtzeu.Yangtzeu;
-import com.rex.yangtzeu.utils.Sql;
+import com.rex.yangtzeu.sqlite.ComDB;
 
 public class NetStateCheck {
 	private AsyncHttpClient client;
 
 	public NetStateCheck(Context context) {
-		client=Net.create_async_http(context);
+		client=Yangtzeu.getHttpClient();
 	}
 
 	public void check_inner_net() {
@@ -33,12 +33,12 @@ public class NetStateCheck {
 				new AsyncHttpResponseHandler() {
 					@Override
 					public void onSuccess(String response) {
-						Yangtzeu.getDB().kv_set("jwc_state", "true");
+						ComDB.kv_set("jwc_state", "true");
 					}
 
 					@Override
 					public void onFailure(Throwable error, String content) {
-						Yangtzeu.getDB().kv_set("jwc_state", "false");
+						ComDB.kv_set("jwc_state", "false");
 					}
 				});
 	}
@@ -49,14 +49,14 @@ public class NetStateCheck {
 				new AsyncHttpResponseHandler() {
 					@Override
 					public void onSuccess(String response) {
-						Yangtzeu.getDB().kv_set("inner_net", "true");
-						Yangtzeu.getDB().kv_set("library_state", "true");
+						ComDB.kv_set("inner_net", "true");
+						ComDB.kv_set("library_state", "true");
 					}
 
 					@Override
 					public void onFailure(Throwable error, String content) {
-						Yangtzeu.getDB().kv_set("inner_net", "false");
-						Yangtzeu.getDB().kv_set("library_state", "false");
+						ComDB.kv_set("inner_net", "false");
+						ComDB.kv_set("library_state", "false");
 					}
 				});
 	}

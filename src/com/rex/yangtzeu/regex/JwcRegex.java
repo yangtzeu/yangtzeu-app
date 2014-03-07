@@ -10,14 +10,11 @@
 package com.rex.yangtzeu.regex;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import android.util.Log;
-import android.widget.Toast;
 
 public class JwcRegex {
 	/**
@@ -83,16 +80,12 @@ public class JwcRegex {
 		String pdl_pregex = "<option selected=\\\"selected\\\"([\\d\\D][^:]+)</select>";
 		Pattern pat1 = Pattern.compile(pdl_pregex);
 		Matcher mat1 = pat1.matcher(content);
-		String[] str_array=null;
-		
 		if (mat1.find()) {
 			String raw = mat1.group(1).replace("<option", "")
 					.replace("</option>", "").replace("value=", "")
 					.replace(">", ",").replace("\"", "").replace("\t", "")
 					.replace("\r", "");
 
-//			Log.i("welcome", raw);
-			
 			return raw.split("\n");
 		}
 		return null;

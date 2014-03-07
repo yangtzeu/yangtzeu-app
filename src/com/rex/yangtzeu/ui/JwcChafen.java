@@ -17,9 +17,9 @@ import java.util.Map;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.rex.yangtzeu.R;
 import com.rex.yangtzeu.Yangtzeu;
-import com.rex.yangtzeu.http.Net;
 import com.rex.yangtzeu.regex.JwcRegex;
-import com.rex.yangtzeu.utils.Sql;
+import com.rex.yangtzeu.sqlite.ComDB;
+import com.rex.yangtzeu.sqlite.JwcDB;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -161,7 +161,7 @@ public class JwcChafen extends Activity implements
 	 * 获取院系列表
 	 */
 	private void get_departments() {
-		Net.create_async_http(getApplicationContext()).get(
+		Yangtzeu.getHttpClient().get(
 				"http://jwc.yangtzeu.edu.cn:8080/student.aspx",
 				new AsyncHttpResponseHandler() {
 					
@@ -171,21 +171,19 @@ public class JwcChafen extends Activity implements
 						progess_bar_PopupWindow();
 					}
 
-					public void onProgress(int bytesWritten, int totalSize) {
-				        Log.i("rex", String.format("Progress %d from %d (%d%%)", bytesWritten, totalSize, (totalSize > 0) ? (bytesWritten / totalSize) * 100 : -1));
-				    }
-					
 					@Override
 					public void onSuccess(String response) {
-//						String[] split_array = JwcRegex
-//								.parse_department_list(response);
-						// 获取院系列表
-//						Sql.dep_update(split_array);
-//						Sql.kv_set("dep_list_exp", "false");
+						String[] split_array = JwcRegex
+								.parse_department_list(response);
 						
 						if (pw_progress_window.isShowing()) {
 							pw_progress_window.dismiss();
 						}
+						
+						// 保存院系列表
+						//TODO 此处依然被阻塞
+						JwcDB.dep_update(split_array);
+						ComDB.kv_set("dep_list_exp", "false");
 					}
 				});
 	}
@@ -210,7 +208,7 @@ public class JwcChafen extends Activity implements
 		lvPopupList = (ListView) layout.findViewById(R.id.drop_list);
 
 		// 创建一个院系数组
-		Map<String, List<String>> dep_list = Yangtzeu.getDB().dep_list_get();
+		Map<String, List<String>> dep_list = JwcDB.dep_list_get();
 		List<String> dep_name_items = dep_list.get("name");
 		List<String> dep_id_items = dep_list.get("id");
 

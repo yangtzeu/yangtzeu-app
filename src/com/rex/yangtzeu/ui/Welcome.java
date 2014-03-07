@@ -10,16 +10,13 @@
 package com.rex.yangtzeu.ui;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.rex.yangtzeu.config.Path;
 import com.rex.yangtzeu.config.Urls;
-import com.rex.yangtzeu.http.Net;
 import com.rex.yangtzeu.http.NetStateCheck;
 import com.rex.yangtzeu.regex.JwcRegex;
-import com.rex.yangtzeu.utils.Sql;
+import com.rex.yangtzeu.sqlite.ComDB;
 import com.rex.yangtzeu.R;
 import com.rex.yangtzeu.Yangtzeu;
 import com.rex.yangtzeu.YuService;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -37,14 +34,23 @@ public class Welcome extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.welcome);
 
-		this.startService(new Intent(YuService.ACTION));
-		
+		// ComDB.kv_set("login_state", "false");
+		// try {
+		// String s=ComDB.kv_get("login_state");
+		// Toast.makeText(getApplicationContext(), s,
+		// Toast.LENGTH_LONG).show();
+		// } catch (Exception e) {
+		// Toast.makeText(getApplicationContext(), e.getMessage(),
+		// Toast.LENGTH_LONG).show();
+		// }
+//		int x=1/0;
+
 		new Thread(new Runnable() {
 			public void run() {
 				deal_sth();
 			}
 		}).start();
-		
+
 		final View view = View.inflate(this, R.layout.welcome, null);
 		setContentView(view);
 		// 渐变展示启动屏
@@ -74,15 +80,15 @@ public class Welcome extends Activity {
 		nsc.check_library();
 
 		// 判断用户登录状态
-		Net.create_async_http(getApplicationContext()).get(Urls.jwc_cjcx_page,
+		Yangtzeu.getHttpClient().get(Urls.jwc_cjcx_page,
 				new AsyncHttpResponseHandler() {
 					@Override
 					public void onSuccess(String response) {
 						try {
 							if (JwcRegex.is_not_login(response)) {
-								Yangtzeu.getDB().kv_set("login_state", "false");
+								 ComDB.kv_set("login_state", "false");
 							} else {
-								Yangtzeu.getDB().kv_set("login_state", "true");
+								 ComDB.kv_set("login_state", "true");
 							}
 						} catch (Exception e) {
 							// TODO Auto-generated catch block

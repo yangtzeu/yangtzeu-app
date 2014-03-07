@@ -10,7 +10,6 @@
 package com.rex.yangtzeu.utils;
 
 import android.text.format.Time;
-import android.util.Log;
 
 /**
  * 作息时间表计算
@@ -59,8 +58,7 @@ public class Timetable {
 	 * @return
 	 */
 	public static int year() {
-		Timetable tt = new Timetable();
-		return tt.client_now.YEAR;
+		return Time.YEAR;
 	}
 
 	/**
@@ -69,8 +67,7 @@ public class Timetable {
 	 * @return
 	 */
 	public static int month() {
-		Timetable tt = new Timetable();
-		return tt.client_now.MONTH;
+		return Time.MONTH;
 	}
 
 	/**
@@ -141,8 +138,4 @@ public class Timetable {
 		return tip;
 	}
 
-	public static void test() {
-		// Timetable tt = new Timetable();
-		Log.i("welcome", "hour:" + Timetable.hour());
-	}
 }
