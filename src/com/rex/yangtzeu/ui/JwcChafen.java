@@ -20,8 +20,11 @@ import com.rex.yangtzeu.Yangtzeu;
 import com.rex.yangtzeu.regex.JwcRegex;
 import com.rex.yangtzeu.sqlite.ComDB;
 import com.rex.yangtzeu.sqlite.JwcDB;
+import com.rex.yangtzeu.utils.Timetable;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.app.Activity;
 import android.util.Log;
 import android.view.Gravity;
@@ -49,8 +52,10 @@ public class JwcChafen extends Activity implements
 	private PopupWindow pwMyPopWindow;// popupwindow
 	private ListView lvPopupList;// popupwindow中的ListView
 	List<Map<String, String>> moreList;
-
 	private PopupWindow pw_progress_window;
+	private boolean hasLoad = false;
+
+	private static String[] TempString;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -144,48 +149,22 @@ public class JwcChafen extends Activity implements
 		btn3.setOnClickListener(this);
 		btn4.setOnClickListener(this);
 
-//		if(!Sql.kv_get("dep_list_exp").equals("false")){
-			get_departments();
-//		}
-		
-		// new Thread(new Runnable() {
-		// public void run() {
-		// // 获取院系列表
-		// get_departments();
-		// }
-		// }).start();
+		progess_bar_PopupWindow();
 
 	}
 
-	/**
-	 * 获取院系列表
-	 */
-	private void get_departments() {
-		Yangtzeu.getHttpClient().get(
-				"http://jwc.yangtzeu.edu.cn:8080/student.aspx",
-				new AsyncHttpResponseHandler() {
-					
-					@Override
-					public void onStart() {
-						setCharset("GB2312");
-						progess_bar_PopupWindow();
-					}
-
-					@Override
-					public void onSuccess(String response) {
-						String[] split_array = JwcRegex
-								.parse_department_list(response);
-						
-						if (pw_progress_window.isShowing()) {
-							pw_progress_window.dismiss();
-						}
-						
-						// 保存院系列表
-						//TODO 此处依然被阻塞
-						JwcDB.dep_update(split_array);
-						ComDB.kv_set("dep_list_exp", "false");
-					}
-				});
+	@Override
+	public void onWindowFocusChanged(boolean hasFocus) {
+		String timestamp = ComDB.kv_get("dep_list_update_timestamp");
+		long ts = 0;
+		try {
+			ts = Long.parseLong(timestamp);
+			if (ts + 2592000 < Timetable.timestamp()) {
+				get_departments();
+			}
+		} catch (Exception e) {
+			get_departments();
+		}
 	}
 
 	private void progess_bar_PopupWindow() {
@@ -196,11 +175,48 @@ public class JwcChafen extends Activity implements
 		pw_progress_window = new PopupWindow(layout);
 		pw_progress_window.setWidth(50);
 		pw_progress_window.setHeight(50);
-		pw_progress_window.showAtLocation(findViewById(R.id.chafen_main),
-				Gravity.CENTER, 0, 0);
 	}
 
-	private void iniPopupWindow() {
+	/**
+	 * 获取院系列表
+	 */
+	private void get_departments() {
+		Yangtzeu.getHttpClient().get(
+				"http://jwc.yangtzeu.edu.cn:8080/student.aspx",
+				new AsyncHttpResponseHandler() {
+
+					@Override
+					public void onStart() {
+						setCharset("GB2312");
+						pw_progress_window.showAtLocation(
+								findViewById(R.id.chafen_main), Gravity.CENTER,
+								0, 0);
+						pw_progress_window.update();
+					}
+
+					@Override
+					public void onSuccess(String response) {
+						JwcChafen.TempString = JwcRegex
+								.parse_department_list(response);
+
+						if (pw_progress_window.isShowing()) {
+							pw_progress_window.dismiss();
+						}
+
+						// 保存院系列表
+						new Thread(new Runnable() {
+							public void run() {
+								// 获取院系列表
+								JwcDB.dep_update(JwcChafen.TempString);
+								ComDB.kv_set("dep_list_update_timestamp",
+										Timetable.timestamp() + "");
+							}
+						}).start();
+					}
+				});
+	}
+
+	private void ini_drop_list_win() {
 
 		LayoutInflater inflater = (LayoutInflater) this
 				.getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -227,7 +243,7 @@ public class JwcChafen extends Activity implements
 		// 绑定列表
 		lvPopupList.setAdapter(adapter);
 		pwMyPopWindow = new PopupWindow(layout);
-		pwMyPopWindow.setFocusable(true);// 加上这个popupwindow中的ListView才可以接收点击事件
+		pwMyPopWindow.setFocusable(true);
 
 		// 控制下拉列表的宽度和高度自适应
 		lvPopupList.measure(View.MeasureSpec.UNSPECIFIED,
@@ -237,18 +253,17 @@ public class JwcChafen extends Activity implements
 
 		// 控制点击下拉列表之外的地方消失
 		pwMyPopWindow.setBackgroundDrawable(this.getResources().getDrawable(
-				R.drawable.jwc_chafen_btn_b));// 设置背景图片，不能在布局中设置，要通过代码来设置
-		pwMyPopWindow.setOutsideTouchable(true);// 触摸popupwindow外部，popupwindow消失。这个要求你的popupwindow要有背景图片才可以成功，如上
+				R.drawable.jwc_chafen_btn_b));
+		pwMyPopWindow.setOutsideTouchable(true);
 	}
 
 	@Override
-	public void onClick(View arg0) {
-		// TODO Auto-generated method stub
-		if (arg0 == drop_list1) {
-			iniPopupWindow();
+	public void onClick(View view) {
+		if (view == drop_list1) {
+			ini_drop_list_win();
 			pwMyPopWindow.showAsDropDown(drop_list1);
-			Toast.makeText(getApplicationContext(), "droplist",
-					Toast.LENGTH_SHORT).show();
+			// Toast.makeText(getApplicationContext(), "droplist",
+			// Toast.LENGTH_SHORT).show();
 		}
 	}
 
@@ -267,8 +282,3 @@ public class JwcChafen extends Activity implements
 	}
 
 }
-
-
-
-
-
