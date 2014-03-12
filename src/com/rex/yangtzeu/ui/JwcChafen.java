@@ -21,19 +21,14 @@ import com.rex.yangtzeu.regex.JwcRegex;
 import com.rex.yangtzeu.sqlite.ComDB;
 import com.rex.yangtzeu.sqlite.JwcDB;
 import com.rex.yangtzeu.utils.Timetable;
-
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.app.Activity;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -49,11 +44,10 @@ public class JwcChafen extends Activity implements
 	private LinearLayout btn3;
 	private LinearLayout btn4;
 
-	private PopupWindow pwMyPopWindow;// popupwindow
-	private ListView lvPopupList;// popupwindow中的ListView
+	private PopupWindow pop_win_droplist;// pop window
+	private ListView lvPopupList;// pop window中的ListView
 	List<Map<String, String>> moreList;
 	private PopupWindow pw_progress_window;
-	private boolean hasLoad = false;
 
 	private static String[] TempString;
 
@@ -149,7 +143,7 @@ public class JwcChafen extends Activity implements
 		btn3.setOnClickListener(this);
 		btn4.setOnClickListener(this);
 
-		progess_bar_PopupWindow();
+		progess_bar_popup_window();
 
 	}
 
@@ -159,15 +153,17 @@ public class JwcChafen extends Activity implements
 		long ts = 0;
 		try {
 			ts = Long.parseLong(timestamp);
-			if (ts + 2592000 < Timetable.timestamp()) {
+			if (ts + 2592000000L < Timetable.timestamp()) {
 				get_departments();
 			}
 		} catch (Exception e) {
+			Toast.makeText(getApplicationContext(), "Error!", Toast.LENGTH_LONG)
+					.show();
 			get_departments();
 		}
 	}
 
-	private void progess_bar_PopupWindow() {
+	private void progess_bar_popup_window() {
 		LayoutInflater inflater = (LayoutInflater) this
 				.getSystemService(LAYOUT_INFLATER_SERVICE);
 		View layout = inflater.inflate(R.layout.wait_popwin, null);
@@ -216,7 +212,13 @@ public class JwcChafen extends Activity implements
 				});
 	}
 
-	private void ini_drop_list_win() {
+	/**
+	 * 下拉列表
+	 * 
+	 * @return
+	 */
+	private PopupWindow ini_drop_list_win() {
+		PopupWindow pop_window;
 
 		LayoutInflater inflater = (LayoutInflater) this
 				.getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -242,26 +244,28 @@ public class JwcChafen extends Activity implements
 						R.id.drop_list_item_check });
 		// 绑定列表
 		lvPopupList.setAdapter(adapter);
-		pwMyPopWindow = new PopupWindow(layout);
-		pwMyPopWindow.setFocusable(true);
+		pop_window = new PopupWindow(layout);
+		pop_window.setFocusable(true);
 
 		// 控制下拉列表的宽度和高度自适应
 		lvPopupList.measure(View.MeasureSpec.UNSPECIFIED,
 				View.MeasureSpec.UNSPECIFIED);
-		pwMyPopWindow.setWidth(drop_list1.getMeasuredWidth());
-		pwMyPopWindow.setHeight((lvPopupList.getMeasuredHeight()) * 6);
+		pop_window.setWidth(drop_list1.getMeasuredWidth());
+		pop_window.setHeight((lvPopupList.getMeasuredHeight()) * 6);
 
 		// 控制点击下拉列表之外的地方消失
-		pwMyPopWindow.setBackgroundDrawable(this.getResources().getDrawable(
+		pop_window.setBackgroundDrawable(this.getResources().getDrawable(
 				R.drawable.jwc_chafen_btn_b));
-		pwMyPopWindow.setOutsideTouchable(true);
+		pop_window.setOutsideTouchable(true);
+
+		return pop_window;
 	}
 
 	@Override
 	public void onClick(View view) {
 		if (view == drop_list1) {
-			ini_drop_list_win();
-			pwMyPopWindow.showAsDropDown(drop_list1);
+			pop_win_droplist = ini_drop_list_win();
+			pop_win_droplist.showAsDropDown(drop_list1);
 			// Toast.makeText(getApplicationContext(), "droplist",
 			// Toast.LENGTH_SHORT).show();
 		}

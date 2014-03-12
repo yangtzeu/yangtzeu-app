@@ -16,13 +16,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 public class Jwc extends Activity implements android.view.View.OnClickListener {
 	private LinearLayout btn1;

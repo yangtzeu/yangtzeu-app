@@ -14,13 +14,14 @@ import android.content.Context;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.rex.yangtzeu.Yangtzeu;
+import com.rex.yangtzeu.regex.JwcRegex;
 import com.rex.yangtzeu.sqlite.ComDB;
 
 public class NetStateCheck {
 	private AsyncHttpClient client;
 
 	public NetStateCheck(Context context) {
-		client=Yangtzeu.getHttpClient();
+		client = Yangtzeu.getHttpClient();
 	}
 
 	public void check_inner_net() {
@@ -32,8 +33,15 @@ public class NetStateCheck {
 		client.get("http://jwc.yangtzeu.edu.cn:8080/login.aspx",
 				new AsyncHttpResponseHandler() {
 					@Override
+					public void onStart() {
+						setCharset("GB2312");
+					}
+
+					@Override
 					public void onSuccess(String response) {
 						ComDB.kv_set("jwc_state", "true");
+						// 获取ViewState
+						JwcRegex.get_viewstate_keys(response);
 					}
 
 					@Override

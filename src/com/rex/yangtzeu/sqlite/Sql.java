@@ -9,11 +9,9 @@
  */
 package com.rex.yangtzeu.sqlite;
 
-import com.rex.yangtzeu.Yangtzeu;
 import com.rex.yangtzeu.config.Path;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.widget.Toast;
 
 public class Sql {
 	private SQLiteDatabase db;

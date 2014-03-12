@@ -9,27 +9,21 @@
  */
 package com.rex.yangtzeu.ui;
 
-import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.rex.yangtzeu.R;
-
+import com.rex.yangtzeu.Yangtzeu;
+import com.rex.yangtzeu.config.Urls;
+import com.rex.yangtzeu.regex.JwcRegex;
+import com.rex.yangtzeu.sqlite.ComDB;
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.DialogInterface.OnClickListener;
 import android.graphics.Color;
-import android.graphics.ColorMatrixColorFilter;
-import android.util.Log;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 public class Main extends Activity implements android.view.View.OnClickListener {
 	private LinearLayout btn1;
@@ -53,7 +47,7 @@ public class Main extends Activity implements android.view.View.OnClickListener 
 			public boolean onTouch(View v, MotionEvent event) {
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
 					// 按下时的背景透明
-					v.setBackgroundColor(Color.parseColor("#00000000"));//setBackgroundResource(R.drawable.yangtzeu_main_tile_notice_p);
+					v.setBackgroundColor(Color.parseColor("#00000000"));
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
 					// 改为抬起时的白色
 					v.setBackgroundColor(Color.parseColor("#ffffff"));
@@ -115,6 +109,8 @@ public class Main extends Activity implements android.view.View.OnClickListener 
 		btn3.setOnClickListener(this);
 		btn4.setOnClickListener(this);
 		btn5.setOnClickListener(this);
+
+		deal_when_ready();// TODO 放在此处是否合适，待验证
 	}
 
 	/*
@@ -155,7 +151,7 @@ public class Main extends Activity implements android.view.View.OnClickListener 
 			Intent intent = new Intent(this, News.class);
 			startActivity(intent);
 			overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
-			
+
 		} else if (arg0 == btn5) {
 			// setting
 			Intent intent = new Intent(this, Setting.class);
@@ -163,20 +159,36 @@ public class Main extends Activity implements android.view.View.OnClickListener 
 			overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
 
 		}
-		// TODO Auto-generated method stub
-		// AsyncHttpClient client = new AsyncHttpClient();
-		// client.get("http://wap.baidu.com", new AsyncHttpResponseHandler() {
-		// @Override
-		// public void onSuccess(String response) {
-		// Toast.makeText(getApplicationContext(), response,
-		// Toast.LENGTH_SHORT).show();
-		// ;
-		// }
-		// });
 	}
 
-	/**
-	 * 按钮触发样式
-	 */
+	private void deal_when_ready() {
+		// 判断用户登录状态
+		Yangtzeu.getHttpClient().get(Urls.jwc_cjcx_page,
+				new AsyncHttpResponseHandler() {
+					@Override
+					public void onStart() {
+						setCharset("GB2312");
+					}
 
+					@Override
+					public void onSuccess(String response) {
+						try {
+							if (JwcRegex.is_not_login(response)) {
+								ComDB.kv_set("login_state", "false");
+							} else {
+								ComDB.kv_set("login_state", "true");
+							}
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+					}
+
+					@Override
+					public void onFailure(Throwable error, String content) {
+						// TODO Auto-generated catch block
+					}
+				});
+	}
 }

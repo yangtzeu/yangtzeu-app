@@ -13,11 +13,9 @@ import java.util.Date;
 
 import com.rex.yangtzeu.utils.Timetable;
 import com.rex.yangtzeu.R;
-
 import android.appwidget.AppWidgetManager;  
 import android.appwidget.AppWidgetProvider;  
 import android.content.Context;  
-import android.content.Intent;
 import android.widget.RemoteViews;
 
 public class WidgetProvider extends AppWidgetProvider {

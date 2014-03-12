@@ -10,11 +10,9 @@
 package com.rex.yangtzeu.ui;
 
 import com.rex.yangtzeu.R;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.KeyEvent;
-import android.view.Menu;
 
 public class Notice extends Activity {
 

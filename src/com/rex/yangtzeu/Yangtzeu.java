@@ -11,15 +11,19 @@ package com.rex.yangtzeu;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.PersistentCookieStore;
+import com.rex.yangtzeu.http.NetStateCheck;
 import com.rex.yangtzeu.sqlite.Sql;
-
 import android.app.Application;
 import android.content.Intent;
+import android.content.SharedPreferences;
 
 public class Yangtzeu extends Application {
 	private static Yangtzeu instance;
 	private static Sql db;
 	private static AsyncHttpClient client;
+
+	public static String jwc_login_viewstate = null;
+	public static String jwc_login_eventvalidation = null;
 
 	public static Yangtzeu getInstance() {
 		return instance;
@@ -28,8 +32,8 @@ public class Yangtzeu extends Application {
 	public static Sql getDB() {
 		return db;
 	}
-	
-	public static AsyncHttpClient getHttpClient(){
+
+	public static AsyncHttpClient getHttpClient() {
 		return client;
 	}
 
@@ -38,10 +42,10 @@ public class Yangtzeu extends Application {
 		// TODO Auto-generated method stub
 		super.onCreate();
 
-		YuException crashHandler = YuException.getInstance();  
-        // 注册crashHandler  
-        crashHandler.init(getApplicationContext()); 
-        
+		YuException crashHandler = YuException.getInstance();
+		// 注册crashHandler
+		crashHandler.init(getApplicationContext());
+
 		init();
 	}
 
@@ -49,9 +53,24 @@ public class Yangtzeu extends Application {
 		instance = this;
 		db = new Sql();
 		this.startService(new Intent(YuService.ACTION));
+
+		SharedPreferences settings = getSharedPreferences("settings", MODE_PRIVATE);
+		SharedPreferences.Editor editor = settings.edit();
+		editor.clear();
 		
 		client = new AsyncHttpClient();
 		PersistentCookieStore myCookieStore = new PersistentCookieStore(this);
 		client.setCookieStore(myCookieStore);
+
+		net_check();
+	}
+
+	/**
+	 * 网络检查等初始化
+	 */
+	private void net_check() {
+		NetStateCheck nsc = new NetStateCheck(this.getApplicationContext());
+		nsc.check_jwc();
+		nsc.check_library();
 	}
 }
