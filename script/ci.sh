@@ -28,20 +28,20 @@ esac
 
 # echo $COVERITY_SCAN_TOKEN
 
-if [ "$ANDROID_SDKS"x = "android-8"x ]; then
-wget https://scan.coverity.com/download/linux-${BITS} -O cov-build-tools.tar.gz --post-data "project=duguying/yangtzeu-app&token=$COVERITY_SCAN_TOKEN"
-tar -zxf cov-build-tools.tar.gz
-COV_DIR=`find ./ -type d -name 'cov-analysis*'`
-export PATH=$PATH:$COV_DIR/bin
-cov-build --dir cov-int ant
-tar czvf yangtzeu.tgz cov-int
-curl --form project=duguying/yangtzeu-app \
-  --form token=$COVERITY_SCAN_TOKEN \
-  --form email=duguying2008@gmail.com \
-  --form file=@yangtzeu.tgz \
-  --form version=Version \
-  --form description=Description \
-  http://scan5.coverity.com/cgi-bin/upload.py
-else
+# if [ "$ANDROID_SDKS"x = "android-8"x ]; then
+# wget https://scan.coverity.com/download/linux-${BITS} -O cov-build-tools.tar.gz --post-data "project=duguying/yangtzeu-app&token=$COVERITY_SCAN_TOKEN"
+# tar -zxf cov-build-tools.tar.gz
+# COV_DIR=`find ./ -type d -name 'cov-analysis*'`
+# export PATH=$PATH:$COV_DIR/bin
+# cov-build --dir cov-int ant
+# tar czvf yangtzeu.tgz cov-int
+# curl --form project=duguying/yangtzeu-app \
+#   --form token=$COVERITY_SCAN_TOKEN \
+#   --form email=duguying2008@gmail.com \
+#   --form file=@yangtzeu.tgz \
+#   --form version=Version \
+#   --form description=Description \
+#   http://scan5.coverity.com/cgi-bin/upload.py
+# else
 ant
-fi
+# fi

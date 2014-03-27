@@ -39,7 +39,6 @@ public class Yangtzeu extends Application {
 
 	@Override
 	public void onCreate() {
-		// TODO Auto-generated method stub
 		super.onCreate();
 
 		YuException crashHandler = YuException.getInstance();
