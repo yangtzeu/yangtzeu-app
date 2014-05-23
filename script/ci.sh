@@ -1,56 +1,28 @@
 #!/bin/sh
 
-# download the latest android sdk and unzip
-wget http://dl.google.com/android/android-sdk_r21-linux.tgz
-tar -zxf android-sdk_r21-linux.tgz > /dev/null
+# Install base Android SDK
+sudo apt-get update -qq
+if [ `uname -m` = x86_64 ]; then sudo apt-get install -qq --force-yes libgd2-xpm ia32-libs ia32-libs-multiarch > /dev/null; fi
+wget http://dl.google.com/android/android-sdk_r22.3-linux.tgz
+tar xzf android-sdk_r22.3-linux.tgz
+export ANDROID_HOME=$PWD/android-sdk-linux
+export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 
-export ANDROID_SDK_HOME=${PWD}/android-sdk-linux
-export PATH=${PATH}:${ANDROID_SDK_HOME}/tools:${ANDROID_SDK_HOME}/platform-tools
+ # Gradle
+wget http://services.gradle.org/distributions/gradle-1.9-bin.zip
+unzip gradle-1.9-bin.zip
+export GRADLE_HOME=$PWD/gradle-1.9
+export PATH=$GRADLE_HOME/bin:$PATH
 
-sudo apt-get update -qq > /dev/null
-sudo apt-get install -qq --force-yes libgd2-xpm ia32-libs ia32-libs-multiarch > /dev/null
-# update sdk, get android api from net
-android update sdk --filter platform-tools,android-16,extra-android-support,android-17,sysimg-17 --no-ui --force
+# Install required components
+# For a full list, run `android list sdk -a --extended`
+# Note that sysimg-19 downloads only ARM, because only the first license query is accepted.
+echo yes | android update sdk --filter platform-tools --no-ui --force > /dev/null
+echo yes | android update sdk --all --filter build-tools-19.0.3 --no-ui --force > /dev/null
+echo yes | android update sdk --filter android-19 --no-ui --force > /dev/null
+echo yes | android update sdk --filter sysimg-19 --no-ui --force > /dev/null
+echo yes | android update sdk --filter extra-android-support --no-ui --force > /dev/null
+echo yes | android update sdk --filter extra-android-m2repository --no-ui --force > /dev/null
 
-export ANDROID_API_DIR=${ANDROID_SDK_HOME}/platforms/${ANDROID_SDKS}
-export ZIPALIGN=`find ${ANDROID_SDK_HOME}/tools/ -name 'zipalign'`
-export AAPT=`find ${ANDROID_SDK_HOME}/ -name 'aapt'`
-export AIDL=`find ${ANDROID_SDK_HOME}/ -name 'aidl'`
-export DX=`find ${ANDROID_SDK_HOME}/ -name 'dx'`
+gradlew build
 
-ls -al ${ANDROID_SDK_HOME}
-ls -al ${ANDROID_SDK_HOME}/tools
-ls -al ${ANDROID_SDK_HOME}/platform-tools
-
-echo ANDROID_SDK_HOME\:${ANDROID_SDK_HOME}
-echo ZIPALIGN\:${ZIPALIGN}
-echo AAPT\:${AAPT}
-echo AIDL\:${AIDL}
-echo DX\:${DX}
-echo ANDROID_SDK_HOME\:${ANDROID_SDK_HOME}
-echo ANDROID_API_DIR\:${ANDROID_API_DIR}
-
-case `uname -m` in
-	i?86)				BITS=32 ;;
-	amd64|x86_64)	BITS=64 ;;
-esac
-
-# echo $COVERITY_SCAN_TOKEN
-
-# if [ "$ANDROID_SDKS"x = "android-8"x ]; then
-# wget https://scan.coverity.com/download/linux-${BITS} -O cov-build-tools.tar.gz --post-data "project=duguying/yangtzeu-app&token=$COVERITY_SCAN_TOKEN"
-# tar -zxf cov-build-tools.tar.gz
-# COV_DIR=`find ./ -type d -name 'cov-analysis*'`
-# export PATH=$PATH:$COV_DIR/bin
-# cov-build --dir cov-int ant
-# tar czvf yangtzeu.tgz cov-int
-# curl --form project=duguying/yangtzeu-app \
-#   --form token=$COVERITY_SCAN_TOKEN \
-#   --form email=duguying2008@gmail.com \
-#   --form file=@yangtzeu.tgz \
-#   --form version=Version \
-#   --form description=Description \
-#   http://scan5.coverity.com/cgi-bin/upload.py
-# else
-ant
-# fi
