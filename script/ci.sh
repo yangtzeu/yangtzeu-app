@@ -9,9 +9,9 @@ export ANDROID_HOME=$PWD/android-sdk-linux
 export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 
  # Gradle
-wget http://services.gradle.org/distributions/gradle-1.9-bin.zip
-unzip gradle-1.9-bin.zip
-export GRADLE_HOME=$PWD/gradle-1.9
+wget http://services.gradle.org/distributions/gradle-1.11-bin.zip
+unzip gradle-1.11-bin.zip
+export GRADLE_HOME=$PWD/gradle-1.11
 export PATH=$GRADLE_HOME/bin:$PATH
 
 # Install required components
