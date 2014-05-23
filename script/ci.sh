@@ -18,8 +18,10 @@ export AAPT=`find ${ANDROID_SDK_HOME}/platform-tools/ -name 'aapt'`
 export AIDL=`find ${ANDROID_SDK_HOME}/platform-tools/ -name 'aidl'`
 export DX=`find ${ANDROID_SDK_HOME}/platform-tools/ -name 'dx'`
 
-# sudo apt-get install tree > /dev/null
 ls -al ${ANDROID_SDK_HOME}
+ls -al ${ANDROID_SDK_HOME}/tools
+ls -al ${ANDROID_SDK_HOME}/platform-tools
+
 echo ANDROID_SDK_HOME\:${ANDROID_SDK_HOME}
 echo ZIPALIGN\:${ZIPALIGN}
 echo AAPT\:${AAPT}
