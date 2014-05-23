@@ -29,4 +29,4 @@ before_install:
     - echo yes | android update sdk --filter extra-android-m2repository --no-ui --force > /dev/null
 install:
     - gradle wrapper
-    - gradle assemble
+    - ./gradlew assemble
