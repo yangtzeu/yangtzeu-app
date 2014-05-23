@@ -18,7 +18,13 @@ export AAPT=`find ${ANDROID_SDK_HOME}/platform-tools/ -name 'aapt'`
 export AIDL=`find ${ANDROID_SDK_HOME}/platform-tools/ -name 'aidl'`
 export DX=`find ${ANDROID_SDK_HOME}/platform-tools/ -name 'dx'`
 
-echo ANDROID_SDK_HOME\:${ANDROID_SDK_HOME}\nZIPALIGN\:${ZIPALIGN}\nAAPT\:${AAPT}\nAIDL\:${AIDL}\nDX\:${DX}\nANDROID_SDK_HOME\:${ANDROID_SDK_HOME}\n
+tree ${ANDROID_SDK_HOME}
+echo ANDROID_SDK_HOME\:${ANDROID_SDK_HOME}
+echo ZIPALIGN\:${ZIPALIGN}
+echo AAPT\:${AAPT}
+echo AIDL\:${AIDL}
+echo DX\:${DX}
+echo ANDROID_SDK_HOME\:${ANDROID_SDK_HOME}
 echo ANDROID_API_DIR\:${ANDROID_API_DIR}
 
 case `uname -m` in
