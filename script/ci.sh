@@ -1,8 +1,0 @@
-#!/bin/sh
-
-
-
-
-
-gradle build
-
