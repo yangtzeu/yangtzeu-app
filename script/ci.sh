@@ -10,7 +10,7 @@ export PATH=${PATH}:${ANDROID_SDK_HOME}/tools:${ANDROID_SDK_HOME}/platform-tools
 sudo apt-get update -qq > /dev/null
 sudo apt-get install -qq --force-yes libgd2-xpm ia32-libs ia32-libs-multiarch > /dev/null
 # update sdk, get android api from net
-android update sdk --filter platform-tools,android-8,build-tools,extra-android-support,$ANDROID_SDKS --no-ui --force > /dev/null
+android update sdk --filter platform-tools,android-16,extra-android-support,android-17,sysimg-17 --no-ui --force
 
 export ANDROID_API_DIR=${ANDROID_SDK_HOME}/platforms/${ANDROID_SDKS}
 export ZIPALIGN=`find ${ANDROID_SDK_HOME}/tools/ -name 'zipalign'`
