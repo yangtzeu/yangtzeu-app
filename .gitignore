@@ -22,3 +22,8 @@ lint.xml
 /out/
 *.iml
 
+# gradle
+project.properties
+/.gradle/
+/build/
+
