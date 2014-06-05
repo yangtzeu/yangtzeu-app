@@ -9,9 +9,6 @@
  */
 package com.rex.yangtzeu;
 
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.PersistentCookieStore;
-import com.rex.yangtzeu.http.NetStateCheck;
 import com.rex.yangtzeu.sqlite.Sql;
 import android.app.Application;
 import android.content.Intent;
@@ -20,7 +17,6 @@ import android.content.SharedPreferences;
 public class Yangtzeu extends Application {
 	private static Yangtzeu instance;
 	private static Sql db;
-	private static AsyncHttpClient client;
 
 	public static String jwc_login_viewstate = null;
 	public static String jwc_login_eventvalidation = null;
@@ -31,10 +27,6 @@ public class Yangtzeu extends Application {
 
 	public static Sql getDB() {
 		return db;
-	}
-
-	public static AsyncHttpClient getHttpClient() {
-		return client;
 	}
 
 	@Override
@@ -57,10 +49,6 @@ public class Yangtzeu extends Application {
 		SharedPreferences.Editor editor = settings.edit();
 		editor.clear();
 		
-		client = new AsyncHttpClient();
-		PersistentCookieStore myCookieStore = new PersistentCookieStore(this);
-		client.setCookieStore(myCookieStore);
-
 		net_check();
 	}
 
@@ -68,8 +56,5 @@ public class Yangtzeu extends Application {
 	 * 网络检查等初始化
 	 */
 	private void net_check() {
-		NetStateCheck nsc = new NetStateCheck(this.getApplicationContext());
-		nsc.check_jwc();
-		nsc.check_library();
 	}
 }

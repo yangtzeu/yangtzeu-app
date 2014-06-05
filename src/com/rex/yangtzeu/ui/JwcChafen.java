@@ -14,16 +14,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.rex.yangtzeu.R;
-import com.rex.yangtzeu.Yangtzeu;
-import com.rex.yangtzeu.regex.JwcRegex;
 import com.rex.yangtzeu.sqlite.ComDB;
 import com.rex.yangtzeu.sqlite.JwcDB;
 import com.rex.yangtzeu.utils.Timetable;
 import android.os.Bundle;
 import android.app.Activity;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -177,39 +173,6 @@ public class JwcChafen extends Activity implements
 	 * 获取院系列表
 	 */
 	private void get_departments() {
-		Yangtzeu.getHttpClient().get(
-				"http://jwc.yangtzeu.edu.cn:8080/student.aspx",
-				new AsyncHttpResponseHandler() {
-
-					@Override
-					public void onStart() {
-						setCharset("GB2312");
-						pw_progress_window.showAtLocation(
-								findViewById(R.id.chafen_main), Gravity.CENTER,
-								0, 0);
-						pw_progress_window.update();
-					}
-
-					@Override
-					public void onSuccess(String response) {
-						JwcChafen.TempString = JwcRegex
-								.parse_department_list(response);
-
-						if (pw_progress_window.isShowing()) {
-							pw_progress_window.dismiss();
-						}
-
-						// 保存院系列表
-						new Thread(new Runnable() {
-							public void run() {
-								// 获取院系列表
-								JwcDB.dep_update(JwcChafen.TempString);
-								ComDB.kv_set("dep_list_update_timestamp",
-										Timetable.timestamp() + "");
-							}
-						}).start();
-					}
-				});
 	}
 
 	/**

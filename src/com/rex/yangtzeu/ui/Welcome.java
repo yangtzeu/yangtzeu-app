@@ -89,6 +89,7 @@ public class Welcome extends Activity {
 		@Override
 		protected Bitmap doInBackground(String... arg0) {
 			JwcHttp.jwc_login();
+
 			return null;
 		}  
 	 }

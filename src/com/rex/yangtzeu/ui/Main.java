@@ -9,20 +9,12 @@
  */
 package com.rex.yangtzeu.ui;
 
-import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.rex.yangtzeu.R;
-import com.rex.yangtzeu.Yangtzeu;
-import com.rex.yangtzeu.config.Urls;
-import com.rex.yangtzeu.regex.JwcRegex;
-import com.rex.yangtzeu.sqlite.ComDB;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -114,7 +106,6 @@ public class Main extends Activity implements android.view.View.OnClickListener 
 		btn4.setOnClickListener(this);
 		btn5.setOnClickListener(this);
 
-		deal_when_ready();// TODO 放在此处是否合适，待验证
 	}
 
 	/*
@@ -165,36 +156,5 @@ public class Main extends Activity implements android.view.View.OnClickListener 
 		}
 	}
 
-	private void deal_when_ready() {
-		// 判断用户登录状态
-		Yangtzeu.getHttpClient().get(Urls.jwc_cjcx_page,
-				new AsyncHttpResponseHandler() {
-					@Override
-					public void onStart() {
-						setCharset("GB2312");
-					}
-
-					@Override
-					public void onSuccess(String response) {
-						try {
-							if (JwcRegex.is_not_login(response)) {
-								ComDB.kv_set("login_state", "false");
-							} else {
-								ComDB.kv_set("login_state", "true");
-							}
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-
-					}
-
-					@Override
-					public void onFailure(Throwable error, String content) {
-						// TODO Auto-generated catch block
-					}
-				});
-	}
-	
 	 
 }
