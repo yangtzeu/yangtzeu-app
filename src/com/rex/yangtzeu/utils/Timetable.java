@@ -9,6 +9,9 @@
  */
 package com.rex.yangtzeu.utils;
 
+
+import java.util.Calendar;
+
 import android.text.format.Time;
 
 /**
@@ -19,6 +22,8 @@ import android.text.format.Time;
  */
 public class Timetable {
 	Time client_now = new Time();
+	static Calendar cal  = Calendar.getInstance();
+	
 	private static int[] time_table = {
 			// Morning
 			73000, 80000, 93500, 100500, 114000,
@@ -58,7 +63,7 @@ public class Timetable {
 	 * @return
 	 */
 	public static int year() {
-		return Time.YEAR;
+		return cal.get(Calendar.YEAR);
 	}
 
 	/**

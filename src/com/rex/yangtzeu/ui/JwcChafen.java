@@ -10,9 +10,12 @@
 package com.rex.yangtzeu.ui;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.httpclient.util.DateUtil;
 
 import com.rex.yangtzeu.R;
 import com.rex.yangtzeu.sqlite.ComDB;
@@ -20,6 +23,9 @@ import com.rex.yangtzeu.sqlite.JwcDB;
 import com.rex.yangtzeu.utils.Timetable;
 import android.os.Bundle;
 import android.app.Activity;
+import android.text.format.DateUtils;
+import android.text.format.Time;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -43,9 +49,6 @@ public class JwcChafen extends Activity implements
 	private PopupWindow pop_win_droplist;// pop window
 	private ListView lvPopupList;// pop window中的ListView
 	List<Map<String, String>> moreList;
-	private PopupWindow pw_progress_window;
-
-	private static String[] TempString;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -139,40 +142,11 @@ public class JwcChafen extends Activity implements
 		btn3.setOnClickListener(this);
 		btn4.setOnClickListener(this);
 
-		progess_bar_popup_window();
-
 	}
 
 	@Override
 	public void onWindowFocusChanged(boolean hasFocus) {
-		String timestamp = ComDB.kv_get("dep_list_update_timestamp");
-		long ts = 0;
-		try {
-			ts = Long.parseLong(timestamp);
-			if (ts + 2592000000L < Timetable.timestamp()) {
-				get_departments();
-			}
-		} catch (Exception e) {
-			Toast.makeText(getApplicationContext(), "Error!", Toast.LENGTH_LONG)
-					.show();
-			get_departments();
-		}
-	}
-
-	private void progess_bar_popup_window() {
-		LayoutInflater inflater = (LayoutInflater) this
-				.getSystemService(LAYOUT_INFLATER_SERVICE);
-		View layout = inflater.inflate(R.layout.wait_popwin, null);
-
-		pw_progress_window = new PopupWindow(layout);
-		pw_progress_window.setWidth(50);
-		pw_progress_window.setHeight(50);
-	}
-
-	/**
-	 * 获取院系列表
-	 */
-	private void get_departments() {
+		;// TODO
 	}
 
 	/**
@@ -188,15 +162,11 @@ public class JwcChafen extends Activity implements
 		View layout = inflater.inflate(R.layout.dialog_drop_list, null);
 		lvPopupList = (ListView) layout.findViewById(R.id.drop_list);
 
-		// 创建一个院系数组
-		Map<String, List<String>> dep_list = JwcDB.dep_list_get();
-		List<String> dep_name_items = dep_list.get("name");
-		List<String> dep_id_items = dep_list.get("id");
-
 		List<Map<String, Object>> list_items = new ArrayList<Map<String, Object>>();
-		for (int i = 0; i < dep_name_items.size(); i++) {
+		for (int i = 0; i < 7; i++) {
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("item_title", dep_name_items.get(i));
+			map.put("item_title", (Timetable.year() - 3 + i)+"");
+			
 			map.put("tick", "");
 			list_items.add(map);
 		}
@@ -225,12 +195,11 @@ public class JwcChafen extends Activity implements
 	}
 
 	@Override
-	public void onClick(View view) {
+	public void onClick(View view) { // TODO
 		if (view == drop_list1) {
 			pop_win_droplist = ini_drop_list_win();
 			pop_win_droplist.showAsDropDown(drop_list1);
-			// Toast.makeText(getApplicationContext(), "droplist",
-			// Toast.LENGTH_SHORT).show();
+
 		}
 	}
 
