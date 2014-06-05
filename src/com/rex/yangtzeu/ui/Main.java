@@ -15,10 +15,14 @@ import com.rex.yangtzeu.Yangtzeu;
 import com.rex.yangtzeu.config.Urls;
 import com.rex.yangtzeu.regex.JwcRegex;
 import com.rex.yangtzeu.sqlite.ComDB;
+
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -191,4 +195,6 @@ public class Main extends Activity implements android.view.View.OnClickListener 
 					}
 				});
 	}
+	
+	 
 }

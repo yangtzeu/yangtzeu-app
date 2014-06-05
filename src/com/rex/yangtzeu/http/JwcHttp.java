@@ -10,7 +10,7 @@ import com.rex.yangtzeu.sqlite.ComDB;
 import com.rex.yangtzeu.utils.EncrypAES;
 
 public class JwcHttp {
-	public static boolean jwc_login() {
+	public static boolean jwc_login() { // there should be rewrite
 		String student_number = ComDB.kv_get("student_number");
 		String student_password = EncrypAES.decrypt(ComDB
 				.kv_get("student_password"));

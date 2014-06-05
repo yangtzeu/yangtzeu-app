@@ -11,9 +11,13 @@ package com.rex.yangtzeu.ui;
 
 import com.rex.yangtzeu.http.JwcHttp;
 import com.rex.yangtzeu.R;
+
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -29,14 +33,15 @@ public class Welcome extends Activity {
 		
 		final View view = View.inflate(this, R.layout.welcome, null);
 		setContentView(view);
+		
 		// 渐变展示启动屏
 		AlphaAnimation aa = new AlphaAnimation(0.3f, 1.0f);
 		aa.setDuration(2000);
-		view.startAnimation(aa);
 		aa.setAnimationListener(new AnimationListener() {
 			@Override
 			public void onAnimationEnd(Animation arg0) {
-				redirectTo();
+				// Start Login
+				new LoginTask().execute();
 			}
 
 			@Override
@@ -45,11 +50,12 @@ public class Welcome extends Activity {
 
 			@Override
 			public void onAnimationStart(Animation animation) {
-				JwcHttp.jwc_login();
 			}
 
 		});
 		
+		view.startAnimation(aa);
+
 	}
 
 	
@@ -72,5 +78,19 @@ public class Welcome extends Activity {
 		}
 		return super.onKeyDown(keyCode, event);
 	}
+	
+	// Async Login
+	private class LoginTask extends AsyncTask<String, Void,Bitmap> {
+	     protected void onPostExecute(Bitmap result) {  
+	    	 Log.i("async","Login finish");
+	    	 redirectTo();
+	     }
+
+		@Override
+		protected Bitmap doInBackground(String... arg0) {
+			JwcHttp.jwc_login();
+			return null;
+		}  
+	 }
 
 }
