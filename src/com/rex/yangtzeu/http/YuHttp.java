@@ -40,7 +40,7 @@ public class YuHttp {
 	        int statusCode = client.executeMethod(method1);  
 	  
 	        if (statusCode != HttpStatus.SC_OK) {// 打印服务器返回的状态  
-//	            System.out.println("Method failed: " + method1.getStatusLine());  
+	            return "Method failed: " + method1.getStatusLine();
 	        }  
 	        // 返回响应消息  
 	        byte[] responseBody = method1.getResponseBodyAsString().getBytes(method1.getResponseCharSet());  
@@ -103,7 +103,6 @@ public class YuHttp {
 	        } finally {  
 	            method.releaseConnection();  
 	        }  
-//	        System.out.println("--------------------"+response.toString());  
 	        return response.toString();  
 	    }   
 }

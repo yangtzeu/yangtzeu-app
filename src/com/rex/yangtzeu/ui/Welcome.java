@@ -11,6 +11,7 @@ package com.rex.yangtzeu.ui;
 
 import com.rex.yangtzeu.http.JwcHttp;
 import com.rex.yangtzeu.R;
+import com.rex.yangtzeu.Yangtzeu;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
+import android.widget.Toast;
 
 public class Welcome extends Activity {
 
@@ -80,17 +82,22 @@ public class Welcome extends Activity {
 	
 	// Async Login
 	private class LoginTask extends AsyncTask<String, Void,Bitmap> {
-	     protected void onPostExecute(Bitmap result) {  
-//	    	 Log.i("async","Login finish");
-	    	 redirectTo();
-	     }
-
+		boolean login_result = false; 
+		
+		protected void onPostExecute(Bitmap result) {
+			if(this.login_result){
+				Toast.makeText(Yangtzeu.getInstance(), "登陸成功", Toast.LENGTH_LONG).show();
+			}else{
+				Toast.makeText(Yangtzeu.getInstance(), "登陸失敗", Toast.LENGTH_LONG).show();
+			}
+			redirectTo();
+		}
+		
 		@Override
 		protected Bitmap doInBackground(String... arg0) {
-			JwcHttp.jwc_login();
-
+			this.login_result = JwcHttp.jwc_login();
 			return null;
-		}  
-	 }
+		}
+	}
 
 }

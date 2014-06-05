@@ -8,8 +8,6 @@ import com.rex.yangtzeu.regex.JwcRegex;
 import com.rex.yangtzeu.sqlite.ComDB;
 import com.rex.yangtzeu.utils.EncrypAES;
 
-import android.util.Log;
-
 public class JwcHttp {
 	public static boolean jwc_login() {
 		try {
@@ -26,13 +24,12 @@ public class JwcHttp {
 			
 			String login_result = YuHttp.post("http://jwc.yangtzeu.edu.cn:8080/login.aspx", data, "gb2312", false);
 			
-			Log.d("async", login_result);
+			return JwcRegex.login_success(login_result);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
-		
-		return true;
 	}
 }
