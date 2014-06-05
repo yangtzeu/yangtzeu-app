@@ -17,7 +17,6 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -82,7 +81,7 @@ public class Welcome extends Activity {
 	// Async Login
 	private class LoginTask extends AsyncTask<String, Void,Bitmap> {
 	     protected void onPostExecute(Bitmap result) {  
-	    	 Log.i("async","Login finish");
+//	    	 Log.i("async","Login finish");
 	    	 redirectTo();
 	     }
 

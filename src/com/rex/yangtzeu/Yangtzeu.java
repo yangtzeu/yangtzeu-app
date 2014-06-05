@@ -9,6 +9,8 @@
  */
 package com.rex.yangtzeu;
 
+import org.apache.commons.httpclient.HttpClient;
+
 import com.rex.yangtzeu.sqlite.Sql;
 import android.app.Application;
 import android.content.Intent;
@@ -17,6 +19,7 @@ import android.content.SharedPreferences;
 public class Yangtzeu extends Application {
 	private static Yangtzeu instance;
 	private static Sql db;
+	private static HttpClient client = new HttpClient();
 
 	public static String jwc_login_viewstate = null;
 	public static String jwc_login_eventvalidation = null;
@@ -27,6 +30,10 @@ public class Yangtzeu extends Application {
 
 	public static Sql getDB() {
 		return db;
+	}
+	
+	public static HttpClient getHttpClient(){
+		return client;
 	}
 
 	@Override
