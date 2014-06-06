@@ -9,6 +9,9 @@
  */
 package com.rex.yangtzeu.utils;
 
+
+import java.util.Calendar;
+
 import android.text.format.Time;
 
 /**
@@ -19,6 +22,8 @@ import android.text.format.Time;
  */
 public class Timetable {
 	Time client_now = new Time();
+	static Calendar cal  = Calendar.getInstance();
+	
 	private static int[] time_table = {
 			// Morning
 			73000, 80000, 93500, 100500, 114000,
@@ -58,7 +63,7 @@ public class Timetable {
 	 * @return
 	 */
 	public static int year() {
-		return Time.YEAR;
+		return cal.get(Calendar.YEAR);
 	}
 
 	/**
@@ -67,7 +72,7 @@ public class Timetable {
 	 * @return
 	 */
 	public static int month() {
-		return Time.MONTH;
+		return cal.get(Calendar.MONTH);
 	}
 
 	/**
@@ -78,6 +83,19 @@ public class Timetable {
 	public static int day() {
 		Timetable tt = new Timetable();
 		return tt.client_now.monthDay;
+	}
+	
+	/**
+	 * 获取学期
+	 * @return true上学期
+	 */
+	public static boolean term(){
+		int month = cal.get(Calendar.MONTH);
+		if(month>=2 && month<=8){
+			return false; //下学期
+		}else{
+			return true; //上学期
+		}
 	}
 
 	/**

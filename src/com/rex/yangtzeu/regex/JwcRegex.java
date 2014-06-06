@@ -49,6 +49,22 @@ public class JwcRegex {
 		Yangtzeu.jwc_login_eventvalidation = key2;
 		return true;
 	}
+	
+	/**
+	 * 判断用户登录是否成功
+	 * @param content
+	 * @return true成功
+	 */
+	public static boolean login_success(String content){
+		if (content.equals("")) {
+			return true;
+		}
+		String regEx1 = "当前用户信息";
+		Pattern pat1 = Pattern.compile(regEx1);
+		Matcher mat1 = pat1.matcher(content);
+		Boolean result = mat1.find();
+		return result;
+	}
 
 	/**
 	 * 判断未登录

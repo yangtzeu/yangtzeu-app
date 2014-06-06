@@ -10,30 +10,35 @@
 package com.rex.yangtzeu.ui;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.loopj.android.http.AsyncHttpResponseHandler;
+import org.apache.commons.httpclient.util.DateUtil;
+
 import com.rex.yangtzeu.R;
 import com.rex.yangtzeu.Yangtzeu;
-import com.rex.yangtzeu.regex.JwcRegex;
 import com.rex.yangtzeu.sqlite.ComDB;
 import com.rex.yangtzeu.sqlite.JwcDB;
 import com.rex.yangtzeu.utils.Timetable;
 import android.os.Bundle;
 import android.app.Activity;
+import android.text.format.DateUtils;
+import android.text.format.Time;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
+import android.widget.TextView;
 
 public class JwcChafen extends Activity implements
 		android.view.View.OnClickListener {
@@ -43,13 +48,12 @@ public class JwcChafen extends Activity implements
 	private LinearLayout btn2;
 	private LinearLayout btn3;
 	private LinearLayout btn4;
+	private TextView set_cf_year;
+	private TextView set_cf_term;
 
-	private PopupWindow pop_win_droplist;// pop window
-	private ListView lvPopupList;// pop window中的ListView
+	private PopupWindow year_pop_win_droplist;// 年份 pop window
+	private ListView year_popup_list;// 年份pop window中的ListView
 	List<Map<String, String>> moreList;
-	private PopupWindow pw_progress_window;
-
-	private static String[] TempString;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +66,18 @@ public class JwcChafen extends Activity implements
 		btn2 = (LinearLayout) this.findViewById(R.id.button2);
 		btn3 = (LinearLayout) this.findViewById(R.id.button3);
 		btn4 = (LinearLayout) this.findViewById(R.id.button4);
+		
+		// 初始化年份为当前年
+		set_cf_year = (TextView)findViewById(R.id.cf_year);
+		set_cf_year.setText(Timetable.year()+""); 
+		
+		// 初始化当前学期(2~8下学期，9~1下学期)
+		set_cf_term = (TextView)findViewById(R.id.cf_term);
+		if(Timetable.term()){
+			set_cf_term.setText("上学期");
+		}else{
+			set_cf_term.setText("下学期");
+		}
 
 		drop_list1.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
@@ -143,97 +159,26 @@ public class JwcChafen extends Activity implements
 		btn3.setOnClickListener(this);
 		btn4.setOnClickListener(this);
 
-		progess_bar_popup_window();
-
-	}
-
-	@Override
-	public void onWindowFocusChanged(boolean hasFocus) {
-		String timestamp = ComDB.kv_get("dep_list_update_timestamp");
-		long ts = 0;
-		try {
-			ts = Long.parseLong(timestamp);
-			if (ts + 2592000000L < Timetable.timestamp()) {
-				get_departments();
-			}
-		} catch (Exception e) {
-			Toast.makeText(getApplicationContext(), "Error!", Toast.LENGTH_LONG)
-					.show();
-			get_departments();
-		}
-	}
-
-	private void progess_bar_popup_window() {
-		LayoutInflater inflater = (LayoutInflater) this
-				.getSystemService(LAYOUT_INFLATER_SERVICE);
-		View layout = inflater.inflate(R.layout.wait_popwin, null);
-
-		pw_progress_window = new PopupWindow(layout);
-		pw_progress_window.setWidth(50);
-		pw_progress_window.setHeight(50);
 	}
 
 	/**
-	 * 获取院系列表
-	 */
-	private void get_departments() {
-		Yangtzeu.getHttpClient().get(
-				"http://jwc.yangtzeu.edu.cn:8080/student.aspx",
-				new AsyncHttpResponseHandler() {
-
-					@Override
-					public void onStart() {
-						setCharset("GB2312");
-						pw_progress_window.showAtLocation(
-								findViewById(R.id.chafen_main), Gravity.CENTER,
-								0, 0);
-						pw_progress_window.update();
-					}
-
-					@Override
-					public void onSuccess(String response) {
-						JwcChafen.TempString = JwcRegex
-								.parse_department_list(response);
-
-						if (pw_progress_window.isShowing()) {
-							pw_progress_window.dismiss();
-						}
-
-						// 保存院系列表
-						new Thread(new Runnable() {
-							public void run() {
-								// 获取院系列表
-								JwcDB.dep_update(JwcChafen.TempString);
-								ComDB.kv_set("dep_list_update_timestamp",
-										Timetable.timestamp() + "");
-							}
-						}).start();
-					}
-				});
-	}
-
-	/**
-	 * 下拉列表
+	 * 年份下拉列表
 	 * 
 	 * @return
 	 */
-	private PopupWindow ini_drop_list_win() {
-		PopupWindow pop_window;
+	private PopupWindow year_drop_list_win() {
+		final PopupWindow pop_window;
 
 		LayoutInflater inflater = (LayoutInflater) this
 				.getSystemService(LAYOUT_INFLATER_SERVICE);
 		View layout = inflater.inflate(R.layout.dialog_drop_list, null);
-		lvPopupList = (ListView) layout.findViewById(R.id.drop_list);
-
-		// 创建一个院系数组
-		Map<String, List<String>> dep_list = JwcDB.dep_list_get();
-		List<String> dep_name_items = dep_list.get("name");
-		List<String> dep_id_items = dep_list.get("id");
+		year_popup_list = (ListView) layout.findViewById(R.id.drop_list);
 
 		List<Map<String, Object>> list_items = new ArrayList<Map<String, Object>>();
-		for (int i = 0; i < dep_name_items.size(); i++) {
+		for (int i = 0; i < 7; i++) {
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("item_title", dep_name_items.get(i));
+			map.put("item_title", (Timetable.year() - 3 + i)+"");
+			
 			map.put("tick", "");
 			list_items.add(map);
 		}
@@ -243,31 +188,41 @@ public class JwcChafen extends Activity implements
 				new int[] { R.id.drop_list_item_title,
 						R.id.drop_list_item_check });
 		// 绑定列表
-		lvPopupList.setAdapter(adapter);
+		year_popup_list.setAdapter(adapter);
 		pop_window = new PopupWindow(layout);
 		pop_window.setFocusable(true);
 
 		// 控制下拉列表的宽度和高度自适应
-		lvPopupList.measure(View.MeasureSpec.UNSPECIFIED,
+		year_popup_list.measure(View.MeasureSpec.UNSPECIFIED,
 				View.MeasureSpec.UNSPECIFIED);
 		pop_window.setWidth(drop_list1.getMeasuredWidth());
-		pop_window.setHeight((lvPopupList.getMeasuredHeight()) * 6);
+		pop_window.setHeight((year_popup_list.getMeasuredHeight()) * 6);
 
 		// 控制点击下拉列表之外的地方消失
 		pop_window.setBackgroundDrawable(this.getResources().getDrawable(
 				R.drawable.jwc_chafen_btn_b));
 		pop_window.setOutsideTouchable(true);
+		
+		// 列表点击事件
+		year_popup_list.setOnItemClickListener(new OnItemClickListener(){
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int item_index,
+					long arg3) {
+				// 将年份填入set_cf_year
+				set_cf_year.setText((Timetable.year() - 3 + item_index)+"");
+				// 关闭下拉列表
+				pop_window.dismiss();
+			}});
 
 		return pop_window;
 	}
 
+	// 点击打开下拉列表
 	@Override
-	public void onClick(View view) {
+	public void onClick(View view) { // TODO
 		if (view == drop_list1) {
-			pop_win_droplist = ini_drop_list_win();
-			pop_win_droplist.showAsDropDown(drop_list1);
-			// Toast.makeText(getApplicationContext(), "droplist",
-			// Toast.LENGTH_SHORT).show();
+			year_pop_win_droplist = year_drop_list_win();
+			year_pop_win_droplist.showAsDropDown(drop_list1);
 		}
 	}
 
@@ -283,6 +238,26 @@ public class JwcChafen extends Activity implements
 			return true;
 		}
 		return super.onKeyDown(keyCode, event);
+	}
+	
+	/**
+	 * 获取当前选择的年份
+	 * @return
+	 */
+	private String get_year(){
+		return set_cf_year.getText().toString();
+	}
+	
+	/**
+	 * 获取当前学期
+	 * @return 1：上学期，2：下学期  
+	 */
+	private int get_term(){
+		if(set_cf_year.getText().toString()=="下学期"){
+			return 2; // 下学期
+		}else{
+			return 1; // 上学期
+		}
 	}
 
 }
