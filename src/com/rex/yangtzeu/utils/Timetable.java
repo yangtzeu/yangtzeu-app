@@ -72,7 +72,7 @@ public class Timetable {
 	 * @return
 	 */
 	public static int month() {
-		return Time.MONTH;
+		return cal.get(Calendar.MONTH);
 	}
 
 	/**
@@ -83,6 +83,19 @@ public class Timetable {
 	public static int day() {
 		Timetable tt = new Timetable();
 		return tt.client_now.monthDay;
+	}
+	
+	/**
+	 * 获取学期
+	 * @return true上学期
+	 */
+	public static boolean term(){
+		int month = cal.get(Calendar.MONTH);
+		if(month>=2 && month<=8){
+			return false; //下学期
+		}else{
+			return true; //上学期
+		}
 	}
 
 	/**

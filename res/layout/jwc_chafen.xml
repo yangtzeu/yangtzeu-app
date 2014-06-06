@@ -67,13 +67,14 @@
             android:orientation="horizontal" >
 
             <TextView
+                android:id="@+id/cf_year"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="6sp"
                 android:layout_weight="0.9"
                 android:gravity="left"
-                android:text="请选择"
+                android:text="请选择年份"
                 android:textColor="#000000" />
 
             <LinearLayout
@@ -99,13 +100,14 @@
             android:orientation="horizontal" >
 
             <TextView
+                android:id="@+id/cf_term"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="6sp"
                 android:layout_weight="0.9"
                 android:gravity="left"
-                android:text="请选择"
+                android:text="请选择学期"
                 android:textColor="#000000" />
 
             <LinearLayout
