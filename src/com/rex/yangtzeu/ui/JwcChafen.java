@@ -17,6 +17,7 @@ import com.rex.yangtzeu.R;
 import com.rex.yangtzeu.utils.Timetable;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -284,6 +285,8 @@ public class JwcChafen extends Activity implements
 		}else if(view == drop_list2){
 			term_pop_win_droplist = term_drop_list_win();
 			term_pop_win_droplist.showAsDropDown(drop_list2);
+		}else if(view == btn1){ // 按钮“本学期成绩”
+			redirect_to();
 		}
 	}
 
@@ -320,5 +323,15 @@ public class JwcChafen extends Activity implements
 			return 1; // 上学期
 		}
 	}
+	
+	/**
+	 * 跳转到成绩列表页
+	 */
+	private void redirect_to(){
+		Intent intent = new Intent(this, ScoreList.class);
+		startActivity(intent);
+		overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+	}
+	
 
 }

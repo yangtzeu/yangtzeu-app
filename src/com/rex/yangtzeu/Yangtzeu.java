@@ -56,12 +56,6 @@ public class Yangtzeu extends Application {
 		SharedPreferences.Editor editor = settings.edit();
 		editor.clear();
 		
-		net_check();
 	}
 
-	/**
-	 * 网络检查等初始化
-	 */
-	private void net_check() {
-	}
 }
