@@ -8,7 +8,7 @@ import com.rex.yangtzeu.regex.JwcRegex;
 import com.rex.yangtzeu.sqlite.ComDB;
 import com.rex.yangtzeu.utils.EncrypAES;
 
-public class JwcHttp {
+public class JwcWeb {
 	public static boolean jwc_login() {
 		try {
 			String test_response = YuHttp.get("http://jwc.yangtzeu.edu.cn:8080/login.aspx", "gb2312");
