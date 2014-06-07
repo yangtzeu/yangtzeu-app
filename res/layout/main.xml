@@ -48,10 +48,11 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/tips_main"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center|right"
-                android:text="@string/tips_home" />
+                android:text="今天是x月x日\n第1周 星期一" />
         </LinearLayout>
     </LinearLayout>
 

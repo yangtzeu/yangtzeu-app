@@ -8,6 +8,7 @@
 
 - The project built by eclipse.
 - Ant
+- Gradle
 
 # Platform(For Developer) #
 - Min SDK Ver: Android 2.2
@@ -16,7 +17,7 @@
 
 # About Merge
 
-Please new pull request for develop branch.
+Please new pull request for master branch from [yangtzeu/yangtzeu-app](https://github.com/yangtzeu/yangtzeu-app "yangtzeu-app").
 
 # Funtion Units #
 

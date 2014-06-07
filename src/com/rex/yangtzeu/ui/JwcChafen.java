@@ -10,23 +10,13 @@
 package com.rex.yangtzeu.ui;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.httpclient.util.DateUtil;
-
 import com.rex.yangtzeu.R;
-import com.rex.yangtzeu.Yangtzeu;
-import com.rex.yangtzeu.sqlite.ComDB;
-import com.rex.yangtzeu.sqlite.JwcDB;
 import com.rex.yangtzeu.utils.Timetable;
 import android.os.Bundle;
 import android.app.Activity;
-import android.text.format.DateUtils;
-import android.text.format.Time;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -53,7 +43,9 @@ public class JwcChafen extends Activity implements
 
 	private PopupWindow year_pop_win_droplist;// 年份 pop window
 	private ListView year_popup_list;// 年份pop window中的ListView
-	List<Map<String, String>> moreList;
+	
+	private PopupWindow term_pop_win_droplist;// 学期 pop window
+	private ListView term_popup_list;// 学期pop window中的ListView
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -216,6 +208,72 @@ public class JwcChafen extends Activity implements
 
 		return pop_window;
 	}
+	
+	
+	/**
+	 * 学期下拉列表
+	 * 
+	 * @return
+	 */
+	private PopupWindow term_drop_list_win() {
+		final PopupWindow pop_window;
+
+		LayoutInflater inflater = (LayoutInflater) this
+				.getSystemService(LAYOUT_INFLATER_SERVICE);
+		View layout = inflater.inflate(R.layout.dialog_drop_list, null);
+		term_popup_list = (ListView) layout.findViewById(R.id.drop_list);
+
+		// 列表内容
+		List<Map<String, Object>> list_items = new ArrayList<Map<String, Object>>();
+		Map<String, Object> map1 = new HashMap<String, Object>();
+		map1.put("item_title", "上学期");
+		map1.put("tick", "");
+		list_items.add(map1);
+		Map<String, Object> map2 = new HashMap<String, Object>();
+		map2.put("item_title", "下学期");
+		map2.put("tick", "");
+		list_items.add(map2);
+			
+		// 设置列表条目样式
+		SimpleAdapter adapter = new SimpleAdapter(this, list_items,
+				R.layout.drop_list_item, new String[] { "item_title", "tick" },
+				new int[] { R.id.drop_list_item_title,
+						R.id.drop_list_item_check });
+		// 绑定列表
+		term_popup_list.setAdapter(adapter);
+		pop_window = new PopupWindow(layout);
+		pop_window.setFocusable(true);
+
+		// 控制下拉列表的宽度和高度自适应
+		term_popup_list.measure(View.MeasureSpec.UNSPECIFIED,
+				View.MeasureSpec.UNSPECIFIED);
+		pop_window.setWidth(drop_list2.getMeasuredWidth());
+		pop_window.setHeight((term_popup_list.getMeasuredHeight() + 7) * 2);
+
+		// 控制点击下拉列表之外的地方消失
+		pop_window.setBackgroundDrawable(this.getResources().getDrawable(
+				R.drawable.jwc_chafen_btn_b));
+		pop_window.setOutsideTouchable(true);
+		
+		// 列表点击事件
+		term_popup_list.setOnItemClickListener(new OnItemClickListener(){
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int item_index,
+					long arg3) {
+				// 将年份填入set_cf_term
+				if(item_index == 0){
+					set_cf_term.setText("上学期");
+				}else{
+					set_cf_term.setText("下学期");
+				}
+				
+				// 关闭下拉列表
+				pop_window.dismiss();
+			}});
+
+		return pop_window;
+	}
+	
 
 	// 点击打开下拉列表
 	@Override
@@ -223,6 +281,9 @@ public class JwcChafen extends Activity implements
 		if (view == drop_list1) {
 			year_pop_win_droplist = year_drop_list_win();
 			year_pop_win_droplist.showAsDropDown(drop_list1);
+		}else if(view == drop_list2){
+			term_pop_win_droplist = term_drop_list_win();
+			term_pop_win_droplist.showAsDropDown(drop_list2);
 		}
 	}
 

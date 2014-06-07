@@ -72,7 +72,7 @@ public class Timetable {
 	 * @return
 	 */
 	public static int month() {
-		return cal.get(Calendar.MONTH);
+		return cal.get(Calendar.MONTH) + 1;
 	}
 
 	/**
@@ -81,8 +81,7 @@ public class Timetable {
 	 * @return
 	 */
 	public static int day() {
-		Timetable tt = new Timetable();
-		return tt.client_now.monthDay;
+		return cal.get(Calendar.DAY_OF_MONTH);
 	}
 	
 	/**
