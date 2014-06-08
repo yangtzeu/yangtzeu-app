@@ -23,7 +23,7 @@ Please new pull request for master branch from [yangtzeu/yangtzeu-app](https://g
 
 - [ ] 教务处
 	- [ ] 分数查询
-	- [ ] 学生查询
+	- [ ] ~~学生查询(教务处已关闭此功能)~~
 	- [ ] 选课
 	- [ ] 课表
 	- [ ] 四六级

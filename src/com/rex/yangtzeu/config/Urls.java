@@ -32,7 +32,8 @@ public class Urls {
 	// 长大在线
 	public static String yuol_home = "http://online.yangtzeu.edu.cn/";
 
-	// api
-	public static String api_home = "http://yuol.duapp.com/";
+	// cet 查分API格式如下
+	// http://www.chsi.com.cn/cet/query?zkzh=420611122213619&xm=李俊
+	public static String cet_score = "http://www.chsi.com.cn/cet/query";
 
 }
