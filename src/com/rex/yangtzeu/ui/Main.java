@@ -10,6 +10,7 @@
 package com.rex.yangtzeu.ui;
 
 import com.rex.yangtzeu.R;
+import com.rex.yangtzeu.utils.Timetable;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -20,6 +21,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class Main extends Activity implements android.view.View.OnClickListener {
 	private LinearLayout btn1;
@@ -27,6 +29,7 @@ public class Main extends Activity implements android.view.View.OnClickListener 
 	private LinearLayout btn3;
 	private LinearLayout btn4;
 	private LinearLayout btn5;
+	private TextView tip_main;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,10 @@ public class Main extends Activity implements android.view.View.OnClickListener 
 		btn3 = (LinearLayout) this.findViewById(R.id.notice_btn);
 		btn4 = (LinearLayout) this.findViewById(R.id.news_btn);
 		btn5 = (LinearLayout) this.findViewById(R.id.setting_btn);
+		
+		tip_main = (TextView) this.findViewById(R.id.tips_main);
+		String tip = "今天是"+Timetable.month()+"月"+Timetable.day()+"日\n第1周 星期一";
+		tip_main.setText(tip);
 
 		btn1.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {

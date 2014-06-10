@@ -10,6 +10,6 @@
 package com.rex.yangtzeu.config;
 
 public class Key {
-	// 加密用密钥
+	// 加密用密钥-发布时更改
 	static public String secret_key = "yuol";
 }

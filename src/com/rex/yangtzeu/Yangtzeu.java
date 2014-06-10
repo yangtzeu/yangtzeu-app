@@ -23,6 +23,7 @@ public class Yangtzeu extends Application {
 
 	public static String jwc_login_viewstate = null;
 	public static String jwc_login_eventvalidation = null;
+	public static String[] sl_array = null;
 
 	public static Yangtzeu getInstance() {
 		return instance;
@@ -56,12 +57,6 @@ public class Yangtzeu extends Application {
 		SharedPreferences.Editor editor = settings.edit();
 		editor.clear();
 		
-		net_check();
 	}
 
-	/**
-	 * 网络检查等初始化
-	 */
-	private void net_check() {
-	}
 }

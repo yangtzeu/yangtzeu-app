@@ -9,16 +9,14 @@
  */
 package com.rex.yangtzeu.ui;
 
-import com.rex.yangtzeu.http.JwcHttp;
 import com.rex.yangtzeu.R;
 import com.rex.yangtzeu.Yangtzeu;
+import com.rex.yangtzeu.http.JwcWeb;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -64,38 +62,28 @@ public class Welcome extends Activity {
 	/**
 	 * 跳转到Main页面
 	 */
-	private void redirectTo() {
+	private void redirect_to() {
 		Intent intent = new Intent(this, Main.class);
 		startActivity(intent);
 		finish();
 	}
 
-	/**
-	 * 按键事件
-	 */
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			return true;
-		}
-		return super.onKeyDown(keyCode, event);
-	}
-	
 	// Async Login
-	private class LoginTask extends AsyncTask<String, Void,Bitmap> {
+	private class LoginTask extends AsyncTask<String, Void,String> {
 		boolean login_result = false; 
 		
-		protected void onPostExecute(Bitmap result) {
+		protected void onPostExecute(String result) {
 			if(this.login_result){
-				Toast.makeText(Yangtzeu.getInstance(), "登陸成功", Toast.LENGTH_LONG).show();
+				Toast.makeText(Yangtzeu.getInstance(), "登录成功", Toast.LENGTH_LONG).show();
 			}else{
-				Toast.makeText(Yangtzeu.getInstance(), "登陸失敗", Toast.LENGTH_LONG).show();
+				Toast.makeText(Yangtzeu.getInstance(), "登录失败", Toast.LENGTH_LONG).show();
 			}
-			redirectTo();
+			redirect_to();
 		}
 		
 		@Override
-		protected Bitmap doInBackground(String... arg0) {
-			this.login_result = JwcHttp.jwc_login();
+		protected String doInBackground(String... arg0) {
+			this.login_result = JwcWeb.jwc_login();
 			return null;
 		}
 	}

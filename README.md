@@ -8,6 +8,7 @@
 
 - The project built by eclipse.
 - Ant
+- Gradle
 
 # Platform(For Developer) #
 - Min SDK Ver: Android 2.2
@@ -16,13 +17,13 @@
 
 # About Merge
 
-Please new pull request for develop branch.
+Please new pull request for master branch from [yangtzeu/yangtzeu-app](https://github.com/yangtzeu/yangtzeu-app "yangtzeu-app").
 
 # Funtion Units #
 
 - [ ] 教务处
 	- [ ] 分数查询
-	- [ ] 学生查询
+	- [ ] ~~学生查询(教务处已关闭此功能)~~
 	- [ ] 选课
 	- [ ] 课表
 	- [ ] 四六级
