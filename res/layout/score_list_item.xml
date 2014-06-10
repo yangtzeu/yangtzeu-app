@@ -12,51 +12,52 @@
         android:layout_height="wrap_content"  
         android:gravity="center"
         android:textColor="#000000"  
-        android:textSize="14sp" />  
+        android:textSize="12sp" />  
   
     <!-- 课程分数 -->
-    <TextView  
+
+    <TextView
         android:id="@+id/sl_score"
-        android:layout_width="44dp"  
-        android:layout_height="wrap_content"  
+        android:layout_width="43dp"
+        android:layout_height="match_parent"
         android:gravity="center"
-        android:textColor="#000000"  
-        android:textSize="14sp" />  
+        android:textColor="#000000"
+        android:textSize="12sp" />
   
     <!-- 课程学分 -->
     <TextView  
         android:id="@+id/sl_point"
-        android:layout_width="44dp"  
-        android:layout_height="wrap_content"  
+        android:layout_width="42dp"  
+        android:layout_height="match_parent"  
         android:gravity="center"
         android:textColor="#000000"  
-        android:textSize="14sp" />  
+        android:textSize="12sp" />  
   
     <!-- 年度 -->
     <TextView  
         android:id="@+id/sl_year"
-        android:layout_width="44dp"  
-        android:layout_height="wrap_content"  
+        android:layout_width="43dp"  
+        android:layout_height="match_parent"  
         android:gravity="center"
         android:textColor="#000000"  
-        android:textSize="14sp" />  
+        android:textSize="12sp" />  
         
     <!-- 学期 -->
     <TextView  
         android:id="@+id/sl_term"
-        android:layout_width="44dp"  
-        android:layout_height="wrap_content"  
+        android:layout_width="42dp"  
+        android:layout_height="match_parent"  
         android:gravity="center"
         android:textColor="#000000"  
-        android:textSize="14sp" />  
+        android:textSize="12sp" />  
     
     <!-- 类别 -->
     <TextView  
         android:id="@+id/sl_catalog"
-        android:layout_width="44dp"  
-        android:layout_height="wrap_content"  
+        android:layout_width="50dp"  
+        android:layout_height="match_parent"  
         android:gravity="center"
         android:textColor="#000000"  
-        android:textSize="14sp" /> 
+        android:textSize="12sp" /> 
   
 </LinearLayout>  

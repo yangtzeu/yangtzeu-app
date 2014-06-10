@@ -68,7 +68,7 @@
 	            android:textSize="14sp" />
 	  
 	        <TextView
-	            android:layout_width="44dp"
+	            android:layout_width="43dp"
 	            android:layout_height="20dp"
 	            android:gravity="center"
 	            android:text="成绩"
@@ -76,7 +76,7 @@
 	            android:textSize="14sp" />
 	  
 	        <TextView  
-	            android:layout_width="44dp"  
+	            android:layout_width="42dp"  
 	            android:layout_height="20dp"  
 	            android:gravity="center"
 	            android:text="学分"  
@@ -84,7 +84,7 @@
 	            android:textSize="14sp" />  
 	  
 	        <TextView  
-	            android:layout_width="44dp"  
+	            android:layout_width="43dp"  
 	            android:layout_height="25dp" 
 	            android:gravity="center" 
 	            android:text="年度"  
@@ -92,7 +92,7 @@
 	            android:textSize="14sp" />  
 	  
 	        <TextView  
-	            android:layout_width="44dp"  
+	            android:layout_width="42dp"  
 	            android:layout_height="20dp"  
 	            android:gravity="center"
 	            android:text="学期"  
@@ -100,7 +100,7 @@
 	            android:textSize="14sp" /> 
 	            
 	        <TextView  
-	            android:layout_width="44dp"  
+	            android:layout_width="50dp"  
 	            android:layout_height="20dp"  
 	            android:gravity="center"
 	            android:text="类别"  

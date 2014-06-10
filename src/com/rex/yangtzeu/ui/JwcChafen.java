@@ -358,7 +358,8 @@ public class JwcChafen extends Activity implements
 			if(this.optype == "load_page"){ // 载入页面
 				;
 			}else if(this.optype == "all"){ // All
-				Toast.makeText(getApplicationContext(), list_array.length+"", Toast.LENGTH_LONG).show();
+				Yangtzeu.sl_array = list_array;
+				redirect_to();
 			}
 		}
 		

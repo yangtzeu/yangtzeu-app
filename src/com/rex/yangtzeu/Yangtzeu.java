@@ -23,6 +23,7 @@ public class Yangtzeu extends Application {
 
 	public static String jwc_login_viewstate = null;
 	public static String jwc_login_eventvalidation = null;
+	public static String[] sl_array = null;
 
 	public static Yangtzeu getInstance() {
 		return instance;

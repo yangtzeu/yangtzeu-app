@@ -12,8 +12,6 @@ package com.rex.yangtzeu.regex;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import android.util.Log;
-
 import com.rex.yangtzeu.Yangtzeu;
 
 public class JwcRegex {
