@@ -71,10 +71,10 @@ public class Welcome extends Activity {
 	}
 
 	// Async Login
-	private class LoginTask extends AsyncTask<String, Void,Bitmap> {
+	private class LoginTask extends AsyncTask<String, Void,String> {
 		boolean login_result = false; 
 		
-		protected void onPostExecute(Bitmap result) {
+		protected void onPostExecute(String result) {
 			if(this.login_result){
 				Toast.makeText(Yangtzeu.getInstance(), "登录成功", Toast.LENGTH_LONG).show();
 			}else{
@@ -84,7 +84,7 @@ public class Welcome extends Activity {
 		}
 		
 		@Override
-		protected Bitmap doInBackground(String... arg0) {
+		protected String doInBackground(String... arg0) {
 			this.login_result = JwcWeb.jwc_login();
 			return null;
 		}

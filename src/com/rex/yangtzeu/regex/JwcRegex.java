@@ -11,6 +11,9 @@ package com.rex.yangtzeu.regex;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import android.util.Log;
+
 import com.rex.yangtzeu.Yangtzeu;
 
 public class JwcRegex {
@@ -24,7 +27,6 @@ public class JwcRegex {
 	 *             正则匹配失败
 	 */
 	public static boolean get_viewstate_keys(String content) {
-//		Log.i("rex","content:"+content);
 		String key1 = "", key2 = "";
 		String regEx1 = "__VIEWSTATE\" value=\"([/d/D][^\"]+)\"";
 		String regEx2 = "__EVENTVALIDATION\" value=\"([/d/D][^\"]+)\"";
@@ -103,6 +105,29 @@ public class JwcRegex {
 
 			return raw.split("\n");
 		}
+		return null;
+	}
+	
+	public static String[] parse_score_list(String content) {
+		String pdl_pregex = "<table ([\\d\\D]+)</table>";
+		
+		Pattern pat1 = Pattern.compile(pdl_pregex);
+		Matcher mat1 = pat1.matcher(content);
+		
+		if(mat1.find()){
+			String raw = mat1.group(1);
+			
+			raw = raw.replaceAll("<[\\d\\D][^>]*>", ",");
+			raw = raw.replace("\t","");
+			raw = raw.replace(",,,,,,", "\n");
+			raw = raw.replace(",,,,", ",");
+			
+			raw = raw.replaceAll("^[\\d\\D]+\n,", "");
+			
+//			Log.i("rex",raw);
+			return raw.split("\n");
+		};
+
 		return null;
 	}
 

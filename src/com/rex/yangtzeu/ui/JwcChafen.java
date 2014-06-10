@@ -14,10 +14,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.rex.yangtzeu.R;
+import com.rex.yangtzeu.Yangtzeu;
+import com.rex.yangtzeu.http.YuHttp;
+import com.rex.yangtzeu.regex.JwcRegex;
+import com.rex.yangtzeu.sqlite.ComDB;
+import com.rex.yangtzeu.utils.EncrypAES;
 import com.rex.yangtzeu.utils.Timetable;
+
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -30,6 +38,7 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class JwcChafen extends Activity implements
 		android.view.View.OnClickListener {
@@ -47,6 +56,7 @@ public class JwcChafen extends Activity implements
 	
 	private PopupWindow term_pop_win_droplist;// 学期 pop window
 	private ListView term_popup_list;// 学期pop window中的ListView
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +81,10 @@ public class JwcChafen extends Activity implements
 		}else{
 			set_cf_term.setText("下学期");
 		}
+		
+		new NetTask().execute("load_page");
+		
+		////////////////////////
 
 		drop_list1.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
@@ -287,6 +301,8 @@ public class JwcChafen extends Activity implements
 			term_pop_win_droplist.showAsDropDown(drop_list2);
 		}else if(view == btn1){ // 按钮“本学期成绩”
 			redirect_to();
+		}else if(view == btn2){ // 所有成绩
+			new NetTask().execute("all");
 		}
 	}
 
@@ -331,6 +347,54 @@ public class JwcChafen extends Activity implements
 		Intent intent = new Intent(this, ScoreList.class);
 		startActivity(intent);
 		overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+	}
+	
+	// Async load_cfpage_task TODO
+	private class NetTask extends AsyncTask<String, Void,String> {
+		String[] list_array;
+		String optype;
+
+		protected void onPostExecute(String result) {
+			if(this.optype == "load_page"){ // 载入页面
+				;
+			}else if(this.optype == "all"){ // All
+				Toast.makeText(getApplicationContext(), list_array.length+"", Toast.LENGTH_LONG).show();
+			}
+		}
+		
+		@Override
+		protected String doInBackground(String... arg0) {
+			this.optype = arg0[0];
+			if(arg0[0] == "load_page"){ // 载入页面
+				String result = "";
+				try {
+					result = YuHttp.get("http://jwc.yangtzeu.edu.cn:8080/cjcx.aspx", "gb2312");
+					JwcRegex.get_viewstate_keys(result);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return null;
+			}else if(arg0[0] == "all"){ // All 查所有的分
+				try {
+					String result = "";
+					Map<String,String> data = new HashMap<String,String>();
+					data.put("__VIEWSTATE",Yangtzeu.jwc_login_viewstate);
+					data.put("__EVENTVALIDATION",Yangtzeu.jwc_login_eventvalidation);
+					data.put("__EVENTTARGET", "btAllcj");
+					
+					result = YuHttp.post("http://jwc.yangtzeu.edu.cn:8080/cjcx.aspx", data, "gb2312", false);
+					
+					//TODO
+					list_array = JwcRegex.parse_score_list(result);
+					return null;
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			
+			return null;
+			
+		}
 	}
 	
 
