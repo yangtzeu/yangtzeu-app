@@ -25,7 +25,11 @@ public class ScoreList extends Activity {
 		setContentView(R.layout.score_list);
 		
 		this.score_list_view = (ListView) findViewById(R.id.listview_score_list);
-		this.update_list();
+		
+		if(Yangtzeu.sl_array != null){
+			this.update_list();
+		}
+		
 	}
 
 	/**
@@ -46,6 +50,10 @@ public class ScoreList extends Activity {
 	public void update_list(){
 		List<Map<String, Object>> list_items = new ArrayList<Map<String, Object>>();
 		int len = Yangtzeu.sl_array.length;
+		
+		if(len<=0){
+			return;
+		}
 		
 		for(int i=0; i<len; i++){
 			Map<String, Object> map = new HashMap<String, Object>();

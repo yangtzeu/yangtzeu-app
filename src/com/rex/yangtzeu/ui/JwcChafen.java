@@ -17,15 +17,12 @@ import com.rex.yangtzeu.R;
 import com.rex.yangtzeu.Yangtzeu;
 import com.rex.yangtzeu.http.YuHttp;
 import com.rex.yangtzeu.regex.JwcRegex;
-import com.rex.yangtzeu.sqlite.ComDB;
-import com.rex.yangtzeu.utils.EncrypAES;
 import com.rex.yangtzeu.utils.Timetable;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -38,7 +35,6 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class JwcChafen extends Activity implements
 		android.view.View.OnClickListener {
@@ -81,9 +77,7 @@ public class JwcChafen extends Activity implements
 		}else{
 			set_cf_term.setText("下学期");
 		}
-		
-		new NetTask().execute("load_page");
-		
+
 		////////////////////////
 
 		drop_list1.setOnTouchListener(new OnTouchListener() {
@@ -355,9 +349,7 @@ public class JwcChafen extends Activity implements
 		String optype;
 
 		protected void onPostExecute(String result) {
-			if(this.optype == "load_page"){ // 载入页面
-				;
-			}else if(this.optype == "all"){ // All
+			if(this.optype == "all"){ // All
 				Yangtzeu.sl_array = list_array;
 				redirect_to();
 			}
@@ -366,16 +358,7 @@ public class JwcChafen extends Activity implements
 		@Override
 		protected String doInBackground(String... arg0) {
 			this.optype = arg0[0];
-			if(arg0[0] == "load_page"){ // 载入页面
-				String result = "";
-				try {
-					result = YuHttp.get("http://jwc.yangtzeu.edu.cn:8080/cjcx.aspx", "gb2312");
-					JwcRegex.get_viewstate_keys(result);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				return null;
-			}else if(arg0[0] == "all"){ // All 查所有的分
+			if(arg0[0] == "all"){ // All 查所有的分
 				try {
 					String result = "";
 					Map<String,String> data = new HashMap<String,String>();
