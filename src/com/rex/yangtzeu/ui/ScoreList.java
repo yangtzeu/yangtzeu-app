@@ -27,7 +27,11 @@ public class ScoreList extends Activity {
 		this.score_list_view = (ListView) findViewById(R.id.listview_score_list);
 		
 		if(Yangtzeu.sl_array != null){
-			this.update_list();
+			try{
+				this.update_list();
+			}catch(Exception e1){
+				;
+			}
 		}
 		
 	}

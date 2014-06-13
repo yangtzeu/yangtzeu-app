@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import com.rex.yangtzeu.R;
 import com.rex.yangtzeu.Yangtzeu;
+import com.rex.yangtzeu.config.Urls;
 import com.rex.yangtzeu.http.YuHttp;
 import com.rex.yangtzeu.regex.JwcRegex;
 import com.rex.yangtzeu.utils.Timetable;
@@ -289,7 +290,6 @@ public class JwcChafen extends Activity implements
 	// 点击打开下拉列表
 	@Override
 	public void onClick(View view) { // TODO
-		wait_pop_win = Waitting.waitting_pop_window(this, findViewById(R.id.chafen_main));
 		if (view == drop_list1) {
 			year_pop_win_droplist = year_drop_list_win();
 			year_pop_win_droplist.showAsDropDown(drop_list1);
@@ -297,9 +297,17 @@ public class JwcChafen extends Activity implements
 			term_pop_win_droplist = term_drop_list_win();
 			term_pop_win_droplist.showAsDropDown(drop_list2);
 		}else if(view == btn1){ // 按钮“本学期成绩”
+			wait_pop_win = Waitting.waitting_pop_window(this, findViewById(R.id.chafen_main));
 			new NetTask().execute("term");
 		}else if(view == btn2){ // 所有成绩
+			wait_pop_win = Waitting.waitting_pop_window(this, findViewById(R.id.chafen_main));
 			new NetTask().execute("all");
+		}else if(view == btn3){
+			wait_pop_win = Waitting.waitting_pop_window(this, findViewById(R.id.chafen_main));
+			new NetTask().execute("xuewei");
+		}else if(view == btn4){
+			wait_pop_win = Waitting.waitting_pop_window(this, findViewById(R.id.chafen_main));
+			new NetTask().execute("bixiu");
 		}
 	}
 
@@ -330,7 +338,7 @@ public class JwcChafen extends Activity implements
 	 * @return 1：上学期，2：下学期  
 	 */
 	private int get_term(){
-		if(set_cf_year.getText().toString()=="下学期"){
+		if(set_cf_term.getText().toString()=="下学期"){
 			return 2; // 下学期
 		}else{
 			return 1; // 上学期
@@ -359,6 +367,12 @@ public class JwcChafen extends Activity implements
 			}else if(this.optype == "term"){ // term
 				Yangtzeu.sl_array = list_array;
 				redirect_to();
+			}else if(this.optype == "xuewei"){
+				Yangtzeu.sl_array = list_array;
+				redirect_to();
+			}else if(this.optype == "bixiu"){
+				Yangtzeu.sl_array = list_array;
+				redirect_to();
 			}
 		}
 		
@@ -373,27 +387,65 @@ public class JwcChafen extends Activity implements
 					data.put("__EVENTVALIDATION",Yangtzeu.jwc_login_eventvalidation);
 					data.put("__EVENTTARGET", "btAllcj");
 					
-					result = YuHttp.post("http://jwc.yangtzeu.edu.cn:8080/cjcx.aspx", data, "gb2312", false);
+					result = YuHttp.post(Urls.jwc_cjcx_page, data, "gb2312", false);
 					
 					list_array = JwcRegex.parse_score_list(result);
 					return null;
 				} catch (Exception e) {
 					e.printStackTrace();
+					list_array = null;
 				}
-			}else if(arg0[0] == "term"){
+			}else if(arg0[0] == "term"){ // 本学期成绩
+				try { 
+					String result = "";
+					Map<String,String> data = new HashMap<String,String>();
+					data.put("__VIEWSTATE",Yangtzeu.jwc_login_viewstate);
+					data.put("__EVENTVALIDATION",Yangtzeu.jwc_login_eventvalidation);
+					data.put("__EVENTTARGET", "btXqcj");
+					data.put("selYear", get_year());
+					data.put("selTerm", get_term()+"");
+					
+					result = YuHttp.post(Urls.jwc_cjcx_page, data, "gb2312", false);
+					
+					list_array = JwcRegex.parse_score_list(result);
+					return null;
+				} catch (Exception e) {
+					e.printStackTrace();
+					list_array = null;
+				}
+			}else if(arg0[0] == "xuewei"){
+				try { 
+					String result = "";
+					Map<String,String> data = new HashMap<String,String>();
+					data.put("__VIEWSTATE",Yangtzeu.jwc_login_viewstate);
+					data.put("__EVENTVALIDATION",Yangtzeu.jwc_login_eventvalidation);
+					data.put("__EVENTTARGET", "");
+					data.put("button1", "%D1%A7%CE%BB%BF%CE%B3%C9%BC%A8%C1%D0%B1%ED");
+					
+					result = YuHttp.post(Urls.jwc_cjcx_page, data, "gb2312", false);
+					
+					list_array = JwcRegex.parse_score_list(result);
+					return null;
+				} catch (Exception e) {
+					e.printStackTrace();
+					list_array = null;
+				}
+			}else if(arg0[0] == "bixiu"){
 				try { //TODO 准备获取参数
 					String result = "";
 					Map<String,String> data = new HashMap<String,String>();
 					data.put("__VIEWSTATE",Yangtzeu.jwc_login_viewstate);
 					data.put("__EVENTVALIDATION",Yangtzeu.jwc_login_eventvalidation);
-					data.put("__EVENTTARGET", "btAllcj");
+					data.put("__EVENTTARGET", "");
+					data.put("button2", "%B1%D8%D0%DE%BF%CE%B3%C9%BC%A8%C1%D0%B1%ED");
 					
-					result = YuHttp.post("http://jwc.yangtzeu.edu.cn:8080/cjcx.aspx", data, "gb2312", false);
+					result = YuHttp.post(Urls.jwc_cjcx_page, data, "gb2312", false);
 					
 					list_array = JwcRegex.parse_score_list(result);
 					return null;
 				} catch (Exception e) {
 					e.printStackTrace();
+					list_array = null;
 				}
 			}
 			

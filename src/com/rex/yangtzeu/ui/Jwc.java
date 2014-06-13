@@ -10,6 +10,7 @@
 package com.rex.yangtzeu.ui;
 
 import com.rex.yangtzeu.R;
+import com.rex.yangtzeu.config.Urls;
 import com.rex.yangtzeu.http.YuHttp;
 import com.rex.yangtzeu.regex.JwcRegex;
 
@@ -160,7 +161,7 @@ public class Jwc extends Activity implements android.view.View.OnClickListener {
 			if(arg0[0] == "load_page"){ // 载入页面
 				String result = "";
 				try {
-					result = YuHttp.get("http://jwc.yangtzeu.edu.cn:8080/cjcx.aspx", "gb2312");
+					result = YuHttp.get(Urls.jwc_cjcx_page, "gb2312");
 					JwcRegex.get_viewstate_keys(result);
 				} catch (Exception e) {
 					e.printStackTrace();
