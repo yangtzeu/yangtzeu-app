@@ -53,6 +53,8 @@ public class JwcChafen extends Activity implements
 	private PopupWindow term_pop_win_droplist;// 学期 pop window
 	private ListView term_popup_list;// 学期pop window中的ListView
 	
+	private PopupWindow wait_pop_win;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -287,6 +289,7 @@ public class JwcChafen extends Activity implements
 	// 点击打开下拉列表
 	@Override
 	public void onClick(View view) { // TODO
+		wait_pop_win = Waitting.waitting_pop_window(this, findViewById(R.id.chafen_main));
 		if (view == drop_list1) {
 			year_pop_win_droplist = year_drop_list_win();
 			year_pop_win_droplist.showAsDropDown(drop_list1);
@@ -294,7 +297,7 @@ public class JwcChafen extends Activity implements
 			term_pop_win_droplist = term_drop_list_win();
 			term_pop_win_droplist.showAsDropDown(drop_list2);
 		}else if(view == btn1){ // 按钮“本学期成绩”
-			redirect_to();
+			new NetTask().execute("term");
 		}else if(view == btn2){ // 所有成绩
 			new NetTask().execute("all");
 		}
@@ -338,6 +341,7 @@ public class JwcChafen extends Activity implements
 	 * 跳转到成绩列表页
 	 */
 	private void redirect_to(){
+		wait_pop_win.dismiss(); // 关闭waitting弹出窗
 		Intent intent = new Intent(this, ScoreList.class);
 		startActivity(intent);
 		overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
@@ -350,6 +354,9 @@ public class JwcChafen extends Activity implements
 
 		protected void onPostExecute(String result) {
 			if(this.optype == "all"){ // All
+				Yangtzeu.sl_array = list_array;
+				redirect_to();
+			}else if(this.optype == "term"){ // term
 				Yangtzeu.sl_array = list_array;
 				redirect_to();
 			}
@@ -368,7 +375,21 @@ public class JwcChafen extends Activity implements
 					
 					result = YuHttp.post("http://jwc.yangtzeu.edu.cn:8080/cjcx.aspx", data, "gb2312", false);
 					
-					//TODO
+					list_array = JwcRegex.parse_score_list(result);
+					return null;
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}else if(arg0[0] == "term"){
+				try { //TODO 准备获取参数
+					String result = "";
+					Map<String,String> data = new HashMap<String,String>();
+					data.put("__VIEWSTATE",Yangtzeu.jwc_login_viewstate);
+					data.put("__EVENTVALIDATION",Yangtzeu.jwc_login_eventvalidation);
+					data.put("__EVENTTARGET", "btAllcj");
+					
+					result = YuHttp.post("http://jwc.yangtzeu.edu.cn:8080/cjcx.aspx", data, "gb2312", false);
+					
 					list_array = JwcRegex.parse_score_list(result);
 					return null;
 				} catch (Exception e) {
