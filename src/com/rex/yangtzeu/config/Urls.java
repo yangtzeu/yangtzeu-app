@@ -16,7 +16,6 @@ public class Urls {
 	public static String jwc_login_page = jwc_home + "login.aspx";
 	public static String jwc_login_response = jwc_home + "login.aspx";
 	public static String jwc_cjcx_page = jwc_home + "cjcx.aspx";
-	public static String jwc_cjcx_response = jwc_home + "cjcx.aspx";
 	public static String jwc_search_student_page = jwc_home + "student.aspx";
 	public static String jwc_search_student_response = jwc_home
 			+ "student.aspx";

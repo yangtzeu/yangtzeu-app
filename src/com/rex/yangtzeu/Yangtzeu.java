@@ -53,10 +53,6 @@ public class Yangtzeu extends Application {
 		db = new Sql();
 		this.startService(new Intent(YuService.ACTION));
 
-		SharedPreferences settings = getSharedPreferences("settings", MODE_PRIVATE);
-		SharedPreferences.Editor editor = settings.edit();
-		editor.clear();
-		
 	}
 
 }

@@ -111,7 +111,6 @@ public class JwcRegex {
 		
 		Pattern pat1 = Pattern.compile(pdl_pregex);
 		Matcher mat1 = pat1.matcher(content);
-		
 		if(mat1.find()){
 			String raw = mat1.group(1);
 			
@@ -122,7 +121,6 @@ public class JwcRegex {
 			
 			raw = raw.replaceAll("^[\\d\\D]+\n,", "");
 			
-//			Log.i("rex",raw);
 			return raw.split("\n");
 		};
 

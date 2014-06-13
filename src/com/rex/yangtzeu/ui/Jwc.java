@@ -10,7 +10,11 @@
 package com.rex.yangtzeu.ui;
 
 import com.rex.yangtzeu.R;
+import com.rex.yangtzeu.config.Urls;
+import com.rex.yangtzeu.http.YuHttp;
+import com.rex.yangtzeu.regex.JwcRegex;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -129,11 +133,41 @@ public class Jwc extends Activity implements android.view.View.OnClickListener {
 		// TODO Auto-generated method stub
 		if (arg0 == btn1) {
 			// 查分
+			new NetTask().execute("load_page");
+		}
+	}
+	
+	public void redirect_to(String tag){
+		if(tag == "jwc"){
 			Intent intent = new Intent(this, JwcChafen.class);
 			startActivity(intent);
 			overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
-
 		}
 	}
 
+	// Async load_cfpage_task TODO
+	private class NetTask extends AsyncTask<String, Void,String> {
+		String optype;
+
+		protected void onPostExecute(String result) {
+			if(this.optype == "load_page"){ // 载入页面
+				redirect_to("jwc");
+			}
+		}
+		
+		@Override
+		protected String doInBackground(String... arg0) {
+			this.optype = arg0[0];
+			if(arg0[0] == "load_page"){ // 载入页面
+				String result = "";
+				try {
+					result = YuHttp.get(Urls.jwc_cjcx_page, "gb2312");
+					JwcRegex.get_viewstate_keys(result);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			return null;
+		}
+	}
 }
