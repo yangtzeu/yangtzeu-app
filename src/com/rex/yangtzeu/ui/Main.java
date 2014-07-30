@@ -43,7 +43,8 @@ public class Main extends Activity implements android.view.View.OnClickListener 
 		btn5 = (LinearLayout) this.findViewById(R.id.setting_btn);
 		
 		tip_main = (TextView) this.findViewById(R.id.tips_main);
-		String tip = "今天是"+Timetable.month()+"月"+Timetable.day()+"日\n第1周 星期一";
+        String[] week = {"日","一","二","三","四","五","六"};
+		String tip = "今天是"+Timetable.month()+"月"+Timetable.day()+"日\n第1周 星期"+ week[Timetable.week()];
 		tip_main.setText(tip);
 
 		btn1.setOnTouchListener(new OnTouchListener() {

@@ -6,7 +6,8 @@
  *
  * This program is free and opensource software; 
  * you can redistribute it and/or modify
- * it under the terms of the MIT License
+ * it under the terms of the MIT License
+
 -->
 <resources>
 
@@ -34,5 +35,6 @@
     <string name="welcome_about_project1">(OpenSource)长大长新</string>
     <string name="welcome_about_project2">github:duguying/yangtzeu-app\nopensource project, code donation is welcome</string>
     <string name="title_activity_score_list">ScoreList</string>
+    <string name="title_cet_score">CET Score</string>
 
 </resources>

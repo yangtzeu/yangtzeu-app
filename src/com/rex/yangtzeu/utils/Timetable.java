@@ -104,7 +104,7 @@ public class Timetable {
 	 */
 	public static int week() {
 		Timetable tt = new Timetable();
-		return tt.client_now.weekDay;
+        return tt.client_now.weekDay;
 	}
 
 	/**
