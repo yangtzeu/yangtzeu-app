@@ -134,7 +134,9 @@ public class Jwc extends Activity implements android.view.View.OnClickListener {
 		if (arg0 == btn1) {
 			// 查分
 			new NetTask().execute("load_page");
-		}
+		}else if (arg0 == btn2){
+            redirect_to("cet");
+        }
 	}
 	
 	public void redirect_to(String tag){
@@ -142,7 +144,11 @@ public class Jwc extends Activity implements android.view.View.OnClickListener {
 			Intent intent = new Intent(this, JwcChafen.class);
 			startActivity(intent);
 			overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
-		}
+		}else if (tag == "cet"){
+            Intent intent = new Intent(this, CetScore.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+        }
 	}
 
 	// Async load_cfpage_task 
