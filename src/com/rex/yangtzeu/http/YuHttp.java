@@ -16,10 +16,13 @@ import org.apache.commons.httpclient.methods.PostMethod;
 import com.rex.yangtzeu.Yangtzeu;
 
 public class YuHttp {
+     private static HttpMethod method = null;
+     public static String referer = "";
+
 	 public static String get(String url, String charset)throws Exception {  
 		  
 	        HttpClient client = Yangtzeu.getHttpClient();  
-	        GetMethod method1 = new GetMethod(url);  
+	        method = new GetMethod(url);
 	  
 	        if (null == url || !url.startsWith("http")) {
 	            throw new Exception("请求地址格式不对");
@@ -27,27 +30,29 @@ public class YuHttp {
 	  
 	        // 设置请求的编码方式  
 	        if (null != charset) {  
-	            method1.addRequestHeader("Content-Type",  
+	            method.addRequestHeader("Content-Type",
 	                    "application/x-www-form-urlencoded; charset=" + charset);  
 	        } else {  
-	            method1.addRequestHeader("Content-Type",  
+	            method.addRequestHeader("Content-Type",
 	                    "application/x-www-form-urlencoded; charset=" + "utf-8");
-	        }  
-	        
+	        }
+
+            method.addRequestHeader("Referer", YuHttp.referer);
+
 	        // 保持cookies
-	        method1.getParams().setCookiePolicy(CookiePolicy.BROWSER_COMPATIBILITY);
+	        method.getParams().setCookiePolicy(CookiePolicy.BROWSER_COMPATIBILITY);
 	        
-	        int statusCode = client.executeMethod(method1);  
+	        int statusCode = client.executeMethod(method);
 	  
 	        if (statusCode != HttpStatus.SC_OK) {// 打印服务器返回的状态  
-	            return "Method failed: " + method1.getStatusLine();
+	            return "Method failed: " + method.getStatusLine();
 	        }  
 	        // 返回响应消息  
-	        byte[] responseBody = method1.getResponseBodyAsString().getBytes(method1.getResponseCharSet());  
+	        byte[] responseBody = method.getResponseBodyAsString().getBytes(((GetMethod)method).getResponseCharSet());
 	        // 在返回响应消息使用编码(utf-8或gb2312)
 	        String response = new String(responseBody, charset);  
 	        // 释放连接  
-	        method1.releaseConnection();
+	        method.releaseConnection();
 	        return response;  
 	    }
 	 
@@ -65,7 +70,7 @@ public class YuHttp {
 	        StringBuffer response = new StringBuffer();  
 	          
 	        HttpClient client = Yangtzeu.getHttpClient();
-	        HttpMethod method = new PostMethod(url);
+	        method = new PostMethod(url);
 	        
 	        // 保持cookies
 	        method.getParams().setCookiePolicy(CookiePolicy.BROWSER_COMPATIBILITY);
@@ -80,7 +85,10 @@ public class YuHttp {
 	            ((PostMethod) method).setRequestBody(p);
 	            method.setRequestHeader("Content-Type",
 	                    "application/x-www-form-urlencoded;charset="+charset);
-	        }  
+	        }
+
+            method.addRequestHeader("Referer", YuHttp.referer);
+
 	        try {  
 	            client.executeMethod(method);  
 	            if (method.getStatusCode() == HttpStatus.SC_OK) {  
