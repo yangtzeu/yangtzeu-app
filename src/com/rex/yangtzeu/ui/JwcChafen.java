@@ -1,5 +1,5 @@
 /**
- * 长大校园通-长江大学校园安卓应用
+ * 长大长新-长江大学校园安卓应用
  *
  * Copyright (C) 2014-2016 Rex Lee <duguying2008@gmail.com>
  *
@@ -71,7 +71,7 @@ public class JwcChafen extends Activity implements
 		
 		// 初始化年份为当前年
 		set_cf_year = (TextView)findViewById(R.id.cf_year);
-		set_cf_year.setText(Timetable.year()+""); 
+		set_cf_year.setText((Timetable.year() - 1) +"");
 		
 		// 初始化当前学期(2~8下学期，9~1下学期)
 		set_cf_term = (TextView)findViewById(R.id.cf_term);

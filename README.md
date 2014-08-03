@@ -22,7 +22,7 @@ Please new pull request for master branch from [yangtzeu/yangtzeu-app](https://g
 # Funtion Units #
 
 - [ ] 教务处
-	- [ ] 分数查询
+	- [x] 分数查询
 	- [ ] ~~学生查询(教务处已关闭此功能)~~
 	- [ ] 选课
 	- [ ] 课表
@@ -40,8 +40,8 @@ Please new pull request for master branch from [yangtzeu/yangtzeu-app](https://g
 	- [ ] 教务处新闻
 	- [ ] 计科院新闻
 - [ ] 设置
-	- [ ] 学号
-	- [ ] 教务处密码
+	- [x] 学号
+	- [x] 教务处密码
 	- [ ] 院系
 	- [ ] 班级
 

@@ -1,5 +1,5 @@
 /**
- * 长大校园通-长江大学校园安卓应用
+ * 长大长新-长江大学校园安卓应用
  *
  * Copyright (C) 2014-2016 Rex Lee <duguying2008@gmail.com>
  *
@@ -10,11 +10,9 @@
 package com.rex.yangtzeu;
 
 import org.apache.commons.httpclient.HttpClient;
-
 import com.rex.yangtzeu.sqlite.Sql;
 import android.app.Application;
 import android.content.Intent;
-import android.content.SharedPreferences;
 
 public class Yangtzeu extends Application {
 	private static Yangtzeu instance;

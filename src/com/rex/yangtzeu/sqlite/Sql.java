@@ -1,5 +1,5 @@
 /**
- * 长大校园通-长江大学校园安卓应用
+ * 长大长新-长江大学校园安卓应用
  *
  * Copyright (C) 2014-2016 Rex Lee <duguying2008@gmail.com>
  *

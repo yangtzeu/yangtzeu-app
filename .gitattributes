@@ -1,1 +1,3 @@
-* text=auto
+*.png diff=exif
+*.psd diff=exif' 
+*.jpg diff=exif' 
